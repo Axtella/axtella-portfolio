@@ -54,12 +54,14 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
     const sentenceElements = sentenceRefs.current.filter(Boolean) as HTMLSpanElement[];
     if (sentenceElements.length === 0) return;
 
+    const isMobile = window.innerWidth < 768;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=300%",
+          end: isMobile ? "+=150%" : "+=300%",
           pin: true,
           pinSpacing: true,
           scrub: 1,
@@ -94,15 +96,15 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-screen ${colors.background}`}
+      className={`relative min-h-[60vh] md:min-h-screen py-10 md:py-0 ${colors.background}`}
       style={{ display: "flex", alignItems: "center" }}
     >
       <div className={`w-full ${colors.background}`}>
         <div
-          className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8"
+          className="w-full max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-12"
           style={{
             fontFamily: "var(--font-plus-jakarta)",
-            fontSize: "clamp(16px, 3.5vw, 36px)",
+            fontSize: "clamp(18px, 3.5vw, 36px)",
             lineHeight: "1.5",
             letterSpacing: "-0.02em",
           }}
