@@ -44,7 +44,7 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
 
   const colors = useMemo(() => ({
     background: theme === "light" ? "bg-white" : "bg-[#080D1A]",
-    dimColor: theme === "light" ? "rgba(0, 0, 0, 0.15)" : "rgba(255, 255, 255, 0.15)",
+    dimColor: theme === "light" ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)",
     activeColor: theme === "light" ? "rgba(0, 0, 0, 1)" : "rgba(255, 255, 255, 1)",
   }), [theme]);
 
@@ -54,16 +54,12 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
     const sentenceElements = sentenceRefs.current.filter(Boolean) as HTMLSpanElement[];
     if (sentenceElements.length === 0) return;
 
-    const isMobile = window.innerWidth < 768;
-
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
-          end: isMobile ? "+=150%" : "+=300%",
-          pin: true,
-          pinSpacing: true,
+          start: "top 85%",
+          end: "bottom 30%",
           scrub: 1,
         },
       });
@@ -96,44 +92,41 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
   return (
     <section
       ref={sectionRef}
-      className={`relative pt-24 pb-16 md:py-0 md:min-h-screen ${colors.background}`}
-      style={{ display: "flex", alignItems: "center" }}
+      className={`py-16 md:py-20 lg:py-24 ${colors.background}`}
     >
-      <div className={`w-full ${colors.background}`}>
-        <div
-          className="w-full max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-12"
-          style={{
-            fontFamily: "var(--font-plus-jakarta)",
-            fontSize: "clamp(18px, 3.5vw, 36px)",
-            lineHeight: "1.5",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          <p>
-            {sentences.map((segments, sentenceIndex) => (
-              <span
-                key={sentenceIndex}
-                ref={(el) => {
-                  sentenceRefs.current[sentenceIndex] = el;
-                }}
-                style={{ color: colors.dimColor }}
-              >
-                {segments.map((segment, segIndex) => (
-                  <span
-                    key={segIndex}
-                    style={{
-                      fontWeight: segment.weight || 400,
-                      display: "inline",
-                    }}
-                  >
-                    {segment.text}
-                  </span>
-                ))}
-                {sentenceIndex < sentences.length - 1 ? " " : ""}
-              </span>
-            ))}
-          </p>
-        </div>
+      <div
+        className="w-full max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-12"
+        style={{
+          fontFamily: "var(--font-plus-jakarta)",
+          fontSize: "clamp(18px, 3.5vw, 36px)",
+          lineHeight: "1.5",
+          letterSpacing: "-0.02em",
+        }}
+      >
+        <p>
+          {sentences.map((segments, sentenceIndex) => (
+            <span
+              key={sentenceIndex}
+              ref={(el) => {
+                sentenceRefs.current[sentenceIndex] = el;
+              }}
+              style={{ color: colors.dimColor }}
+            >
+              {segments.map((segment, segIndex) => (
+                <span
+                  key={segIndex}
+                  style={{
+                    fontWeight: segment.weight || 400,
+                    display: "inline",
+                  }}
+                >
+                  {segment.text}
+                </span>
+              ))}
+              {sentenceIndex < sentences.length - 1 ? " " : ""}
+            </span>
+          ))}
+        </p>
       </div>
     </section>
   );

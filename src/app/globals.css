@@ -322,7 +322,3 @@ html.lenis, html.lenis body {
   animation-play-state: paused;
 }
 
-/* GSAP pin-spacer background fix */
-.pin-spacer {
-  background-color: #ffffff !important;
-}

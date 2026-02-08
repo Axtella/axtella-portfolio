@@ -127,7 +127,7 @@ export function HeroSection() {
           ease: "power2.out",
         });
         gsap.to(sparkles, {
-          opacity: 0.4,
+          opacity: 0.6,
           duration: 1.5,
           stagger: 0.15,
           delay: 2.5,
@@ -322,9 +322,9 @@ export function HeroSection() {
                 </defs>
 
                 {/* === Central Glow === */}
-                <circle cx="440" cy="340" r="120" fill="#F5A623" opacity="0.04" filter="url(#glow)" />
-                <circle cx="440" cy="340" r="50" fill="#F5A623" opacity="0.08" filter="url(#glow)" />
-                <circle cx="440" cy="340" r="20" fill="#F5A623" opacity="0.15" />
+                <circle cx="440" cy="340" r="120" fill="#F5A623" opacity="0.08" filter="url(#glow)" />
+                <circle cx="440" cy="340" r="50" fill="#F5A623" opacity="0.15" filter="url(#glow)" />
+                <circle cx="440" cy="340" r="20" fill="#F5A623" opacity="0.3" />
 
                 {/* === Particle burst pool === */}
                 {Array.from({ length: 30 }).map((_, i) => (
@@ -342,40 +342,40 @@ export function HeroSection() {
                 {/* === Connection Pipes (curved bezier paths with flowing dash animation) === */}
                 <g>
                   {/* Router → Center */}
-                  <path className="connection-pipe" d="M 220 168 C 300 200, 370 270, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3s linear infinite" }} />
+                  <path className="connection-pipe" d="M 220 168 C 300 200, 370 270, 440 340" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3s linear infinite" }} />
                   {/* Dashboard → Center */}
-                  <path className="connection-pipe" d="M 560 175 C 520 220, 480 280, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 560 175 C 520 220, 480 280, 440 340" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.5s linear infinite" }} />
                   {/* Camera → Center */}
-                  <path className="connection-pipe" d="M 322 377 C 360 367, 400 353, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 2.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 322 377 C 360 367, 400 353, 440 340" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 2.5s linear infinite" }} />
                   {/* Server → Center */}
-                  <path className="connection-pipe" d="M 690 400 C 620 387, 530 363, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4s linear infinite" }} />
+                  <path className="connection-pipe" d="M 690 400 C 620 387, 530 363, 440 340" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4s linear infinite" }} />
                   {/* Phone → Center */}
-                  <path className="connection-pipe" d="M 430 490 C 433 440, 437 395, 440 350" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.2s linear infinite" }} />
+                  <path className="connection-pipe" d="M 430 490 C 433 440, 437 395, 440 350" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.2s linear infinite" }} />
                   {/* Sensor → Center */}
-                  <path className="connection-pipe" d="M 175 478 C 260 450, 350 395, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.8s linear infinite" }} />
+                  <path className="connection-pipe" d="M 175 478 C 260 450, 350 395, 440 340" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.8s linear infinite" }} />
                   {/* Router → Dashboard (top arc) */}
-                  <path className="connection-pipe" d="M 220 145 C 340 70, 480 70, 560 130" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 220 145 C 340 70, 480 70, 560 130" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.5s linear infinite" }} />
                   {/* Sensor → Phone (bottom arc) */}
-                  <path className="connection-pipe" d="M 170 520 C 250 555, 340 555, 400 540" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 170 520 C 250 555, 340 555, 400 540" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 5s linear infinite" }} />
                   {/* Server → Dashboard (right side) */}
-                  <path className="connection-pipe" d="M 730 360 C 738 300, 720 240, 700 190" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.2s linear infinite" }} />
+                  <path className="connection-pipe" d="M 730 360 C 738 300, 720 240, 700 190" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.2s linear infinite" }} />
                   {/* Camera → Sensor */}
-                  <path className="connection-pipe" d="M 272 390 C 240 420, 200 450, 165 470" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.8s linear infinite" }} />
+                  <path className="connection-pipe" d="M 272 390 C 240 420, 200 450, 165 470" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.8s linear infinite" }} />
                 </g>
 
                 {/* === Junction Dots (at pipe midpoints and bends) === */}
                 <g>
-                  <circle className="junction-dot" cx="330" cy="233" r="3.5" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="500" cy="255" r="3" fill="#F5A623" opacity="0.8" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="380" cy="358" r="3" fill="rgba(255,255,255,0.7)" />
-                  <circle className="junction-dot" cx="565" cy="373" r="3.5" fill="#F5A623" opacity="0.8" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="436" cy="418" r="3" fill="rgba(255,255,255,0.6)" />
-                  <circle className="junction-dot" cx="308" cy="418" r="3" fill="#F5A623" opacity="0.75" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="400" cy="85" r="3.5" fill="#F5A623" opacity="0.7" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="290" cy="548" r="3" fill="rgba(255,255,255,0.55)" />
-                  <circle className="junction-dot" cx="730" cy="275" r="3" fill="#D4232F" opacity="0.75" filter="url(#glow-sm)" />
-                  <circle className="junction-dot" cx="218" cy="435" r="3" fill="rgba(255,255,255,0.55)" />
-                  <circle className="junction-dot" cx="440" cy="340" r="6" fill="#F5A623" opacity="0.7" filter="url(#glow)" />
+                  <circle className="junction-dot" cx="330" cy="233" r="3.5" fill="#F5A623" opacity="0.9" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="500" cy="255" r="3" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="380" cy="358" r="3" fill="rgba(255,255,255,0.85)" />
+                  <circle className="junction-dot" cx="565" cy="373" r="3.5" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="436" cy="418" r="3" fill="rgba(255,255,255,0.8)" />
+                  <circle className="junction-dot" cx="308" cy="418" r="3" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="400" cy="85" r="3.5" fill="#F5A623" opacity="0.9" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="290" cy="548" r="3" fill="rgba(255,255,255,0.8)" />
+                  <circle className="junction-dot" cx="730" cy="275" r="3" fill="#D4232F" opacity="0.85" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="218" cy="435" r="3" fill="rgba(255,255,255,0.8)" />
+                  <circle className="junction-dot" cx="440" cy="340" r="6" fill="#F5A623" opacity="0.9" filter="url(#glow)" />
                 </g>
 
                 {/* === Device: Router/Modem (top-left) === */}
@@ -395,11 +395,11 @@ export function HeroSection() {
                   <circle cx="163" cy="164" r="2.5" fill="#D4232F">
                     <animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" begin="0.5s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="176" cy="164" r="2.5" fill="rgba(255,255,255,0.4)" />
+                  <circle cx="176" cy="164" r="2.5" fill="rgba(255,255,255,0.6)" />
                   {/* Ventilation lines */}
-                  <line x1="195" y1="150" x2="210" y2="150" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-                  <line x1="195" y1="155" x2="210" y2="155" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-                  <line x1="195" y1="160" x2="210" y2="160" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+                  <line x1="195" y1="150" x2="210" y2="150" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+                  <line x1="195" y1="155" x2="210" y2="155" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
+                  <line x1="195" y1="160" x2="210" y2="160" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5" />
                 </g>
 
                 {/* === Device: Dashboard/Monitor (top-right, largest) === */}
@@ -407,14 +407,14 @@ export function HeroSection() {
                   {/* Screen frame */}
                   <rect x="560" y="80" width="160" height="110" rx="8" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Inner screen */}
-                  <rect x="572" y="92" width="136" height="82" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" fill="rgba(255,255,255,0.02)" />
+                  <rect x="572" y="92" width="136" height="82" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" fill="rgba(255,255,255,0.05)" />
                   {/* Bar charts (left half) */}
-                  <rect x="582" y="104" width="38" height="8" rx="2" fill="rgba(255,255,255,0.15)" />
+                  <rect x="582" y="104" width="38" height="8" rx="2" fill="rgba(255,255,255,0.3)" />
                   <rect x="582" y="118" width="55" height="8" rx="2" fill="#F5A623" opacity="0.75" />
                   <rect x="582" y="132" width="45" height="8" rx="2" fill="#F5A623" opacity="0.9" />
                   <rect x="582" y="146" width="30" height="8" rx="2" fill="#D4232F" opacity="0.75" />
                   {/* Donut chart (right half) */}
-                  <circle cx="670" cy="128" r="22" stroke="rgba(255,255,255,0.15)" strokeWidth="3" fill="none" />
+                  <circle cx="670" cy="128" r="22" stroke="rgba(255,255,255,0.3)" strokeWidth="3" fill="none" />
                   <circle cx="670" cy="128" r="22" stroke="#F5A623" strokeWidth="3.5" fill="none" strokeDasharray="55 138" strokeDashoffset="0" opacity="0.9" />
                   <circle cx="670" cy="128" r="22" stroke="#D4232F" strokeWidth="3.5" fill="none" strokeDasharray="28 138" strokeDashoffset="-62" opacity="0.75" />
                   {/* Percentage text hint */}
@@ -440,7 +440,7 @@ export function HeroSection() {
                     <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" />
                   </circle>
                   {/* Mounting plate */}
-                  <rect x="242" y="336" width="12" height="8" rx="2" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" fill="none" />
+                  <rect x="242" y="336" width="12" height="8" rx="2" stroke="rgba(255,255,255,0.5)" strokeWidth="0.8" fill="none" />
                 </g>
 
                 {/* === Device: Smartphone (bottom-center) === */}
@@ -448,20 +448,20 @@ export function HeroSection() {
                   {/* Phone body */}
                   <rect x="400" y="490" width="60" height="100" rx="10" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Screen area */}
-                  <rect x="407" y="503" width="46" height="68" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" fill="rgba(255,255,255,0.02)" />
+                  <rect x="407" y="503" width="46" height="68" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="0.5" fill="rgba(255,255,255,0.05)" />
                   {/* GPS Pin */}
                   <path d="M 430 522 c-6 0-10.5 4.5-10.5 10.5 c0 8.5 10.5 17 10.5 17 s10.5-8.5 10.5-17 c0-6-4.5-10.5-10.5-10.5z" fill="#D4232F" opacity="0.8" />
                   <circle cx="430" cy="532" r="4" fill="rgba(255,255,255,0.8)" />
                   {/* Map grid lines inside screen */}
-                  <line x1="410" y1="520" x2="450" y2="520" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
-                  <line x1="410" y1="540" x2="450" y2="540" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
-                  <line x1="410" y1="555" x2="450" y2="555" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
-                  <line x1="425" y1="505" x2="425" y2="568" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
-                  <line x1="440" y1="505" x2="440" y2="568" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
+                  <line x1="410" y1="520" x2="450" y2="520" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
+                  <line x1="410" y1="540" x2="450" y2="540" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
+                  <line x1="410" y1="555" x2="450" y2="555" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
+                  <line x1="425" y1="505" x2="425" y2="568" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
+                  <line x1="440" y1="505" x2="440" y2="568" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
                   {/* Notch */}
-                  <line x1="420" y1="496" x2="440" y2="496" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" />
+                  <line x1="420" y1="496" x2="440" y2="496" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" strokeLinecap="round" />
                   {/* Home indicator */}
-                  <line x1="420" y1="582" x2="440" y2="582" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="420" y1="582" x2="440" y2="582" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinecap="round" />
                 </g>
 
                 {/* === Device: Server/IoT Hub (right) === */}
@@ -469,8 +469,8 @@ export function HeroSection() {
                   {/* Server body */}
                   <rect x="690" y="360" width="80" height="85" rx="6" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Rack divider lines */}
-                  <line x1="690" y1="388" x2="770" y2="388" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
-                  <line x1="690" y1="416" x2="770" y2="416" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
+                  <line x1="690" y1="388" x2="770" y2="388" stroke="rgba(255,255,255,0.35)" strokeWidth="0.5" />
+                  <line x1="690" y1="416" x2="770" y2="416" stroke="rgba(255,255,255,0.35)" strokeWidth="0.5" />
                   {/* LED activity bars - slot 1 */}
                   <rect x="700" y="369" width="36" height="5" rx="2" fill="#F5A623" opacity="0.85">
                     <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
@@ -563,11 +563,11 @@ export function HeroSection() {
                       cy={p.cy}
                       r="1.5"
                       fill="white"
-                      opacity="0.15"
+                      opacity="0.3"
                     >
                       <animate
                         attributeName="opacity"
-                        values="0.05;0.2;0.05"
+                        values="0.15;0.45;0.15"
                         dur={`${3 + i * 0.5}s`}
                         repeatCount="indefinite"
                       />
