@@ -127,7 +127,7 @@ export function HeroSection() {
           ease: "power2.out",
         });
         gsap.to(sparkles, {
-          opacity: 0.2,
+          opacity: 0.4,
           duration: 1.5,
           stagger: 0.15,
           delay: 2.5,
@@ -322,8 +322,9 @@ export function HeroSection() {
                 </defs>
 
                 {/* === Central Glow === */}
-                <circle cx="440" cy="340" r="50" fill="#F5A623" opacity="0.03" filter="url(#glow)" />
-                <circle cx="440" cy="340" r="20" fill="#F5A623" opacity="0.06" />
+                <circle cx="440" cy="340" r="120" fill="#F5A623" opacity="0.04" filter="url(#glow)" />
+                <circle cx="440" cy="340" r="50" fill="#F5A623" opacity="0.08" filter="url(#glow)" />
+                <circle cx="440" cy="340" r="20" fill="#F5A623" opacity="0.15" />
 
                 {/* === Particle burst pool === */}
                 {Array.from({ length: 30 }).map((_, i) => (
@@ -341,52 +342,52 @@ export function HeroSection() {
                 {/* === Connection Pipes (curved bezier paths with flowing dash animation) === */}
                 <g>
                   {/* Router → Center */}
-                  <path className="connection-pipe" d="M 220 168 C 300 200, 370 270, 440 340" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3s linear infinite" }} />
+                  <path className="connection-pipe" d="M 220 168 C 300 200, 370 270, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3s linear infinite" }} />
                   {/* Dashboard → Center */}
-                  <path className="connection-pipe" d="M 560 175 C 520 220, 480 280, 440 340" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 560 175 C 520 220, 480 280, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.5s linear infinite" }} />
                   {/* Camera → Center */}
-                  <path className="connection-pipe" d="M 322 377 C 360 367, 400 353, 440 340" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 2.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 322 377 C 360 367, 400 353, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 2.5s linear infinite" }} />
                   {/* Server → Center */}
-                  <path className="connection-pipe" d="M 690 400 C 620 387, 530 363, 440 340" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4s linear infinite" }} />
+                  <path className="connection-pipe" d="M 690 400 C 620 387, 530 363, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4s linear infinite" }} />
                   {/* Phone → Center */}
-                  <path className="connection-pipe" d="M 430 490 C 433 440, 437 395, 440 350" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.2s linear infinite" }} />
+                  <path className="connection-pipe" d="M 430 490 C 433 440, 437 395, 440 350" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.2s linear infinite" }} />
                   {/* Sensor → Center */}
-                  <path className="connection-pipe" d="M 175 478 C 260 450, 350 395, 440 340" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.8s linear infinite" }} />
+                  <path className="connection-pipe" d="M 175 478 C 260 450, 350 395, 440 340" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 3.8s linear infinite" }} />
                   {/* Router → Dashboard (top arc) */}
-                  <path className="connection-pipe" d="M 220 145 C 340 70, 480 70, 560 130" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 220 145 C 340 70, 480 70, 560 130" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.5s linear infinite" }} />
                   {/* Sensor → Phone (bottom arc) */}
-                  <path className="connection-pipe" d="M 170 520 C 250 555, 340 555, 400 540" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 5s linear infinite" }} />
+                  <path className="connection-pipe" d="M 170 520 C 250 555, 340 555, 400 540" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 5s linear infinite" }} />
                   {/* Server → Dashboard (right side) */}
-                  <path className="connection-pipe" d="M 730 360 C 738 300, 720 240, 700 190" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.2s linear infinite" }} />
+                  <path className="connection-pipe" d="M 730 360 C 738 300, 720 240, 700 190" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.2s linear infinite" }} />
                   {/* Camera → Sensor */}
-                  <path className="connection-pipe" d="M 272 390 C 240 420, 200 450, 165 470" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.8s linear infinite" }} />
+                  <path className="connection-pipe" d="M 272 390 C 240 420, 200 450, 165 470" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" fill="none" strokeDasharray="8 6" style={{ animation: "dash-flow 4.8s linear infinite" }} />
                 </g>
 
                 {/* === Junction Dots (at pipe midpoints and bends) === */}
                 <g>
-                  <circle className="junction-dot" cx="330" cy="233" r="3.5" fill="#F5A623" opacity="0.6" />
-                  <circle className="junction-dot" cx="500" cy="255" r="3" fill="#F5A623" opacity="0.5" />
-                  <circle className="junction-dot" cx="380" cy="358" r="3" fill="rgba(255,255,255,0.5)" />
-                  <circle className="junction-dot" cx="565" cy="373" r="3.5" fill="#F5A623" opacity="0.5" />
-                  <circle className="junction-dot" cx="436" cy="418" r="3" fill="rgba(255,255,255,0.4)" />
-                  <circle className="junction-dot" cx="308" cy="418" r="3" fill="#F5A623" opacity="0.5" />
-                  <circle className="junction-dot" cx="400" cy="85" r="3.5" fill="#F5A623" opacity="0.4" />
-                  <circle className="junction-dot" cx="290" cy="548" r="3" fill="rgba(255,255,255,0.35)" />
-                  <circle className="junction-dot" cx="730" cy="275" r="3" fill="#D4232F" opacity="0.5" />
-                  <circle className="junction-dot" cx="218" cy="435" r="3" fill="rgba(255,255,255,0.35)" />
-                  <circle className="junction-dot" cx="440" cy="340" r="5" fill="#F5A623" opacity="0.4" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="330" cy="233" r="3.5" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="500" cy="255" r="3" fill="#F5A623" opacity="0.8" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="380" cy="358" r="3" fill="rgba(255,255,255,0.7)" />
+                  <circle className="junction-dot" cx="565" cy="373" r="3.5" fill="#F5A623" opacity="0.8" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="436" cy="418" r="3" fill="rgba(255,255,255,0.6)" />
+                  <circle className="junction-dot" cx="308" cy="418" r="3" fill="#F5A623" opacity="0.75" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="400" cy="85" r="3.5" fill="#F5A623" opacity="0.7" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="290" cy="548" r="3" fill="rgba(255,255,255,0.55)" />
+                  <circle className="junction-dot" cx="730" cy="275" r="3" fill="#D4232F" opacity="0.75" filter="url(#glow-sm)" />
+                  <circle className="junction-dot" cx="218" cy="435" r="3" fill="rgba(255,255,255,0.55)" />
+                  <circle className="junction-dot" cx="440" cy="340" r="6" fill="#F5A623" opacity="0.7" filter="url(#glow)" />
                 </g>
 
                 {/* === Device: Router/Modem (top-left) === */}
                 <g className="iot-device">
                   {/* Body */}
-                  <rect x="130" y="140" width="90" height="40" rx="6" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none" />
+                  <rect x="130" y="140" width="90" height="40" rx="6" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Left antenna */}
-                  <line x1="155" y1="140" x2="148" y2="112" stroke="rgba(255,255,255,0.55)" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="148" cy="109" r="3.5" fill="#F5A623" opacity="0.8" />
+                  <line x1="155" y1="140" x2="148" y2="112" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="148" cy="109" r="3.5" fill="#F5A623" opacity="1" filter="url(#glow-sm)" />
                   {/* Right antenna */}
-                  <line x1="195" y1="140" x2="202" y2="112" stroke="rgba(255,255,255,0.55)" strokeWidth="1.5" strokeLinecap="round" />
-                  <circle cx="202" cy="109" r="3.5" fill="#F5A623" opacity="0.8" />
+                  <line x1="195" y1="140" x2="202" y2="112" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" />
+                  <circle cx="202" cy="109" r="3.5" fill="#F5A623" opacity="1" filter="url(#glow-sm)" />
                   {/* LED indicator dots */}
                   <circle cx="150" cy="164" r="2.5" fill="#F5A623">
                     <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite" />
@@ -404,36 +405,36 @@ export function HeroSection() {
                 {/* === Device: Dashboard/Monitor (top-right, largest) === */}
                 <g className="iot-device">
                   {/* Screen frame */}
-                  <rect x="560" y="80" width="160" height="110" rx="8" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none" />
+                  <rect x="560" y="80" width="160" height="110" rx="8" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Inner screen */}
                   <rect x="572" y="92" width="136" height="82" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" fill="rgba(255,255,255,0.02)" />
                   {/* Bar charts (left half) */}
                   <rect x="582" y="104" width="38" height="8" rx="2" fill="rgba(255,255,255,0.15)" />
-                  <rect x="582" y="118" width="55" height="8" rx="2" fill="#F5A623" opacity="0.5" />
-                  <rect x="582" y="132" width="45" height="8" rx="2" fill="#F5A623" opacity="0.7" />
-                  <rect x="582" y="146" width="30" height="8" rx="2" fill="#D4232F" opacity="0.55" />
+                  <rect x="582" y="118" width="55" height="8" rx="2" fill="#F5A623" opacity="0.75" />
+                  <rect x="582" y="132" width="45" height="8" rx="2" fill="#F5A623" opacity="0.9" />
+                  <rect x="582" y="146" width="30" height="8" rx="2" fill="#D4232F" opacity="0.75" />
                   {/* Donut chart (right half) */}
                   <circle cx="670" cy="128" r="22" stroke="rgba(255,255,255,0.15)" strokeWidth="3" fill="none" />
-                  <circle cx="670" cy="128" r="22" stroke="#F5A623" strokeWidth="3.5" fill="none" strokeDasharray="55 138" strokeDashoffset="0" opacity="0.7" />
-                  <circle cx="670" cy="128" r="22" stroke="#D4232F" strokeWidth="3.5" fill="none" strokeDasharray="28 138" strokeDashoffset="-62" opacity="0.55" />
+                  <circle cx="670" cy="128" r="22" stroke="#F5A623" strokeWidth="3.5" fill="none" strokeDasharray="55 138" strokeDashoffset="0" opacity="0.9" />
+                  <circle cx="670" cy="128" r="22" stroke="#D4232F" strokeWidth="3.5" fill="none" strokeDasharray="28 138" strokeDashoffset="-62" opacity="0.75" />
                   {/* Percentage text hint */}
-                  <text x="670" y="132" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="10" fontWeight="bold">72%</text>
+                  <text x="670" y="132" textAnchor="middle" fill="rgba(255,255,255,0.75)" fontSize="10" fontWeight="bold">72%</text>
                   {/* Stand */}
-                  <line x1="640" y1="190" x2="640" y2="212" stroke="rgba(255,255,255,0.45)" strokeWidth="2" />
-                  <line x1="618" y1="212" x2="662" y2="212" stroke="rgba(255,255,255,0.45)" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="640" y1="190" x2="640" y2="212" stroke="rgba(255,255,255,0.65)" strokeWidth="2" />
+                  <line x1="618" y1="212" x2="662" y2="212" stroke="rgba(255,255,255,0.65)" strokeWidth="2" strokeLinecap="round" />
                 </g>
 
                 {/* === Device: Security Camera (center-left) === */}
                 <g className="iot-device">
                   {/* Wall mount bracket */}
-                  <line x1="248" y1="342" x2="248" y2="368" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round" />
-                  <line x1="248" y1="368" x2="278" y2="377" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="248" y1="342" x2="248" y2="368" stroke="rgba(255,255,255,0.75)" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="248" y1="368" x2="278" y2="377" stroke="rgba(255,255,255,0.75)" strokeWidth="2" strokeLinecap="round" />
                   {/* Camera body */}
-                  <rect x="272" y="363" width="52" height="28" rx="6" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none" />
+                  <rect x="272" y="363" width="52" height="28" rx="6" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Lens outer ring */}
-                  <circle cx="314" cy="377" r="11" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" fill="none" />
+                  <circle cx="314" cy="377" r="11" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none" />
                   {/* Lens inner */}
-                  <circle cx="314" cy="377" r="5.5" fill="#F5A623" opacity="0.55" />
+                  <circle cx="314" cy="377" r="5.5" fill="#F5A623" opacity="0.85" filter="url(#glow-sm)" />
                   {/* Recording LED */}
                   <circle cx="280" cy="370" r="2" fill="#D4232F">
                     <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite" />
@@ -445,11 +446,11 @@ export function HeroSection() {
                 {/* === Device: Smartphone (bottom-center) === */}
                 <g className="iot-device">
                   {/* Phone body */}
-                  <rect x="400" y="490" width="60" height="100" rx="10" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none" />
+                  <rect x="400" y="490" width="60" height="100" rx="10" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Screen area */}
                   <rect x="407" y="503" width="46" height="68" rx="4" stroke="rgba(255,255,255,0.12)" strokeWidth="0.5" fill="rgba(255,255,255,0.02)" />
                   {/* GPS Pin */}
-                  <path d="M 430 522 c-6 0-10.5 4.5-10.5 10.5 c0 8.5 10.5 17 10.5 17 s10.5-8.5 10.5-17 c0-6-4.5-10.5-10.5-10.5z" fill="#D4232F" opacity="0.55" />
+                  <path d="M 430 522 c-6 0-10.5 4.5-10.5 10.5 c0 8.5 10.5 17 10.5 17 s10.5-8.5 10.5-17 c0-6-4.5-10.5-10.5-10.5z" fill="#D4232F" opacity="0.8" />
                   <circle cx="430" cy="532" r="4" fill="rgba(255,255,255,0.8)" />
                   {/* Map grid lines inside screen */}
                   <line x1="410" y1="520" x2="450" y2="520" stroke="rgba(255,255,255,0.08)" strokeWidth="0.5" />
@@ -466,46 +467,46 @@ export function HeroSection() {
                 {/* === Device: Server/IoT Hub (right) === */}
                 <g className="iot-device">
                   {/* Server body */}
-                  <rect x="690" y="360" width="80" height="85" rx="6" stroke="rgba(255,255,255,0.65)" strokeWidth="1.5" fill="none" />
+                  <rect x="690" y="360" width="80" height="85" rx="6" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" fill="none" />
                   {/* Rack divider lines */}
                   <line x1="690" y1="388" x2="770" y2="388" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
                   <line x1="690" y1="416" x2="770" y2="416" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
                   {/* LED activity bars - slot 1 */}
-                  <rect x="700" y="369" width="36" height="5" rx="2" fill="#F5A623" opacity="0.65">
-                    <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite" />
+                  <rect x="700" y="369" width="36" height="5" rx="2" fill="#F5A623" opacity="0.85">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
                   </rect>
-                  <circle cx="755" cy="372" r="2.5" fill="#F5A623" opacity="0.7" />
+                  <circle cx="755" cy="372" r="2.5" fill="#F5A623" opacity="0.9" />
                   {/* LED activity bars - slot 2 */}
-                  <rect x="700" y="397" width="26" height="5" rx="2" fill="#F5A623" opacity="0.5">
-                    <animate attributeName="opacity" values="0.3;0.7;0.3" dur="2.5s" begin="0.3s" repeatCount="indefinite" />
+                  <rect x="700" y="397" width="26" height="5" rx="2" fill="#F5A623" opacity="0.7">
+                    <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.5s" begin="0.3s" repeatCount="indefinite" />
                   </rect>
-                  <circle cx="755" cy="400" r="2.5" fill="#F5A623" opacity="0.5" />
+                  <circle cx="755" cy="400" r="2.5" fill="#F5A623" opacity="0.8" />
                   {/* LED activity bars - slot 3 */}
-                  <rect x="700" y="425" width="30" height="5" rx="2" fill="#D4232F" opacity="0.45">
-                    <animate attributeName="opacity" values="0.25;0.6;0.25" dur="3s" begin="0.6s" repeatCount="indefinite" />
+                  <rect x="700" y="425" width="30" height="5" rx="2" fill="#D4232F" opacity="0.65">
+                    <animate attributeName="opacity" values="0.4;0.85;0.4" dur="3s" begin="0.6s" repeatCount="indefinite" />
                   </rect>
-                  <circle cx="755" cy="428" r="2.5" fill="#D4232F" opacity="0.5" />
+                  <circle cx="755" cy="428" r="2.5" fill="#D4232F" opacity="0.75" />
                 </g>
 
                 {/* === Device: Sensor/Antenna Dish (bottom-left) === */}
                 <g className="iot-device">
                   {/* Pole */}
-                  <line x1="150" y1="470" x2="150" y2="535" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinecap="round" />
+                  <line x1="150" y1="470" x2="150" y2="535" stroke="rgba(255,255,255,0.75)" strokeWidth="2" strokeLinecap="round" />
                   {/* Base */}
-                  <line x1="130" y1="535" x2="170" y2="535" stroke="rgba(255,255,255,0.45)" strokeWidth="2.5" strokeLinecap="round" />
+                  <line x1="130" y1="535" x2="170" y2="535" stroke="rgba(255,255,255,0.65)" strokeWidth="2.5" strokeLinecap="round" />
                   {/* Dish (parabolic curve) */}
-                  <path d="M 122 492 Q 150 455, 178 492" stroke="rgba(255,255,255,0.65)" strokeWidth="2" fill="none" strokeLinecap="round" />
+                  <path d="M 122 492 Q 150 455, 178 492" stroke="rgba(255,255,255,0.85)" strokeWidth="2" fill="none" strokeLinecap="round" />
                   {/* Feed horn (center of dish) */}
-                  <circle cx="150" cy="477" r="4.5" fill="#F5A623" opacity="0.7" />
+                  <circle cx="150" cy="477" r="4.5" fill="#F5A623" opacity="0.95" filter="url(#glow-sm)" />
                   {/* Signal waves radiating right */}
-                  <path d="M 178 478 Q 198 468, 198 488" stroke="#F5A623" strokeWidth="1.2" fill="none" opacity="0.4">
-                    <animate attributeName="opacity" values="0.15;0.55;0.15" dur="2s" repeatCount="indefinite" />
+                  <path d="M 178 478 Q 198 468, 198 488" stroke="#F5A623" strokeWidth="1.5" fill="none" opacity="0.6">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite" />
                   </path>
-                  <path d="M 185 470 Q 213 458, 213 492" stroke="#F5A623" strokeWidth="1" fill="none" opacity="0.3">
-                    <animate attributeName="opacity" values="0.1;0.45;0.1" dur="2s" begin="0.3s" repeatCount="indefinite" />
+                  <path d="M 185 470 Q 213 458, 213 492" stroke="#F5A623" strokeWidth="1.2" fill="none" opacity="0.5">
+                    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2s" begin="0.3s" repeatCount="indefinite" />
                   </path>
-                  <path d="M 192 462 Q 228 448, 228 496" stroke="#F5A623" strokeWidth="0.8" fill="none" opacity="0.2">
-                    <animate attributeName="opacity" values="0.05;0.35;0.05" dur="2s" begin="0.6s" repeatCount="indefinite" />
+                  <path d="M 192 462 Q 228 448, 228 496" stroke="#F5A623" strokeWidth="1" fill="none" opacity="0.4">
+                    <animate attributeName="opacity" values="0.1;0.6;0.1" dur="2s" begin="0.6s" repeatCount="indefinite" />
                   </path>
                 </g>
 
@@ -513,35 +514,35 @@ export function HeroSection() {
                 <g>
                   {/* Sparkle - between router and dashboard */}
                   <g className="sparkle-decoration" transform="translate(350, 120)">
-                    <path d="M 0 -8 L 2 -2 L 8 0 L 2 2 L 0 8 L -2 2 L -8 0 L -2 -2 Z" fill="#F5A623" opacity="0.7" />
+                    <path d="M 0 -8 L 2 -2 L 8 0 L 2 2 L 0 8 L -2 2 L -8 0 L -2 -2 Z" fill="#F5A623" opacity="0.9" />
                   </g>
                   {/* Sparkle - below center */}
                   <g className="sparkle-decoration" transform="translate(500, 460)">
-                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#F5A623" opacity="0.6" />
+                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#F5A623" opacity="0.85" />
                   </g>
                   {/* Sparkle - right of center, crimson */}
                   <g className="sparkle-decoration" transform="translate(630, 295)">
-                    <path d="M 0 -7 L 2 -2 L 7 0 L 2 2 L 0 7 L -2 2 L -7 0 L -2 -2 Z" fill="#D4232F" opacity="0.6" />
+                    <path d="M 0 -7 L 2 -2 L 7 0 L 2 2 L 0 7 L -2 2 L -7 0 L -2 -2 Z" fill="#D4232F" opacity="0.85" />
                   </g>
                   {/* Sparkle - left area */}
                   <g className="sparkle-decoration" transform="translate(190, 310)">
-                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#F5A623" opacity="0.5" />
+                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#F5A623" opacity="0.8" />
                   </g>
                   {/* Sparkle - bottom right */}
                   <g className="sparkle-decoration" transform="translate(580, 530)">
-                    <path d="M 0 -5 L 1.2 -1.2 L 5 0 L 1.2 1.2 L 0 5 L -1.2 1.2 L -5 0 L -1.2 -1.2 Z" fill="#F5A623" opacity="0.5" />
+                    <path d="M 0 -5 L 1.2 -1.2 L 5 0 L 1.2 1.2 L 0 5 L -1.2 1.2 L -5 0 L -1.2 -1.2 Z" fill="#F5A623" opacity="0.8" />
                   </g>
                   {/* Sparkle - far right, crimson */}
                   <g className="sparkle-decoration" transform="translate(780, 240)">
-                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#D4232F" opacity="0.5" />
+                    <path d="M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z" fill="#D4232F" opacity="0.8" />
                   </g>
                   {/* Lightning bolt - upper center */}
                   <g className="sparkle-decoration" transform="translate(475, 195)">
-                    <path d="M 0 0 L 3.5 7 L 0.5 6 L 4.5 14" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.6" />
+                    <path d="M 0 0 L 3.5 7 L 0.5 6 L 4.5 14" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.85" />
                   </g>
                   {/* Lightning bolt - far left */}
                   <g className="sparkle-decoration" transform="translate(95, 410)">
-                    <path d="M 0 0 L 3 6 L 0.5 5 L 3.5 11" stroke="#D4232F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.5" />
+                    <path d="M 0 0 L 3 6 L 0.5 5 L 3.5 11" stroke="#D4232F" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" opacity="0.8" />
                   </g>
                 </g>
 

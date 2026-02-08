@@ -47,7 +47,7 @@ export function MentorSection() {
         <div className="w-full h-full p-4 md:p-6 lg:p-10">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_3fr] gap-6 md:gap-8 lg:gap-10 h-full">
             {/* Mentor Card - Full width on mobile, left column on desktop */}
-            <div className="w-full md:max-w-full lg:max-w-[542px] h-[300px] sm:h-[400px] md:h-[520px] lg:h-[680px]">
+            <div className="w-full h-[300px] sm:h-[400px] md:h-[520px] lg:h-[680px]">
               <div
                 className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden"
                 style={{ background: "#1a1a1a" }}

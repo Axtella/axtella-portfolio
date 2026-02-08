@@ -96,7 +96,7 @@ export function ArticlesSection() {
   const handleTouchEnd = () => handleDragEnd();
 
   // Card height
-  const cardHeight = "clamp(320px, 38vw, 420px)";
+  const cardHeight = "clamp(280px, 50vw, 420px)";
 
   return (
     <section
@@ -201,7 +201,7 @@ export function ArticlesSection() {
           <div
             className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 transition-all duration-500 ease-out z-10"
             style={{
-              width: "clamp(500px, 55vw, 780px)",
+              width: "min(calc(100vw - 48px), clamp(500px, 55vw, 780px))",
             }}
           >
             <ArticleCard article={articles[currentIndex]} isCenter={true} />
@@ -230,13 +230,8 @@ export function ArticlesSection() {
             className="w-[44px] h-[44px] md:w-[50px] md:h-[50px] rounded-xl bg-[#F3F3F3] hover:bg-[#E8E8E8] flex items-center justify-center transition-all duration-300"
             aria-label="Previous article"
           >
-            <svg className="w-4 h-4" width="16" height="14" viewBox="0 0 16 14" fill="none">
-              <rect x="0" y="6" width="2" height="2" rx="0.5" fill="#1a1a1a" />
-              <rect x="4" y="2" width="2" height="2" rx="0.5" fill="#1a1a1a" />
-              <rect x="4" y="6" width="2" height="2" rx="0.5" fill="#1a1a1a" />
-              <rect x="4" y="10" width="2" height="2" rx="0.5" fill="#1a1a1a" />
-              <rect x="8" y="6" width="2" height="2" rx="0.5" fill="#1a1a1a" />
-              <rect x="12" y="6" width="2" height="2" rx="0.5" fill="#1a1a1a" />
+            <svg className="w-5 h-5" fill="none" stroke="#1a1a1a" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
@@ -246,13 +241,8 @@ export function ArticlesSection() {
             className="w-[44px] h-[44px] md:w-[50px] md:h-[50px] rounded-xl bg-[#1a1a1a] hover:bg-[#333] flex items-center justify-center transition-all duration-300"
             aria-label="Next article"
           >
-            <svg className="w-4 h-4" width="16" height="14" viewBox="0 0 16 14" fill="none">
-              <rect x="0" y="6" width="2" height="2" rx="0.5" fill="white" />
-              <rect x="4" y="6" width="2" height="2" rx="0.5" fill="white" />
-              <rect x="8" y="2" width="2" height="2" rx="0.5" fill="white" />
-              <rect x="8" y="6" width="2" height="2" rx="0.5" fill="white" />
-              <rect x="8" y="10" width="2" height="2" rx="0.5" fill="white" />
-              <rect x="12" y="6" width="2" height="2" rx="0.5" fill="white" />
+            <svg className="w-5 h-5" fill="none" stroke="white" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
           </button>
         </div>
