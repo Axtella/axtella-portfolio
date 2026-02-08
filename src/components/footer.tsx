@@ -163,9 +163,8 @@ export function Footer() {
               >
                 Home
               </Link>
-              <Link
-                href="/about"
-                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
+              <span
+                className="text-white/30 cursor-not-allowed"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -175,36 +174,9 @@ export function Footer() {
                 }}
               >
                 About
-              </Link>
-              <Link
-                href="/courses"
-                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 2vw, 18px)",
-                  lineHeight: "1.2",
-                  letterSpacing: "1px",
-                }}
-              >
-                Courses
-              </Link>
-              <Link
-                href="/corporate"
-                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontWeight: 500,
-                  fontSize: "clamp(14px, 2vw, 18px)",
-                  lineHeight: "1.2",
-                  letterSpacing: "1px",
-                }}
-              >
-                Corporate
-              </Link>
-              <Link
-                href="/blogs"
-                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
+              </span>
+              <span
+                className="text-white/30 cursor-not-allowed"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -214,10 +186,9 @@ export function Footer() {
                 }}
               >
                 Blogs
-              </Link>
-              <Link
-                href="/contact"
-                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
+              </span>
+              <span
+                className="text-white/30 cursor-not-allowed"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -227,7 +198,7 @@ export function Footer() {
                 }}
               >
                 Contact
-              </Link>
+              </span>
             </div>
           </nav>
 
