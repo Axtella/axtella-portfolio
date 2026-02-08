@@ -35,6 +35,10 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: "Axtella",
   description: "Axtella - Data Analytics Training & Consulting",
+  icons: {
+    icon: "/logo1.png",
+    apple: "/logo1.png",
+  },
 };
 
 export default function RootLayout({
