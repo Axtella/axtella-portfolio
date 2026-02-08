@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(ping:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(timeout:*)",
+      "Bash(npx next build:*)",
+      "Bash(npm run build:*)",
+      "Bash(tasklist:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:docs.google.com)",
+      "Bash(where:*)",
+      "Bash(npx pdf-parse:*)",
+      "Bash(node -e:*)",
+      "Bash(dir:*)",
+      "Bash(npx next:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(xargs:*)",
+      "Bash(ls:*)",
+      "Bash(ren:*)",
+      "Bash(npm ls:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git reset:*)"
+    ]
+  }
+}
