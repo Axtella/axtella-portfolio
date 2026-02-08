@@ -30,15 +30,19 @@ interface FormData {
   fullName: string;
   email: string;
   phone: string;
-  course: string;
+  service: string;
 }
 
-const courses = [
-  "Master Power BI With Real Project",
-  "Advanced Excel Mastery",
-  "Data Analytics Fundamentals",
-  "SQL for Business Intelligence",
-  "Python for Data Analysis",
+const services = [
+  "Telecommunication Solutions",
+  "Information Technology",
+  "Internet of Things (IoT)",
+  "ELV Systems",
+  "BMS & Smart Building",
+  "Electro Mechanical Works",
+  "Civil & General Construction",
+  "Managed Services",
+  "Fleet Management Solutions",
 ];
 
 export function EnquirySection() {
@@ -51,7 +55,7 @@ export function EnquirySection() {
     fullName: "",
     email: "",
     phone: "",
-    course: "",
+    service: "",
   });
 
   useEffect(() => {
@@ -104,8 +108,8 @@ export function EnquirySection() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleCourseSelect = (course: string) => {
-    setFormData((prev) => ({ ...prev, course }));
+  const handleServiceSelect = (service: string) => {
+    setFormData((prev) => ({ ...prev, service }));
     setIsDropdownOpen(false);
   };
 
@@ -279,7 +283,7 @@ export function EnquirySection() {
                   />
                 </div>
 
-                {/* Course Dropdown */}
+                {/* Service Dropdown */}
                 <div className="relative">
                   <button
                     type="button"
@@ -290,8 +294,8 @@ export function EnquirySection() {
                       fontSize: "14px",
                     }}
                   >
-                    <span className={formData.course ? "text-white" : "text-[#666666]"}>
-                      {formData.course || "Select a Course"}
+                    <span className={formData.service ? "text-white" : "text-[#666666]"}>
+                      {formData.service || "Select a Service"}
                     </span>
                     <svg
                       className={`w-4 h-4 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
@@ -309,19 +313,19 @@ export function EnquirySection() {
                   </button>
 
                   {isDropdownOpen && (
-                    <div className="absolute z-20 w-full mt-2 bg-[#1E1E1E] border border-[#2A2A2A] rounded-lg overflow-hidden">
-                      {courses.map((course, index) => (
+                    <div className="absolute z-20 w-full bottom-full mb-1 bg-[#1E1E1E] border border-[#2A2A2A] rounded-lg overflow-hidden max-h-[200px] sm:max-h-[260px] overflow-y-auto">
+                      {services.map((service, index) => (
                         <button
                           key={index}
                           type="button"
-                          onClick={() => handleCourseSelect(course)}
-                          className="w-full px-4 py-3 text-left text-white hover:bg-[#2A2A2A] transition-colors"
+                          onClick={() => handleServiceSelect(service)}
+                          className="w-full px-3 sm:px-4 py-2 sm:py-2.5 text-left text-white hover:bg-[#2A2A2A] transition-colors"
                           style={{
                             fontFamily: "var(--font-plus-jakarta)",
-                            fontSize: "14px",
+                            fontSize: "13px",
                           }}
                         >
-                          {course}
+                          {service}
                         </button>
                       ))}
                     </div>
