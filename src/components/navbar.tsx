@@ -92,12 +92,12 @@ export function Navbar() {
       ref={navRef}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "bg-transparent py-6"
+        isScrolled ? "bg-black/80 backdrop-blur-md py-2 lg:py-4" : "bg-transparent py-3 lg:py-6"
       )}
       style={{ opacity: 1, visibility: "visible" }}
     >
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[85px]">
+        <div className="flex items-center justify-between h-[56px] lg:h-[85px]">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2">
             <Image
@@ -105,7 +105,7 @@ export function Navbar() {
               alt="Axtella Global"
               width={260}
               height={70}
-              className="h-14 lg:h-16 xl:h-[70px]"
+              className="h-10 sm:h-12 lg:h-16 xl:h-[70px]"
               style={{ width: "auto", background: "transparent" }}
               priority
             />

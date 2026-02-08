@@ -96,7 +96,7 @@ export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSecti
   return (
     <section
       ref={sectionRef}
-      className={`relative min-h-[60vh] md:min-h-screen py-10 md:py-0 ${colors.background}`}
+      className={`relative pt-24 pb-16 md:py-0 md:min-h-screen ${colors.background}`}
       style={{ display: "flex", alignItems: "center" }}
     >
       <div className={`w-full ${colors.background}`}>

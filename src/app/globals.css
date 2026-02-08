@@ -324,5 +324,5 @@ html.lenis, html.lenis body {
 
 /* GSAP pin-spacer background fix */
 .pin-spacer {
-  background-color: var(--background) !important;
+  background-color: #ffffff !important;
 }
