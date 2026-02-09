@@ -21,7 +21,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "HOME", href: "/", hasDropdown: false },
-  { label: "ABOUT", href: "/about", hasDropdown: false, disabled: true },
+  { label: "ABOUT", href: "/about", hasDropdown: false },
   {
     label: "WHAT WE DO",
     href: "#",

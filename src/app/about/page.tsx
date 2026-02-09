@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, MeetFounderSection, CoreValuesSection, ClientLogosSection, VoicesTrustSection, EnquirySection, Footer } from "@/components";
+import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, ClientLogosSection, VoicesTrustSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
 
 export default function AboutPage() {
   return (
@@ -8,13 +8,12 @@ export default function AboutPage() {
       <Navbar />
       <AboutHeroSection />
       <ScrollHighlightSection />
-
       <MissionVisionSection />
-      <MeetFounderSection />
-      <StatisticsSection />
+
+     
       <CoreValuesSection />
       <ClientLogosSection />
-      <VoicesTrustSection />
+      <WhatSetsApartSection />
       <EnquirySection />
       <Footer />
     </main>

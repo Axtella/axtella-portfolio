@@ -55,7 +55,7 @@ export function AboutHeroSection() {
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="/images/about/about bg.png"
+          src="/images/about/abouthero.png"
           alt="About Background"
           fill
           className="object-cover"

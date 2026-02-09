@@ -6,13 +6,13 @@ export function MissionVisionSection() {
       id: 1,
       title: "Our Mission",
       description:
-        "We transform brands by combining strategic thinking, creative design, and impactful digital experiences that resonate, inspire, and produce real-world results.",
+        "To deliver integrated, reliable, and innovative technology and infrastructure solutions that empower businesses across Saudi Arabia and the GCC. We combine engineering excellence with cutting-edge technology to build systems that perform, scale, and last.",
     },
     {
       id: 2,
       title: "Our Vision",
       description:
-        "We transform brands by combining strategic thinking, creative design, and impactful digital experiences that resonate, inspire, and produce real-world results.",
+        "To become the Kingdom's most trusted technology partner — leading the way in smart infrastructure, digital transformation, and connected solutions aligned with Saudi Vision 2030.",
     },
   ];
 
