@@ -35,3 +35,4 @@ export { CoreValuesSection } from "./core-values-section";
 export { ClientLogosSection } from "./client-logos-section";
 export { Footer } from "./footer";
 export { VoicesTrustSection } from "./voices-trust-section";
+export { FleetLaunchSection } from "./fleet-launch-section";

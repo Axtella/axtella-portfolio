@@ -6,6 +6,7 @@ import {
   ScrollHighlightSection,
   LogoMarquee,
   MentorSection,
+  FleetLaunchSection,
   DiscoverCoursesSection,
   FeaturedSection,
   WhyBusinessLoveSection,
@@ -22,6 +23,7 @@ export default function Home() {
       <ScrollHighlightSection />
       <LogoMarquee />
       <MentorSection />
+      <FleetLaunchSection />
       <DiscoverCoursesSection />
       <FeaturedSection />
       <WhyBusinessLoveSection />

@@ -95,7 +95,7 @@ export function DiscoverCoursesSection() {
     <section className="w-full bg-white py-12 md:py-16 lg:py-24">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
-          className="relative w-full min-h-[400px] md:min-h-[500px] lg:min-h-[650px] overflow-hidden mx-auto border-2 md:border-4 lg:border-[6px] rounded-2xl md:rounded-3xl lg:rounded-[36px]"
+          className="relative w-full min-h-[340px] md:min-h-[420px] lg:min-h-[520px] overflow-hidden mx-auto border-2 md:border-4 lg:border-[6px] rounded-2xl md:rounded-3xl lg:rounded-[36px] flex flex-col"
           style={{
             boxSizing: "border-box",
             background: "#181614",
@@ -104,7 +104,7 @@ export function DiscoverCoursesSection() {
           }}
         >
           {/* Responsive Flexbox Layout */}
-          <div className="w-full h-full p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-10">
+          <div className="w-full flex-1 p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-10">
             {/* Left Side - Text Content */}
             <div className="w-full lg:w-2/5 flex flex-col justify-center">
               <div className="mb-6 md:mb-8">
@@ -162,7 +162,7 @@ export function DiscoverCoursesSection() {
 
             {/* Right Side - Stacked Service Cards Slider */}
             <div
-              className="relative w-full lg:w-3/5 flex items-center justify-start min-h-[300px] sm:min-h-[350px] md:min-h-[400px]"
+              className="relative w-full lg:w-3/5 flex items-center justify-start min-h-[260px] sm:min-h-[300px] md:min-h-[340px]"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >

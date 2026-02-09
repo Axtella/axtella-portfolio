@@ -33,8 +33,8 @@ const stats: Stat[] = [
 
 export function MentorSection() {
   return (
-    <section className="w-full bg-white py-12 md:py-16 lg:py-24">
-      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-white py-8 md:py-12 lg:py-16">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="relative w-full overflow-hidden mx-auto border-2 md:border-4 lg:border-[6px] rounded-2xl md:rounded-3xl lg:rounded-[36px]"
           style={{
@@ -44,10 +44,10 @@ export function MentorSection() {
           }}
         >
         {/* Responsive Grid Layout */}
-        <div className="w-full h-full p-4 md:p-6 lg:p-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_3fr] gap-6 md:gap-8 lg:gap-10 h-full">
+        <div className="w-full h-full p-4 md:p-5 lg:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_3fr] gap-4 md:gap-6 lg:gap-8 h-full">
             {/* Mentor Card - Full width on mobile, left column on desktop */}
-            <div className="w-full h-[300px] sm:h-[400px] md:h-[520px] lg:h-[680px]">
+            <div className="w-full h-[260px] sm:h-[320px] md:h-[400px] lg:h-[500px]">
               <div
                 className="relative w-full h-full rounded-2xl lg:rounded-3xl overflow-hidden"
                 style={{ background: "#1a1a1a" }}
@@ -78,8 +78,8 @@ export function MentorSection() {
                     style={{
                       fontFamily: "var(--font-montserrat)",
                       fontWeight: 800,
-                      fontSize: "clamp(18px, 5vw, 59px)",
-                      lineHeight: "clamp(22px, 5.5vw, 58px)",
+                      fontSize: "clamp(16px, 3.5vw, 42px)",
+                      lineHeight: "clamp(20px, 4vw, 46px)",
                       letterSpacing: "-0.02em",
                       color: "rgba(255, 255, 255, 0.62)",
                     }}
@@ -94,7 +94,7 @@ export function MentorSection() {
                   </h2>
 
                   {/* Mentor Image */}
-                  <div className="relative w-full flex-1 min-h-[140px] sm:min-h-[180px] md:min-h-[250px] lg:min-h-[300px] mt-auto">
+                  <div className="relative w-full flex-1 min-h-[120px] sm:min-h-[150px] md:min-h-[200px] lg:min-h-[220px] mt-auto">
                     <Image
                       src="/images/home/company.png"
                       alt="Axtella - Data & Technology Solutions"
@@ -109,12 +109,12 @@ export function MentorSection() {
             </div>
 
             {/* Stat Cards - Stack on mobile, 2x2 grid on tablet/desktop */}
-            <div className="grid grid-cols-2 gap-3 md:gap-4 lg:gap-6 pr-0 lg:pr-4">
+            <div className="grid grid-cols-2 gap-3 md:gap-3 lg:gap-4 pr-0 lg:pr-4">
               {stats.map((stat, index) => {
                 return (
                   <div
                     key={index}
-                    className="group rounded-xl md:rounded-2xl border border-white/10 transition-all duration-300 cursor-pointer p-3 md:p-6 lg:p-8 w-full min-h-[100px] sm:min-h-[130px] md:min-h-[180px] lg:min-h-[240px] bg-transparent hover:bg-white hover:border-transparent"
+                    className="group rounded-xl md:rounded-2xl border border-white/10 transition-all duration-300 cursor-pointer p-3 md:p-4 lg:p-6 w-full min-h-[90px] sm:min-h-[110px] md:min-h-[150px] lg:min-h-[180px] bg-transparent hover:bg-white hover:border-transparent"
                     style={{
                       backdropFilter: "blur(10px)",
                     }}
@@ -125,7 +125,7 @@ export function MentorSection() {
                       style={{
                         fontFamily: "var(--font-montserrat)",
                         fontWeight: 600,
-                        fontSize: "clamp(22px, 4vw, 64px)",
+                        fontSize: "clamp(20px, 3vw, 44px)",
                         lineHeight: "1.1",
                         letterSpacing: "-0.02em",
                       }}
@@ -138,7 +138,7 @@ export function MentorSection() {
                       className="font-semibold mb-1 md:mb-2 transition-colors duration-300 text-white group-hover:text-black"
                       style={{
                         fontFamily: "var(--font-plus-jakarta)",
-                        fontSize: "clamp(14px, 2vw, 24px)",
+                        fontSize: "clamp(13px, 1.5vw, 20px)",
                         lineHeight: "1.3",
                       }}
                     >
