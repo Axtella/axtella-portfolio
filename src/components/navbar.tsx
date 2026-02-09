@@ -26,7 +26,6 @@ const navItems: NavItem[] = [
     label: "WHAT WE DO",
     href: "#",
     hasDropdown: true,
-    disabled: true,
     dropdownItems: [
       { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions" },
       { label: "Information Technology", href: "/services/information-technology" },
@@ -297,7 +296,6 @@ export function Navbar() {
               return (
                 <div key={item.label}>
                   {hasDropdownItems ? (
-                    // Button to toggle dropdown on mobile
                     <button
                       type="button"
                       onClick={() => setMobileDropdown(isMobileDropdownOpen ? null : item.label)}
@@ -335,7 +333,6 @@ export function Navbar() {
                       {item.label}
                     </a>
                   )}
-                  {/* Mobile Dropdown Items - Only show when expanded */}
                   {hasDropdownItems && isMobileDropdownOpen && (
                     <div className="mt-1 ml-4 border-l border-white/10 pl-4 space-y-1">
                       {item.dropdownItems?.map((dropdownItem) => (

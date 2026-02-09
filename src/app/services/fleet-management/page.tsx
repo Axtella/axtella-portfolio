@@ -1,15 +1,12 @@
 "use client";
 
-import { Navbar, ServiceHeroSection, EnquirySection, Footer } from "@/components";
+import { Navbar, FleetManagementHeroSection, EnquirySection, Footer } from "@/components";
 
 export default function FleetManagementPage() {
   return (
     <main className="min-h-screen bg-[#080D1A]">
       <Navbar />
-      <ServiceHeroSection
-        title="Fleet Management Solutions"
-        description="Advanced fleet management and vehicle tracking solutions. Real-time GPS monitoring, route optimization, driver behavior analytics, and comprehensive fleet reporting for businesses of all sizes."
-      />
+      <FleetManagementHeroSection />
       <section className="w-full bg-white py-16 md:py-24">
         <div className="max-w-[1920px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16">
           <div className="max-w-3xl">
