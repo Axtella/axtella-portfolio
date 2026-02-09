@@ -64,7 +64,7 @@ export function CoreValuesSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-8 md:py-12 lg:py-16 bg-[#080D1A]"
+      className="relative py-8 md:py-12 lg:py-16 bg-[#161616]"
     >
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:max-w-[1600px] lg:mx-auto">
