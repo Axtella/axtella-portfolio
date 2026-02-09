@@ -34,7 +34,7 @@ const playfairDisplay = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Axtella",
-  description: "Axtella - Data Analytics Training & Consulting",
+  description: "Axtella Global - Technology & Infrastructure Solutions",
   icons: {
     icon: "/logo1.png",
     apple: "/logo1.png",
