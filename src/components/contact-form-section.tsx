@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -263,24 +262,6 @@ export function ContactFormSection() {
       <div
         className="relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[816px] pt-[100px] sm:pt-[150px] lg:pt-[200px]"
       >
-        {/* Logo Overlay */}
-        <div
-          className="absolute z-20 flex items-center justify-center left-1/2 -translate-x-1/2 bottom-[80px] sm:bottom-[120px] lg:bottom-[200px]"
-          style={{
-            background: "#1F1F1F",
-            borderRadius: "12px",
-            padding: "12px 16px",
-          }}
-        >
-          <Image
-            src="/images/home/logo.png"
-            alt="Axtella"
-            width={100}
-            height={32}
-            className="h-auto sm:w-[120px]"
-          />
-        </div>
-
         {/* Google Maps Embed */}
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.123456789!2d75.8!3d11.25!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDE1JzAwLjAiTiA3NcKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"

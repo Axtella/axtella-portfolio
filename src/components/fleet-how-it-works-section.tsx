@@ -115,8 +115,8 @@ export function FleetHowItWorksSection() {
 
         ScrollTrigger.create({
           trigger: stepEl,
-          start: "top 60%",
-          end: "bottom 40%",
+          start: "top 70%",
+          end: "bottom 30%",
           onToggle: (self) => {
             if (self.isActive) setActiveStep(index);
           },
