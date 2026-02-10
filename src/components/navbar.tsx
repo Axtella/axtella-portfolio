@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 interface DropdownItem {
   label: string;
   href: string;
+  disabled?: boolean;
+  tag?: string;
 }
 
 interface NavItem {
@@ -27,19 +29,19 @@ const navItems: NavItem[] = [
     href: "#",
     hasDropdown: true,
     dropdownItems: [
-      { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions" },
-      { label: "Information Technology", href: "/services/information-technology" },
-      { label: "Internet of Things (IoT)", href: "/services/internet-of-things" },
-      { label: "ELV Systems", href: "/services/elv-systems" },
-      { label: "BMS & Smart Building", href: "/services/bms-smart-building" },
-      { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works" },
-      { label: "Civil & General Construction", href: "/services/civil-general-construction" },
-      { label: "Managed Services", href: "/services/managed-services" },
-      { label: "Fleet Management Solutions", href: "/services/fleet-management" },
+      { label: "Fleet Management Solutions", href: "/services/fleet-management", tag: "New" },
+      { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions", disabled: true },
+      { label: "Information Technology", href: "/services/information-technology", disabled: true },
+      { label: "Internet of Things (IoT)", href: "/services/internet-of-things", disabled: true },
+      { label: "ELV Systems", href: "/services/elv-systems", disabled: true },
+      { label: "BMS & Smart Building", href: "/services/bms-smart-building", disabled: true },
+      { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works", disabled: true },
+      { label: "Civil & General Construction", href: "/services/civil-general-construction", disabled: true },
+      { label: "Managed Services", href: "/services/managed-services", disabled: true },
     ]
   },
   { label: "BLOGS", href: "/blogs", hasDropdown: false, disabled: true },
-  { label: "CONTACT", href: "/contact", hasDropdown: false, disabled: true },
+  { label: "CONTACT", href: "/contact", hasDropdown: false },
 ];
 
 export function Navbar() {
@@ -204,20 +206,34 @@ export function Navbar() {
                   {hasDropdownItems && activeDropdown === item.label && (
                     <div className="absolute top-full left-0 pt-2 min-w-[200px]">
                       <div className="bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden shadow-xl">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <a
-                            key={dropdownItem.href}
-                            href={dropdownItem.href}
-                            className={cn(
-                              "block px-4 py-3 text-sm font-medium transition-colors",
-                              pathname === dropdownItem.href
-                                ? "text-[#F5A623] bg-white/5"
-                                : "text-white/80 hover:text-[#F5A623] hover:bg-white/5"
-                            )}
-                          >
-                            {dropdownItem.label}
-                          </a>
-                        ))}
+                        {item.dropdownItems?.map((dropdownItem) =>
+                          dropdownItem.disabled ? (
+                            <span
+                              key={dropdownItem.href}
+                              className="block px-4 py-3 text-sm font-medium text-white/30 cursor-not-allowed"
+                            >
+                              {dropdownItem.label}
+                            </span>
+                          ) : (
+                            <a
+                              key={dropdownItem.href}
+                              href={dropdownItem.href}
+                              className={cn(
+                                "flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors",
+                                pathname === dropdownItem.href
+                                  ? "text-[#F5A623] bg-white/5"
+                                  : "text-white/80 hover:text-[#F5A623] hover:bg-white/5"
+                              )}
+                            >
+                              {dropdownItem.label}
+                              {dropdownItem.tag && (
+                                <span className="px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-[#F5A623] text-[#080D1A] leading-none">
+                                  {dropdownItem.tag}
+                                </span>
+                              )}
+                            </a>
+                          )
+                        )}
                       </div>
                     </div>
                   )}
@@ -335,20 +351,34 @@ export function Navbar() {
                   )}
                   {hasDropdownItems && isMobileDropdownOpen && (
                     <div className="mt-1 ml-4 border-l border-white/10 pl-4 space-y-1">
-                      {item.dropdownItems?.map((dropdownItem) => (
-                        <a
-                          key={dropdownItem.href}
-                          href={dropdownItem.href}
-                          className={cn(
-                            "block px-4 py-2.5 text-sm font-medium rounded-lg transition-colors hover:bg-white/10",
-                            pathname === dropdownItem.href
-                              ? "text-[#F5A623]"
-                              : "text-white/60 hover:text-[#F5A623]"
-                          )}
-                        >
-                          {dropdownItem.label}
-                        </a>
-                      ))}
+                      {item.dropdownItems?.map((dropdownItem) =>
+                        dropdownItem.disabled ? (
+                          <span
+                            key={dropdownItem.href}
+                            className="block px-4 py-2.5 text-sm font-medium rounded-lg text-white/30 cursor-not-allowed"
+                          >
+                            {dropdownItem.label}
+                          </span>
+                        ) : (
+                          <a
+                            key={dropdownItem.href}
+                            href={dropdownItem.href}
+                            className={cn(
+                              "flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors hover:bg-white/10",
+                              pathname === dropdownItem.href
+                                ? "text-[#F5A623]"
+                                : "text-white/60 hover:text-[#F5A623]"
+                            )}
+                          >
+                            {dropdownItem.label}
+                            {dropdownItem.tag && (
+                              <span className="px-1.5 py-0.5 text-[10px] font-bold uppercase rounded bg-[#F5A623] text-[#080D1A] leading-none">
+                                {dropdownItem.tag}
+                              </span>
+                            )}
+                          </a>
+                        )
+                      )}
                     </div>
                   )}
                 </div>
