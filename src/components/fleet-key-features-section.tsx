@@ -86,20 +86,20 @@ function FeatureCard({ feature }: { feature: Feature }) {
       data-feature-card
       className="group relative rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-1.5"
       style={{
-        backgroundColor: "#111827",
-        border: "1px solid #1F2937",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
+        backgroundColor: "#FFFFFF",
+        border: "1px solid #E5E7EB",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
       }}
       onMouseEnter={(e) => {
         const el = e.currentTarget;
         el.style.borderColor = "#F59E0B";
         el.style.boxShadow =
-          "0 8px 30px rgba(0,0,0,0.4), 0 0 20px rgba(245,166,35,0.15)";
+          "0 8px 30px rgba(0,0,0,0.08), 0 0 20px rgba(245,166,35,0.15)";
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget;
-        el.style.borderColor = "#1F2937";
-        el.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3)";
+        el.style.borderColor = "#E5E7EB";
+        el.style.boxShadow = "0 4px 20px rgba(0,0,0,0.06)";
       }}
     >
       {/* Icon Circle */}
@@ -122,7 +122,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
           fontWeight: 700,
           fontSize: "18px",
           lineHeight: "1.3",
-          color: "#FFFFFF",
+          color: "#1F2937",
           marginTop: "16px",
         }}
       >
@@ -135,7 +135,7 @@ function FeatureCard({ feature }: { feature: Feature }) {
           fontFamily: "var(--font-plus-jakarta)",
           fontSize: "14px",
           lineHeight: "1.6",
-          color: "#9CA3AF",
+          color: "#6B7280",
           marginTop: "12px",
         }}
       >

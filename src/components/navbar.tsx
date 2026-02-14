@@ -30,17 +30,17 @@ const navItems: NavItem[] = [
     hasDropdown: true,
     dropdownItems: [
       { label: "Fleet Management Solutions", href: "/services/fleet-management", tag: "New" },
-      { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions", disabled: true },
-      { label: "Information Technology", href: "/services/information-technology", disabled: true },
-      { label: "Internet of Things (IoT)", href: "/services/internet-of-things", disabled: true },
-      { label: "ELV Systems", href: "/services/elv-systems", disabled: true },
-      { label: "BMS & Smart Building", href: "/services/bms-smart-building", disabled: true },
-      { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works", disabled: true },
-      { label: "Civil & General Construction", href: "/services/civil-general-construction", disabled: true },
+      { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions" },
+      { label: "Information Technology", href: "/services/information-technology" },
+      { label: "Internet of Things (IoT)", href: "/services/internet-of-things" },
+      { label: "ELV Systems", href: "/services/elv-systems" },
+      { label: "BMS & Smart Building", href: "/services/bms-smart-building" },
+      { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works" },
+      { label: "Civil & General Construction", href: "/services/civil-general-construction" },
       { label: "Managed Services", href: "/services/managed-services", disabled: true },
     ]
   },
-  { label: "BLOGS", href: "/blogs", hasDropdown: false, disabled: true },
+  { label: "BLOGS", href: "/blogs", hasDropdown: false },
   { label: "CONTACT", href: "/contact", hasDropdown: false },
 ];
 
@@ -93,9 +93,9 @@ export function Navbar() {
       ref={navRef}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-black/80 backdrop-blur-md py-1 lg:py-1 xl:py-2" : "bg-transparent py-2 lg:py-2 xl:py-3"
+        isScrolled ? "shadow-md py-1 lg:py-1 xl:py-2" : "py-2 lg:py-2 xl:py-3"
       )}
-      style={{ opacity: 1, visibility: "visible" }}
+      style={{ opacity: 1, visibility: "visible", backgroundColor: "#F9FAFB" }}
     >
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[50px] lg:h-[56px] xl:h-[68px]">
@@ -107,7 +107,7 @@ export function Navbar() {
               width={260}
               height={70}
               className="h-10 sm:h-12 lg:h-12 xl:h-16"
-              style={{ width: "auto", background: "transparent" }}
+              style={{ width: "auto" }}
               priority
             />
           </a>
@@ -116,7 +116,7 @@ export function Navbar() {
           <div
             className="hidden lg:flex items-center justify-center gap-1 xl:gap-2 px-4 xl:px-6 absolute left-1/2 -translate-x-1/2"
             style={{
-              background: "#1A1A1A",
+              background: "linear-gradient(135deg, #14305A 0%, #080D1A 100%)",
               boxShadow: "0px 4px 43px 1px rgba(0, 0, 0, 0.08)",
               borderRadius: "53px",
               height: "clamp(45px, 3.8vw, 65px)",
@@ -148,7 +148,7 @@ export function Navbar() {
                         </svg>
                       )}
                     </span>
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-white/50 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 px-3 py-1.5 bg-[#1a1a1a] border border-white/10 rounded-lg text-white/50 text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg">
                       Coming Soon
                     </div>
                   </div>
@@ -258,7 +258,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden text-white p-2"
+            className="lg:hidden text-[#1F2937] p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <svg
@@ -289,7 +289,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-black/95 backdrop-blur-md border-t border-white/10 mt-4">
+        <div className="lg:hidden bg-[#F9FAFB] border-t border-gray-200 mt-4">
           <div className="px-6 py-4 space-y-2">
             {navItems.map((item) => {
               const hasDropdownItems = item.hasDropdown && item.dropdownItems;
@@ -300,10 +300,10 @@ export function Navbar() {
                 return (
                   <div key={item.label}>
                     <span
-                      className="flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg cursor-not-allowed text-white/30"
+                      className="flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg cursor-not-allowed text-gray-400"
                     >
                       {item.label}
-                      <span className="text-xs text-white/20">Coming Soon</span>
+                      <span className="text-xs text-gray-300">Coming Soon</span>
                     </span>
                   </div>
                 );
@@ -317,7 +317,7 @@ export function Navbar() {
                       onClick={() => setMobileDropdown(isMobileDropdownOpen ? null : item.label)}
                       className={cn(
                         "w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-colors",
-                        isItemActive ? "text-[#F5A623]" : "text-white/80"
+                        isItemActive ? "text-[#F5A623]" : "text-[#1F2937]"
                       )}
                     >
                       {item.label}
@@ -342,20 +342,20 @@ export function Navbar() {
                     <a
                       href={item.href}
                       className={cn(
-                        "block px-4 py-3 text-sm font-medium rounded-lg transition-colors hover:bg-white/10",
-                        isItemActive ? "text-[#F5A623]" : "text-white/80 hover:text-[#F5A623]"
+                        "block px-4 py-3 text-sm font-medium rounded-lg transition-colors hover:bg-gray-100",
+                        isItemActive ? "text-[#F5A623]" : "text-[#1F2937] hover:text-[#F5A623]"
                       )}
                     >
                       {item.label}
                     </a>
                   )}
                   {hasDropdownItems && isMobileDropdownOpen && (
-                    <div className="mt-1 ml-4 border-l border-white/10 pl-4 space-y-1">
+                    <div className="mt-1 ml-4 border-l border-gray-200 pl-4 space-y-1">
                       {item.dropdownItems?.map((dropdownItem) =>
                         dropdownItem.disabled ? (
                           <span
                             key={dropdownItem.href}
-                            className="block px-4 py-2.5 text-sm font-medium rounded-lg text-white/30 cursor-not-allowed"
+                            className="block px-4 py-2.5 text-sm font-medium rounded-lg text-gray-400 cursor-not-allowed"
                           >
                             {dropdownItem.label}
                           </span>
@@ -364,10 +364,10 @@ export function Navbar() {
                             key={dropdownItem.href}
                             href={dropdownItem.href}
                             className={cn(
-                              "flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors hover:bg-white/10",
+                              "flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors hover:bg-gray-100",
                               pathname === dropdownItem.href
                                 ? "text-[#F5A623]"
-                                : "text-white/60 hover:text-[#F5A623]"
+                                : "text-gray-600 hover:text-[#F5A623]"
                             )}
                           >
                             {dropdownItem.label}

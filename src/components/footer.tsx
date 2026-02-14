@@ -163,6 +163,19 @@ export function Footer() {
               >
                 Home
               </Link>
+              <Link
+                href="/careers"
+                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
+                style={{
+                  fontFamily: "var(--font-plus-jakarta)",
+                  fontWeight: 500,
+                  fontSize: "clamp(14px, 2vw, 18px)",
+                  lineHeight: "1.2",
+                  letterSpacing: "1px",
+                }}
+              >
+                Careers
+              </Link>
               <span
                 className="text-white/30 cursor-not-allowed"
                 style={{

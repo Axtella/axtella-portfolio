@@ -454,6 +454,209 @@ export const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    id: 11,
+    slug: "cloud-computing-future-business",
+    title: "Cloud Computing: The Future of Business Infrastructure",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    image: "/images/blog/Rectangle 22503 (2).png",
+    featuredImage: "/images/blog/Rectangle 22504.png",
+    imageAlt: "Cloud computing infrastructure",
+    category: "Technology",
+    tags: ["Cloud Computing", "Technology", "Infrastructure", "Digital Transformation"],
+    author: {
+      name: "Mohammed Alfan",
+      role: "Excel Expert & Trainer",
+      avatar: "/images/authors/mohammed-alfan.png",
+    },
+    publishedDate: "2025-04-05",
+    readTime: "6 min read",
+    featured: false,
+    published: true,
+    metaTitle: "Cloud Computing: The Future of Business Infrastructure - Axtella",
+    metaDescription:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.",
+      },
+      {
+        heading: "Scalability and Flexibility",
+        text: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.\n\nQuisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.",
+      },
+      {
+        heading: "Security and Compliance",
+        text: "Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.\n\nPhasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer ligula vulputate sem tristique cursus. Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.",
+      },
+    ],
+  },
+  {
+    id: 12,
+    slug: "cybersecurity-essentials-2026",
+    title: "Cybersecurity Essentials Every Professional Should Know in 2026",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum molestie lacus aenean nonummy hendrerit mauris.",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia porta ante placerat mollis.",
+    image: "/images/blog/Rectangle 22503 (3).png",
+    featuredImage: "/images/blog/Rectangle 22504 (1).png",
+    imageAlt: "Cybersecurity professional at work",
+    category: "Technology",
+    tags: ["Cybersecurity", "Technology", "Security", "Professional Development"],
+    author: {
+      name: "Mohammed Alfan",
+      role: "Excel Expert & Trainer",
+      avatar: "/images/authors/mohammed-alfan.png",
+    },
+    publishedDate: "2025-03-28",
+    readTime: "7 min read",
+    featured: true,
+    published: true,
+    metaTitle: "Cybersecurity Essentials Every Professional Should Know in 2026 - Axtella",
+    metaDescription:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vestibulum molestie lacus aenean nonummy hendrerit mauris.",
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada. Nulla facilisi. Etiam non diam ante. Donec lobortis, est in semper volutpat, neque ipsum feugiat nisi, a tincidunt nunc purus sit amet dui.\n\nPraesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.",
+      },
+      {
+        heading: "Threat Landscape in 2026",
+        text: "Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum.\n\nDonec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+      },
+      {
+        heading: "Building a Security-First Culture",
+        text: "Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nCras justo odio, dapibus ut facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+      },
+      {
+        heading: "Tools and Best Practices",
+        text: "Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\nNulla vitae elit libero, a pharetra augue. Sed posuere consectetur est at lobortis. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+      },
+    ],
+  },
+  {
+    id: 13,
+    slug: "power-bi-dashboards-beginners",
+    title: "Getting Started with Power BI: A Beginner's Guide to Dashboards",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt mauris eu risus.",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo felis quis tortor.",
+    image: "/images/blog/Rectangle 22503.png",
+    featuredImage: "/images/blog/Rectangle 22504.png",
+    imageAlt: "Power BI dashboard on screen",
+    category: "Data Analytics",
+    tags: ["Power BI", "Data Analytics", "Dashboards", "Business Intelligence"],
+    author: {
+      name: "Mohammed Alfan",
+      role: "Excel Expert & Trainer",
+      avatar: "/images/authors/mohammed-alfan.png",
+    },
+    publishedDate: "2025-03-20",
+    readTime: "5 min read",
+    featured: false,
+    published: true,
+    metaTitle: "Getting Started with Power BI: A Beginner's Guide to Dashboards - Axtella",
+    metaDescription:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tincidunt mauris eu risus.",
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim.\n\nPhasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio.",
+      },
+      {
+        heading: "Setting Up Your First Dashboard",
+        text: "Donec faucibus volutpat ante, ac faucibus felis accumsan vel. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.\n\nVestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla porttitor accumsan tincidunt.",
+      },
+      {
+        heading: "Connecting Data Sources",
+        text: "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.\n\nMauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.",
+      },
+    ],
+  },
+  {
+    id: 14,
+    slug: "remote-work-productivity-tips",
+    title: "10 Proven Strategies to Boost Your Remote Work Productivity",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel sapien elit. In malesuada semper mi.",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor aenean massa.",
+    image: "/images/blog/Rectangle 22503 (1).png",
+    featuredImage: "/images/blog/Rectangle 22504 (1).png",
+    imageAlt: "Remote work setup at home",
+    category: "Productivity",
+    tags: ["Remote Work", "Productivity", "Work From Home", "Career"],
+    author: {
+      name: "Mohammed Alfan",
+      role: "Excel Expert & Trainer",
+      avatar: "/images/authors/mohammed-alfan.png",
+    },
+    publishedDate: "2025-03-15",
+    readTime: "6 min read",
+    featured: false,
+    published: true,
+    metaTitle: "10 Proven Strategies to Boost Your Remote Work Productivity - Axtella",
+    metaDescription:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel sapien elit. In malesuada semper mi.",
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.\n\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.",
+      },
+      {
+        heading: "Creating the Right Environment",
+        text: "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.\n\nUt enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+      },
+      {
+        heading: "Time Management Techniques",
+        text: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.\n\nSimilique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.",
+      },
+    ],
+  },
+  {
+    id: 15,
+    slug: "digital-transformation-sme",
+    title: "Digital Transformation for Small and Medium Enterprises",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta.",
+    excerpt:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget tortor risus cras ultricies.",
+    image: "/images/blog/Rectangle 22503 (2).png",
+    featuredImage: "/images/blog/Rectangle 22504.png",
+    imageAlt: "Small business digital transformation",
+    category: "Technology",
+    tags: ["Digital Transformation", "SME", "Business", "Technology"],
+    author: {
+      name: "Mohammed Alfan",
+      role: "Excel Expert & Trainer",
+      avatar: "/images/authors/mohammed-alfan.png",
+    },
+    publishedDate: "2025-03-10",
+    readTime: "8 min read",
+    featured: true,
+    published: true,
+    metaTitle: "Digital Transformation for Small and Medium Enterprises - Axtella",
+    metaDescription:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta.",
+    content: [
+      {
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla quis lorem ut libero malesuada feugiat.\n\nVivamus suscipit tortor eget felis porttitor volutpat. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla quis lorem ut libero malesuada feugiat.",
+      },
+      {
+        heading: "Assessing Digital Readiness",
+        text: "Pellentesque in ipsum id orci porta dapibus. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada.\n\nVestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Cras ultricies ligula sed magna dictum porta. Proin eget tortor risus. Donec sollicitudin molestie malesuada.",
+      },
+      {
+        heading: "Implementation Roadmap",
+        text: "Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Quisque velit nisi, pretium ut lacinia in, elementum id enim.\n\nNulla porttitor accumsan tincidunt. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Sed porttitor lectus nibh.",
+      },
+      {
+        heading: "Measuring ROI",
+        text: "Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla quis lorem ut libero malesuada feugiat. Proin eget tortor risus.\n\nDonec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+      },
+    ],
+  },
 ];
 
 // Helper functions
