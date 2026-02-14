@@ -305,7 +305,7 @@ export function FleetManagementHeroSection() {
           {/* Right Column - SVG City Map with Animated Vehicles */}
           <div
             ref={imageRef}
-            className="relative w-full lg:w-[50%] h-[280px] sm:h-[340px] md:h-[420px] lg:h-[calc(100vh-80px)]"
+            className="relative w-full lg:w-[50%] h-[280px] sm:h-[340px] md:h-[420px] lg:h-[calc(100vh-80px)] lg:pt-16"
           >
               <svg
                 viewBox="0 0 800 700"

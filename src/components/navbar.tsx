@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
@@ -244,16 +245,17 @@ export function Navbar() {
 
           {/* Get In Touch CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <span
-              className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-sm cursor-not-allowed"
+            <Link
+              href="/contact"
+              className="inline-flex items-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(245,166,35,0.3)]"
               style={{
-                background: "rgba(245, 166, 35, 0.3)",
-                color: "rgba(8, 13, 26, 0.5)",
+                background: "#F5A623",
+                color: "#080D1A",
                 fontFamily: "var(--font-plus-jakarta)",
               }}
             >
               Get In Touch
-            </span>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -384,16 +386,18 @@ export function Navbar() {
                 </div>
               );
             })}
-            <span
-              className="block w-full mt-4 text-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 cursor-not-allowed"
+            <Link
+              href="/contact"
+              className="block w-full mt-4 text-center px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(245,166,35,0.3)]"
               style={{
-                background: "rgba(245, 166, 35, 0.3)",
-                color: "rgba(8, 13, 26, 0.5)",
+                background: "#F5A623",
+                color: "#080D1A",
                 fontFamily: "var(--font-plus-jakarta)",
               }}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Get In Touch
-            </span>
+            </Link>
           </div>
         </div>
       )}
