@@ -13,12 +13,17 @@ interface TextSegment {
   weight?: 400 | 600 | 700;
 }
 
+interface ScrollHighlightSectionData {
+  paragraphs?: string[];
+}
+
 interface ScrollHighlightSectionProps {
   theme?: "light" | "dark";
+  data?: ScrollHighlightSectionData | null;
 }
 
 // Text organized by sentences, each containing styled segments
-const sentences: TextSegment[][] = [
+const defaultSentences: TextSegment[][] = [
   [
     { text: "Axtella was founded by ", weight: 400 },
     { text: "Hassan AbdulShukkur", weight: 700 },
@@ -38,7 +43,11 @@ const sentences: TextSegment[][] = [
   ],
 ];
 
-export function ScrollHighlightSection({ theme = "light" }: ScrollHighlightSectionProps) {
+export function ScrollHighlightSection({ theme = "light", data }: ScrollHighlightSectionProps) {
+  // If data.paragraphs provided from DB, convert to TextSegment[][] format
+  const sentences: TextSegment[][] = data?.paragraphs
+    ? data.paragraphs.map((p) => [{ text: p, weight: 400 }])
+    : defaultSentences;
   const sectionRef = useRef<HTMLElement>(null);
   const sentenceRefs = useRef<(HTMLSpanElement | null)[]>([]);
 

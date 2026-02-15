@@ -16,7 +16,7 @@ interface ContactCard {
   hasUnderline?: boolean;
 }
 
-const contactCards: ContactCard[] = [
+const defaultContactCards: ContactCard[] = [
   {
     icon: "phone",
     title: "Talk to Experts",
@@ -48,6 +48,9 @@ const contactCards: ContactCard[] = [
     hasUnderline: true,
   },
 ];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface ContactInfoData { cards?: any[] }
 
 const PhoneIcon = () => (
   <svg
@@ -106,7 +109,20 @@ const IconComponent = ({ type }: { type: "phone" | "chat" | "email" }) => {
   }
 };
 
-export function ContactInfoSection() {
+export function ContactInfoSection({ data }: { data?: ContactInfoData | null }) {
+  const iconTypes: ("phone" | "chat" | "email")[] = ["phone", "chat", "email"];
+  const contactCards: ContactCard[] = data?.cards
+    ? data.cards.map((c, i) => ({
+        icon: iconTypes[i % iconTypes.length],
+        title: c.title || "",
+        details: [
+          ...(c.india ? [{ label: "INDIA", value: c.india }] : []),
+          ...(c.uae ? [{ label: "UAE", value: Array.isArray(c.uae) ? c.uae.join(", ") : c.uae }] : []),
+          ...(c.email ? [{ label: "MAIL", value: c.email }] : []),
+        ],
+        hasUnderline: true,
+      }))
+    : defaultContactCards;
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 

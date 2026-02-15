@@ -6,7 +6,18 @@ import gsap from "gsap";
 import { AvatarStack } from "./avatar-stack";
 import { cn } from "@/lib/utils";
 
-export function HeroSection() {
+interface HeroSectionData {
+  headline?: string[];
+  highlightIndex?: number | null;
+  subtext?: string;
+  cta?: { label: string; href: string };
+}
+
+export function HeroSection({ data }: { data?: HeroSectionData | null }) {
+  const headline = data?.headline || ["ENGINEERING", "SMARTER", "SOLUTIONS"];
+  const highlightIndex = data?.highlightIndex ?? 1;
+  const subtext = data?.subtext || "From telecommunications and IoT to smart buildings and construction — Axtella delivers end-to-end technology solutions across the Kingdom.";
+  const ctaLabel = data?.cta?.label || "Discover More";
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -251,11 +262,12 @@ export function HeroSection() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                <span className="word inline-block text-white">ENGINEERING</span>
-                <br />
-                <span className="word inline-block text-[#F5A623]">SMARTER</span>
-                <br />
-                <span className="word inline-block text-white">SOLUTIONS</span>
+                {headline.map((word, i) => (
+                  <span key={i}>
+                    <span className={`word inline-block ${i === highlightIndex ? "text-[#F5A623]" : "text-white"}`}>{word}</span>
+                    {i < headline.length - 1 && <br />}
+                  </span>
+                ))}
               </h1>
 
               {/* Subtext */}
@@ -263,8 +275,7 @@ export function HeroSection() {
                 ref={subtextRef}
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed"
               >
-                From telecommunications and IoT to smart buildings and construction
-                — Axtella delivers end-to-end technology solutions across the Kingdom.
+                {subtext}
               </p>
 
               {/* CTA Button - With arrow-1 icon */}
@@ -277,7 +288,7 @@ export function HeroSection() {
                   "transition-all duration-300"
                 )}
               >
-                Discover More
+                {ctaLabel}
                 <Arrow1Icon />
               </button>
 

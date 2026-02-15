@@ -33,11 +33,25 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Axtella",
-  description: "Axtella Global - Technology & Infrastructure Solutions",
+  title: {
+    default: "Axtella | Technology & Infrastructure Solutions",
+    template: "%s | Axtella",
+  },
+  description: "Axtella Global - Technology & Infrastructure Solutions. Fleet management, IT services, telecom, IoT, BMS, ELV systems, and more.",
   icons: {
     icon: "/logo1.png",
     apple: "/logo1.png",
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://axtella.com"),
+  openGraph: {
+    type: "website",
+    siteName: "Axtella",
+    title: "Axtella | Technology & Infrastructure Solutions",
+    description: "Axtella Global - Technology & Infrastructure Solutions",
+    images: [{ url: "/logo1.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

@@ -1,20 +1,33 @@
 "use client";
 
-export function MissionVisionSection() {
-  const cards = [
-    {
-      id: 1,
-      title: "Our Mission",
-      description:
-        "To deliver integrated, reliable, and innovative technology and infrastructure solutions that empower businesses across Saudi Arabia and the GCC. We combine engineering excellence with cutting-edge technology to build systems that perform, scale, and last.",
-    },
-    {
-      id: 2,
-      title: "Our Vision",
-      description:
-        "To become the Kingdom's most trusted technology partner — leading the way in smart infrastructure, digital transformation, and connected solutions aligned with Saudi Vision 2030.",
-    },
-  ];
+interface MissionVisionCard {
+  title: string;
+  text?: string;
+  description?: string;
+}
+
+interface MissionVisionData {
+  cards?: MissionVisionCard[];
+}
+
+const defaultCards = [
+  {
+    title: "Our Mission",
+    text: "To deliver integrated, reliable, and innovative technology and infrastructure solutions that empower businesses across Saudi Arabia and the GCC. We combine engineering excellence with cutting-edge technology to build systems that perform, scale, and last.",
+  },
+  {
+    title: "Our Vision",
+    text: "To become the Kingdom's most trusted technology partner — leading the way in smart infrastructure, digital transformation, and connected solutions aligned with Saudi Vision 2030.",
+  },
+];
+
+export function MissionVisionSection({ data }: { data?: MissionVisionData | null }) {
+  const rawCards: MissionVisionCard[] = data?.cards || defaultCards;
+  const cards = rawCards.map((c, i) => ({
+    id: i + 1,
+    title: c.title,
+    description: c.text || c.description || "",
+  }));
 
   return (
     <section className="relative py-12 md:py-16 lg:py-20 xl:py-24 bg-white">

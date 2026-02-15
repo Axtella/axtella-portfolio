@@ -49,9 +49,29 @@ export function ContactFormSection() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      }
+    } catch {
+      // Silently handle error
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleInputChange = (
@@ -220,9 +240,10 @@ export function ContactFormSection() {
               <div className="pt-6 sm:pt-8">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 sm:gap-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg w-full sm:w-auto justify-center"
+                  disabled={submitting}
+                  className="inline-flex items-center gap-2 sm:gap-3 rounded-full font-semibold transition-all duration-300 hover:shadow-lg w-full sm:w-auto justify-center disabled:opacity-50"
                   style={{
-                    background: "#F5A623",
+                    background: submitted ? "#22c55e" : "#F5A623",
                     padding: "14px 32px",
                     fontFamily: "var(--font-plus-jakarta)",
                   }}
@@ -236,7 +257,7 @@ export function ContactFormSection() {
                       color: "#080D1A",
                     }}
                   >
-                    Send Message
+                    {submitted ? "Message Sent!" : submitting ? "Sending..." : "Send Message"}
                   </span>
                   <svg
                     width="20"

@@ -9,7 +9,12 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const cards = [
+interface CardItem {
+  title: string;
+  description: string;
+}
+
+const defaultCards: CardItem[] = [
   {
     title: "End-to-End Delivery",
     description:
@@ -32,7 +37,16 @@ const cards = [
   },
 ];
 
-export function WhatSetsApartSection() {
+interface WhatSetsApartData {
+  heading?: string;
+  description?: string;
+  cards?: CardItem[];
+}
+
+export function WhatSetsApartSection({ data }: { data?: WhatSetsApartData | null }) {
+  const cards = data?.cards || defaultCards;
+  const heading = data?.heading || "What Sets Axtella Apart";
+  const description = data?.description || "Delivering integrated technology and infrastructure solutions with precision, reliability, and scale.";
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -83,7 +97,7 @@ export function WhatSetsApartSection() {
                 color: "#1A1A1A",
               }}
             >
-              What Sets Axtella Apart
+              {heading}
             </h2>
             <p
               className="max-w-2xl"
@@ -94,8 +108,7 @@ export function WhatSetsApartSection() {
                 color: "rgba(0, 0, 0, 0.55)",
               }}
             >
-              Delivering integrated technology and infrastructure solutions with
-              precision, reliability, and scale.
+              {description}
             </p>
           </div>
 

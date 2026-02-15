@@ -4,7 +4,18 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-export function CareerHeroSection() {
+interface CareerHeroData {
+  headline?: string[];
+  highlightIndex?: number | null;
+  subtext?: string;
+  cta?: { label: string; href: string };
+}
+
+export function CareerHeroSection({ data }: { data?: CareerHeroData | null }) {
+  const headline = data?.headline || ["BUILD THE FUTURE", "OF SAUDI ARABIA", "WITH US"];
+  const highlightIndex = data?.highlightIndex ?? 1;
+  const subtext = data?.subtext || "Join 250+ professionals shaping Vision 2030";
+  const ctaLabel = data?.cta?.label || "View Open Positions";
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -117,16 +128,17 @@ export function CareerHeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                <span className="word inline-block text-white">BUILD</span>{" "}
-                <span className="word inline-block text-white">THE</span>{" "}
-                <span className="word inline-block text-white">FUTURE</span>
-                <br />
-                <span className="word inline-block text-white">OF</span>{" "}
-                <span className="word inline-block text-[#F5A623]">SAUDI</span>{" "}
-                <span className="word inline-block text-[#F5A623]">ARABIA</span>
-                <br />
-                <span className="word inline-block text-white">WITH</span>{" "}
-                <span className="word inline-block text-white">US</span>
+                {headline.map((line, i) => (
+                  <span key={i}>
+                    {line.split(" ").map((word, wi, arr) => (
+                      <span key={wi}>
+                        <span className={`word inline-block ${i === highlightIndex ? "text-[#F5A623]" : "text-white"}`}>{word}</span>
+                        {wi < arr.length - 1 ? " " : ""}
+                      </span>
+                    ))}
+                    {i < headline.length - 1 && <br />}
+                  </span>
+                ))}
               </h1>
 
               {/* Subtext */}
@@ -135,7 +147,7 @@ export function CareerHeroSection() {
                 className="text-white/60 text-base lg:text-lg max-w-xl leading-relaxed"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
-                Join 250+ professionals shaping Vision 2030
+                {subtext}
               </p>
 
               {/* CTA */}
@@ -149,7 +161,7 @@ export function CareerHeroSection() {
                   background: "#F5A623",
                 }}
               >
-                View Open Positions
+                {ctaLabel}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>

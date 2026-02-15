@@ -4,7 +4,14 @@ import { useRef, useEffect } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 
-export function ContactHeroSection() {
+interface ContactHeroData {
+  headline?: string[];
+  subtext?: string;
+}
+
+export function ContactHeroSection({ data }: { data?: ContactHeroData | null }) {
+  const headline = data?.headline || ["LET'S BUILD", "SOMETHING", "GREAT TOGETHER"];
+  const subtext = data?.subtext || "Lorem ipsum dolor sit amet consectetur. Nisl risus lacus nulla. Laoreet in nulla risus et met adipiscing.";
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -96,13 +103,17 @@ export function ContactHeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                <span className="word inline-block text-white">LET&apos;S</span>{" "}
-                <span className="word inline-block text-white">BUILD</span>
-                <br />
-                <span className="word inline-block text-white">SOMETHING</span>
-                <br />
-                <span className="word inline-block text-white">GREAT</span>{" "}
-                <span className="word inline-block text-white">TOGETHER</span>
+                {headline.map((line, i) => (
+                  <span key={i}>
+                    {line.split(" ").map((word, wi, arr) => (
+                      <span key={wi}>
+                        <span className="word inline-block text-white">{word}</span>
+                        {wi < arr.length - 1 ? " " : ""}
+                      </span>
+                    ))}
+                    {i < headline.length - 1 && <br />}
+                  </span>
+                ))}
               </h1>
 
               {/* Subtext */}
@@ -117,8 +128,7 @@ export function ContactHeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Lorem ipsum dolor sit amet consectetur. Nisl risus lacus nulla.
-                Laoreet in nulla risus et met adipiscing.
+                {subtext}
               </p>
             </div>
           </div>

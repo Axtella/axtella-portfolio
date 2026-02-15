@@ -7,17 +7,33 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const departments = [
-  { icon: Radio, label: "Telecom" },
-  { icon: Monitor, label: "IT" },
-  { icon: Cpu, label: "IoT" },
-  { icon: Truck, label: "Fleet" },
-  { icon: Building, label: "Civil" },
-  { icon: Sun, label: "Solar" },
-  { icon: ClipboardList, label: "Admin" },
-];
+import type { LucideIcon } from "lucide-react";
 
-export function CareerDepartmentsSection() {
+const iconMap: Record<string, LucideIcon> = {
+  Telecom: Radio,
+  IT: Monitor,
+  IoT: Cpu,
+  Fleet: Truck,
+  Civil: Building,
+  Solar: Sun,
+  Admin: ClipboardList,
+};
+
+const defaultDepartments = ["Telecom", "IT", "IoT", "Fleet", "Civil", "Solar", "Admin"];
+
+interface CareerDepartmentsData {
+  label?: string;
+  title?: string;
+  departments?: string[];
+}
+
+export function CareerDepartmentsSection({ data }: { data?: CareerDepartmentsData | null }) {
+  const sectionLabel = data?.label || "Our Teams";
+  const sectionTitle = data?.title || "Departments";
+  const departments = (data?.departments || defaultDepartments).map((label) => ({
+    icon: iconMap[label] || Radio,
+    label,
+  }));
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -74,7 +90,7 @@ export function CareerDepartmentsSection() {
               className="text-[#F5A623] uppercase text-xs tracking-[2px] font-medium"
               style={{ fontFamily: "var(--font-plus-jakarta)" }}
             >
-              Our Teams
+              {sectionLabel}
             </span>
             <div className="w-8 h-[2px] bg-[#F5A623]" />
           </div>
@@ -87,7 +103,7 @@ export function CareerDepartmentsSection() {
               letterSpacing: "-0.02em",
             }}
           >
-            Departments
+            {sectionTitle}
           </h2>
         </div>
 

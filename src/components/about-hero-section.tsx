@@ -5,7 +5,14 @@ import Image from "next/image";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function AboutHeroSection() {
+interface AboutHeroData {
+  headline?: string[];
+  subtext?: string;
+}
+
+export function AboutHeroSection({ data }: { data?: AboutHeroData | null }) {
+  const headline = data?.headline || ["WE'RE AXTELLA"];
+  const subtext = data?.subtext || "Lorem ipsum dolor sit amet consectetur. Nisl risus lacus nulla. Laoreet in nulla risus et met adipiscing.";
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -97,9 +104,17 @@ export function AboutHeroSection() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                <span className="word inline-block text-white">WE&apos;RE</span>
-                <br />
-                <span className="word inline-block text-white">AXTELLA</span>
+                {headline.map((line, i) => (
+                  <span key={i}>
+                    {line.split(" ").map((word, wi, arr) => (
+                      <span key={wi}>
+                        <span className="word inline-block text-white">{word}</span>
+                        {wi < arr.length - 1 ? " " : ""}
+                      </span>
+                    ))}
+                    {i < headline.length - 1 && <br />}
+                  </span>
+                ))}
               </h1>
 
               {/* Subtext */}
@@ -107,8 +122,7 @@ export function AboutHeroSection() {
                 ref={subtextRef}
                 className="text-white/60 text-base lg:text-lg max-w-xl leading-relaxed"
               >
-                Lorem ipsum dolor sit amet consectetur. Nisl risus lacus nulla.
-                Laoreet in nulla risus et met adipiscing.
+                {subtext}
               </p>
             </div>
           </div>

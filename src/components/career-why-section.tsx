@@ -7,30 +7,44 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const whyCards = [
+import type { LucideIcon } from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  Growth: TrendingUp,
+  Impact: Globe,
+  Culture: Users,
+  Benefits: Gift,
+};
+
+const defaultWhyCards = [
   {
-    icon: TrendingUp,
     title: "Growth",
     description: "Fast-track your career with hands-on projects across telecom, IoT, fleet management, and smart building technologies in one of the world's fastest-growing markets.",
   },
   {
-    icon: Globe,
     title: "Impact",
     description: "Work on projects that directly contribute to Saudi Vision 2030 — from smart city infrastructure to enterprise digital transformation across the Kingdom.",
   },
   {
-    icon: Users,
     title: "Culture",
     description: "Join a diverse, collaborative team that values innovation and initiative. We foster an environment where every voice is heard and ideas turn into action.",
   },
   {
-    icon: Gift,
     title: "Benefits",
     description: "Competitive compensation, health insurance, annual leave, professional development allowances, and relocation support for international hires.",
   },
 ];
 
-export function CareerWhySection() {
+interface CareerWhyData {
+  label?: string;
+  title?: string;
+  cards?: { title: string; description: string }[];
+}
+
+export function CareerWhySection({ data }: { data?: CareerWhyData | null }) {
+  const sectionLabel = data?.label || "Why Join Us";
+  const sectionTitle = data?.title || "Why Axtella";
+  const whyCards = data?.cards || defaultWhyCards;
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -89,7 +103,7 @@ export function CareerWhySection() {
               className="text-[#F5A623] uppercase text-xs tracking-[2px] font-medium"
               style={{ fontFamily: "var(--font-plus-jakarta)" }}
             >
-              Why Join Us
+              {sectionLabel}
             </span>
             <div className="w-8 h-[2px] bg-[#F5A623]" />
           </div>
@@ -102,14 +116,14 @@ export function CareerWhySection() {
               letterSpacing: "-0.02em",
             }}
           >
-            Why Axtella
+            {sectionTitle}
           </h2>
         </div>
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto">
           {whyCards.map((card) => {
-            const IconComp = card.icon;
+            const IconComp = iconMap[card.title] || TrendingUp;
             return (
               <div
                 key={card.title}

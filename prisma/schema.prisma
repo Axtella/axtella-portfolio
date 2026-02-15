@@ -1,0 +1,242 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Authentication ─────────────────────────────────────────
+
+model User {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      String    @default("editor") // "admin" | "editor"
+  sessions  Session[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─── Content: Pages ─────────────────────────────────────────
+
+model Page {
+  id        String   @id @default(cuid())
+  slug      String   @unique // "home", "about", "contact", "careers"
+  title     String
+  sections  Json     @default("[]") // flexible JSON blocks for page content
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  ogTitle         String?
+  ogDescription   String?
+  canonicalUrl    String?
+  noIndex         Boolean @default(false)
+}
+
+// ─── Content: Services ──────────────────────────────────────
+
+model Service {
+  id            String  @id @default(cuid())
+  slug          String  @unique
+  title         String
+  heroTitle     String
+  heroSubtitle  String?
+  heroImage     String?
+  offers        Json    @default("[]")
+  features      Json    @default("[]")
+  howItWorks    Json    @default("[]")
+  stats         Json    @default("[]")
+  industries    Json    @default("[]")
+  techStack     Json    @default("[]")
+  pricing       Json    @default("[]")
+  published     Boolean @default(true)
+  order         Int     @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  ogTitle         String?
+  ogDescription   String?
+  canonicalUrl    String?
+  noIndex         Boolean @default(false)
+}
+
+// ─── Content: Blog ──────────────────────────────────────────
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  excerpt     String?
+  description String?
+  content     Json     @default("[]") // rich text content sections
+  image       String?
+  featuredImage String?
+  imageAlt    String?
+  categoryId  String?
+  category    BlogCategory? @relation(fields: [categoryId], references: [id])
+  tags        String[] @default([])
+  authorId    String?
+  author      Author?  @relation(fields: [authorId], references: [id])
+  readTime    String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // SEO
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  ogTitle         String?
+  ogDescription   String?
+  canonicalUrl    String?
+  noIndex         Boolean @default(false)
+}
+
+model BlogCategory {
+  id    String     @id @default(cuid())
+  name  String     @unique
+  slug  String     @unique
+  posts BlogPost[]
+}
+
+model Author {
+  id     String     @id @default(cuid())
+  name   String
+  role   String?
+  avatar String?
+  bio    String?
+  posts  BlogPost[]
+}
+
+// ─── Content: FAQ ───────────────────────────────────────────
+
+model FAQ {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  page     String @default("contact") // which page this FAQ belongs to
+  order    Int    @default(0)
+  active   Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Content: Careers ───────────────────────────────────────
+
+model JobPosition {
+  id          String  @id @default(cuid())
+  title       String
+  department  String
+  location    String
+  type        String  // "Full-time", "Part-time", "Contract"
+  description String?
+  active      Boolean @default(true)
+  order       Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ─── Content: Testimonials ──────────────────────────────────
+
+model Testimonial {
+  id       String  @id @default(cuid())
+  name     String
+  company  String?
+  role     String?
+  quote    String
+  avatar   String?
+  order    Int     @default(0)
+  active   Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Content: Client Logos ──────────────────────────────────
+
+model ClientLogo {
+  id       String @id @default(cuid())
+  name     String
+  imageUrl String
+  order    Int    @default(0)
+  active   Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Media ──────────────────────────────────────────────────
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  alt       String?
+  width     Int?
+  height    Int?
+  size      Int?     // file size in bytes
+  mimeType  String?
+  createdAt DateTime @default(now())
+}
+
+// ─── Site Settings (singleton-like) ─────────────────────────
+
+model SiteSettings {
+  id            String @id @default("default")
+  siteName      String @default("Axtella")
+  contactEmail  String @default("")
+  contactPhone  String @default("")
+  address       String @default("")
+  socialLinks   Json   @default("{}") // { linkedin, twitter, facebook, instagram }
+  footerText    String @default("")
+  updatedAt     DateTime @updatedAt
+}
+
+// ─── Navigation ─────────────────────────────────────────────
+
+model Navigation {
+  id       String  @id @default(cuid())
+  label    String
+  href     String
+  order    Int     @default(0)
+  parentId String?
+  parent   Navigation?  @relation("NavChildren", fields: [parentId], references: [id])
+  children Navigation[] @relation("NavChildren")
+  enabled  Boolean @default(true)
+  isNew    Boolean @default(false) // "New" badge
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─── Contact Submissions ────────────────────────────────────
+
+model ContactSubmission {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

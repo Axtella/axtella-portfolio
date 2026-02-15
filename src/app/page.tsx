@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Navbar,
   HeroSection,
@@ -14,15 +12,29 @@ import {
   EnquirySection,
   Footer
 } from "@/components";
+import { getPageData, getSection } from "@/lib/page-data";
+import { generateSeoMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageData("home");
+  return generateSeoMetadata("Home", page);
+}
+
+export default async function Home() {
+  const page = await getPageData("home");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const sections = (page?.sections as any[]) || [];
+
   return (
     <main className="min-h-screen bg-[#080D1A]">
       <Navbar />
-      <HeroSection />
-      <ScrollHighlightSection />
+      <HeroSection data={getSection(sections, "hero")} />
+      <ScrollHighlightSection data={getSection(sections, "scroll-highlight")} />
       <LogoMarquee />
-      <MentorSection />
+      <MentorSection data={getSection(sections, "mentor")} />
       <FleetLaunchSection />
       <DiscoverCoursesSection />
       <FeaturedSection />

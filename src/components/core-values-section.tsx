@@ -9,7 +9,19 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export function CoreValuesSection() {
+interface CoreValuesData {
+  label?: string;
+  heading?: string;
+  paragraphs?: string[];
+}
+
+export function CoreValuesSection({ data }: { data?: CoreValuesData | null }) {
+  const label = data?.label || "WHO WE ARE";
+  const heading = data?.heading || "About Axtella Global";
+  const paragraphs = data?.paragraphs || [
+    "Established in 2019, Axtella Global Information Technology Company is a Saudi-based LLC operating at the intersection of technology, infrastructure, and service excellence. With our corporate headquarters in Riyadh and strategic branches in Bahrain and India, we have emerged as a trusted partner in delivering comprehensive solutions across Telecom, IT, Civil, IoT, ELV, and Renewable Energy sectors.",
+    "Backed by a team of over 250 skilled professionals and decades of leadership experience, we deliver end-to-end project execution built to meet the growing demands of smart cities, connected infrastructure, and digitally-driven industries — fully aligned with Saudi Vision 2030.",
+  ];
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -81,7 +93,7 @@ export function CoreValuesSection() {
                   color: "#F5A623",
                 }}
               >
-                WHO WE ARE
+                {label}
               </p>
 
               {/* Heading */}
@@ -96,46 +108,24 @@ export function CoreValuesSection() {
                   color: "#ffffff",
                 }}
               >
-                About Axtella Global
+                {heading}
               </h2>
 
-              {/* Paragraph 1 */}
-              <p
-                data-animate
-                className="mb-4 opacity-0"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontSize: "clamp(15px, 2vw, 18px)",
-                  lineHeight: "1.7",
-                  color: "rgba(255, 255, 255, 0.62)",
-                }}
-              >
-                Established in 2019, Axtella Global Information Technology
-                Company is a Saudi-based LLC operating at the intersection of
-                technology, infrastructure, and service excellence. With our
-                corporate headquarters in Riyadh and strategic branches in
-                Bahrain and India, we have emerged as a trusted partner in
-                delivering comprehensive solutions across Telecom, IT, Civil,
-                IoT, ELV, and Renewable Energy sectors.
-              </p>
-
-              {/* Paragraph 2 */}
-              <p
-                data-animate
-                className="mb-0 opacity-0"
-                style={{
-                  fontFamily: "var(--font-plus-jakarta)",
-                  fontSize: "clamp(15px, 2vw, 18px)",
-                  lineHeight: "1.7",
-                  color: "rgba(255, 255, 255, 0.62)",
-                }}
-              >
-                Backed by a team of over 250 skilled professionals and decades
-                of leadership experience, we deliver end-to-end project
-                execution built to meet the growing demands of smart cities,
-                connected infrastructure, and digitally-driven industries —
-                fully aligned with Saudi Vision 2030.
-              </p>
+              {paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  data-animate
+                  className={`${i < paragraphs.length - 1 ? "mb-4" : "mb-0"} opacity-0`}
+                  style={{
+                    fontFamily: "var(--font-plus-jakarta)",
+                    fontSize: "clamp(15px, 2vw, 18px)",
+                    lineHeight: "1.7",
+                    color: "rgba(255, 255, 255, 0.62)",
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
 
             </div>
 

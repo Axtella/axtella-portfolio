@@ -8,7 +8,7 @@ interface Stat {
   description: string;
 }
 
-const stats: Stat[] = [
+const defaultStats: Stat[] = [
   {
     number: "2K+",
     title: "Businesses Trust Us",
@@ -31,7 +31,14 @@ const stats: Stat[] = [
   },
 ];
 
-export function MentorSection() {
+interface MentorSectionData {
+  title?: string;
+  stats?: Stat[];
+}
+
+export function MentorSection({ data }: { data?: MentorSectionData | null }) {
+  const stats = data?.stats || defaultStats;
+  const title = data?.title || "EMPOWERING BUSINESSES THROUGH TECHNOLOGY";
   return (
     <section className="w-full bg-white py-8 md:py-12 lg:py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,13 +91,12 @@ export function MentorSection() {
                       color: "rgba(255, 255, 255, 0.62)",
                     }}
                   >
-                    EMPOWERING
-                    <br />
-                    BUSINESSES
-                    <br />
-                    THROUGH
-                    <br />
-                    TECHNOLOGY
+                    {title.split(" ").map((word, i, arr) => (
+                      <span key={i}>
+                        {word}
+                        {i < arr.length - 1 && <br />}
+                      </span>
+                    ))}
                   </h2>
 
                   {/* Mentor Image */}
