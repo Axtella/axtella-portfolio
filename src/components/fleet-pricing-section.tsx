@@ -781,7 +781,7 @@ export function FleetPricingSection() {
           {/* Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <Link
-              href="/contact"
+              href="/get-quote/fleet"
               className={cn(
                 "inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-base",
                 "bg-[#F59E0B] text-white hover:bg-[#D97706]",
@@ -1174,7 +1174,7 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
 
         {/* CTA Button */}
         <Link
-          href="/contact"
+          href="/get-quote/fleet"
           className={cn(
             "mt-6 w-full text-center py-3 rounded-lg font-semibold text-sm",
             "transition-all duration-300 inline-block",

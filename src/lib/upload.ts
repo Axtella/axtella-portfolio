@@ -1,33 +1,40 @@
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
+import { put, del } from "@vercel/blob";
 
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
-
-export async function saveFile(file: File): Promise<{
+export async function saveFile(
+  file: File,
+  subdir?: string
+): Promise<{
   filename: string;
   url: string;
   size: number;
   mimeType: string;
 }> {
-  await mkdir(UPLOAD_DIR, { recursive: true });
-
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  // Generate unique filename
-  const ext = path.extname(file.name);
-  const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9-_]/g, "-");
+  const ext = file.name.substring(file.name.lastIndexOf("."));
+  const baseName = file.name
+    .substring(0, file.name.lastIndexOf("."))
+    .replace(/[^a-zA-Z0-9-_]/g, "-");
   const uniqueName = `${baseName}-${Date.now()}${ext}`;
-  const filePath = path.join(UPLOAD_DIR, uniqueName);
 
-  await writeFile(filePath, buffer);
+  const pathname = subdir ? `${subdir}/${uniqueName}` : uniqueName;
+
+  const blob = await put(pathname, file, {
+    access: "public",
+  });
 
   return {
     filename: uniqueName,
-    url: `/uploads/${uniqueName}`,
+    url: blob.url,
     size: file.size,
     mimeType: file.type,
   };
+}
+
+export async function deleteFile(url: string): Promise<void> {
+  try {
+    await del(url);
+  } catch {
+    // File may not exist, ignore
+  }
 }
 
 export async function getImageDimensions(

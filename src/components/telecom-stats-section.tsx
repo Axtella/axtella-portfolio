@@ -4,7 +4,12 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUpCircle, Cable, Clock, Users, Zap } from "lucide-react";
+import {
+  ArrowUpCircle, Cable, Clock, Users, Zap,
+  TrendingDown, TrendingUp, Cpu, Award, Ruler, Calendar,
+  Shield, Eye, Camera, Headphones, ShieldCheck, Building2,
+  Fuel, Timer,
+} from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +28,17 @@ interface StatCard {
   progressPercent: number;
 }
 
-const stats: StatCard[] = [
+const statIconMap: Record<string, LucideIcon> = {
+  ArrowUpCircle, Cable, Clock, Users, Zap,
+  TrendingDown, TrendingUp, Cpu, Award, Ruler, Calendar,
+  Shield, Eye, Camera, Headphones, ShieldCheck, Building2,
+  Fuel, Timer,
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface StatsData { label?: string; heading?: string; subtext?: string; ctaLabel?: string; stats?: any[] }
+
+const defaultStats: StatCard[] = [
   {
     icon: ArrowUpCircle,
     targetNumber: 99,
@@ -253,7 +268,26 @@ function StatCardComponent({
   );
 }
 
-export function TelecomStatsSection() {
+export function TelecomStatsSection({ data }: { data?: StatsData | null }) {
+  const stats: StatCard[] = data?.stats
+    ? data.stats.map((s: Record<string, string | number | null>, i: number) => ({
+        icon: statIconMap[s.icon as string] || defaultStats[i]?.icon || ArrowUpCircle,
+        targetNumber: s.targetNumber != null ? Number(s.targetNumber) : (defaultStats[i]?.targetNumber ?? null),
+        prefix: (s.prefix as string) || defaultStats[i]?.prefix,
+        suffix: (s.suffix as string) || defaultStats[i]?.suffix || "",
+        displayValue: (s.displayValue as string) || defaultStats[i]?.displayValue || "",
+        title: (s.title as string) || defaultStats[i]?.title || "",
+        description: (s.description as string) || defaultStats[i]?.description || "",
+        accentColor: (s.accentColor as string) || defaultStats[i]?.accentColor || "#F59E0B",
+        accentBg: (s.accentBg as string) || defaultStats[i]?.accentBg || "rgba(245,158,11,0.15)",
+        progressPercent: s.progressPercent != null ? Number(s.progressPercent) : (defaultStats[i]?.progressPercent ?? 80),
+      }))
+    : defaultStats;
+  const sectionLabel = data?.label || "Measurable Results";
+  const sectionHeading = data?.heading || "Results That Speak For Themselves";
+  const sectionSubtext = data?.subtext || "Real impact from real deployments — here's what our telecom solutions deliver for businesses across Saudi Arabia.";
+  const ctaLabel = data?.ctaLabel || "Upgrade Your Network Today";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -399,7 +433,7 @@ export function TelecomStatsSection() {
               marginBottom: "12px",
             }}
           >
-            Measurable Results
+            {sectionLabel}
           </p>
 
           <h2
@@ -411,7 +445,7 @@ export function TelecomStatsSection() {
               color: "#FFFFFF",
             }}
           >
-            Results That Speak For Themselves
+            {sectionHeading}
           </h2>
 
           <p
@@ -425,8 +459,7 @@ export function TelecomStatsSection() {
               maxWidth: "650px",
             }}
           >
-            Real impact from real deployments — here&apos;s what our telecom
-            solutions deliver for businesses across Saudi Arabia.
+            {sectionSubtext}
           </p>
         </div>
 
@@ -493,7 +526,7 @@ export function TelecomStatsSection() {
             )}
             style={{ fontFamily: "var(--font-montserrat)" }}
           >
-            Upgrade Your Network Today
+            {ctaLabel}
             <span>→</span>
           </Link>
         </div>

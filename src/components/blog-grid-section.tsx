@@ -5,24 +5,23 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { BlogPost } from "@/types/blog";
-import { getPublishedBlogs } from "@/data/blogs";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const categories = ["All", "Data Analytics", "Career", "Technology", "Productivity"];
+interface BlogGridSectionProps {
+  blogs: BlogPost[];
+  categories: string[];
+}
 
-// Get published blogs from data file
-const blogArticles = getPublishedBlogs();
-
-export function BlogGridSection() {
+export function BlogGridSection({ blogs, categories }: BlogGridSectionProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
 
   const filteredArticles =
     activeCategory === "All"
-      ? blogArticles
-      : blogArticles.filter((article) => article.category === activeCategory);
+      ? blogs
+      : blogs.filter((article) => article.category?.name === activeCategory);
 
   useEffect(() => {
     if (!sectionRef.current || !cardsRef.current) return;

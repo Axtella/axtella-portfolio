@@ -5,11 +5,8 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  ClipboardList,
-  PenTool,
-  Rocket,
-  ShieldCheck,
-  Headphones,
+  ClipboardList, PenTool, Rocket, ShieldCheck, Headphones,
+  MessageCircle, Plug, Settings, Radio, Wrench, CheckCircle,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -25,7 +22,15 @@ interface Step {
   image: string;
 }
 
-const steps: Step[] = [
+const iconMapHIW: Record<string, LucideIcon> = {
+  ClipboardList, PenTool, Rocket, ShieldCheck, Headphones,
+  MessageCircle, Plug, Settings, Radio, Wrench, CheckCircle,
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface HowItWorksData { label?: string; heading?: string; subtext?: string; steps?: any[] }
+
+const defaultSteps: Step[] = [
   {
     number: "01",
     icon: ClipboardList,
@@ -73,7 +78,21 @@ const steps: Step[] = [
   },
 ];
 
-export function TelecomHowItWorksSection() {
+export function TelecomHowItWorksSection({ data }: { data?: HowItWorksData | null }) {
+  const steps: Step[] = data?.steps
+    ? data.steps.map((s: Record<string, string>, i: number) => ({
+        number: s.number || String(i + 1).padStart(2, "0"),
+        icon: iconMapHIW[s.icon] || defaultSteps[i]?.icon || ClipboardList,
+        emoji: s.emoji || defaultSteps[i]?.emoji || "📋",
+        title: s.title || defaultSteps[i]?.title || "",
+        description: s.description || defaultSteps[i]?.description || "",
+        image: s.image || defaultSteps[i]?.image || "/images/fleet/fleet11.png",
+      }))
+    : defaultSteps;
+  const sectionLabel = data?.label || "How It Works";
+  const sectionHeading = data?.heading || "From Survey to Optimization in 5 Steps";
+  const sectionSubtext = data?.subtext || "We handle everything — from initial site survey to 24/7 network monitoring and ongoing optimization.";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -151,7 +170,7 @@ export function TelecomHowItWorksSection() {
               marginBottom: "12px",
             }}
           >
-            How It Works
+            {sectionLabel}
           </p>
 
           <h2
@@ -163,7 +182,7 @@ export function TelecomHowItWorksSection() {
               color: "#111827",
             }}
           >
-            From Survey to Optimization in 5 Steps
+            {sectionHeading}
           </h2>
 
           <p
@@ -176,8 +195,7 @@ export function TelecomHowItWorksSection() {
               maxWidth: "600px",
             }}
           >
-            We handle everything — from initial site survey to 24/7 network
-            monitoring and ongoing optimization.
+            {sectionSubtext}
           </p>
         </div>
 

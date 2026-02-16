@@ -1,6 +1,3 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
 import {
   Navbar,
@@ -10,27 +7,30 @@ import {
   EnquirySection,
   Footer,
 } from "@/components";
-import { getBlogBySlug } from "@/data/blogs";
+import { getBlogBySlug, getRelatedBlogs } from "@/lib/blog-queries";
+import { BlogPost } from "@/types/blog";
 
-export default function BlogDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
+interface BlogDetailPageProps {
+  params: Promise<{ slug: string }>;
+}
 
-  // Get blog data by slug
-  // In future, this will be fetched from backend API
-  const blog = getBlogBySlug(slug);
+export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
+  const { slug } = await params;
 
-  // If blog not found, show 404
-  if (!blog) {
+  const blog = await getBlogBySlug(slug);
+
+  if (!blog || !blog.published) {
     notFound();
   }
+
+  const relatedBlogs = await getRelatedBlogs(slug, blog.categoryId, 2);
 
   return (
     <main className="min-h-screen bg-[#080D1A]">
       <Navbar />
-      <BlogDetailHeroSection blog={blog} />
-      <BlogContentSection blog={blog} />
-      <RelatedBlogsSection currentSlug={slug} />
+      <BlogDetailHeroSection blog={blog as unknown as BlogPost} />
+      <BlogContentSection blog={blog as unknown as BlogPost} />
+      <RelatedBlogsSection blogs={relatedBlogs as unknown as BlogPost[]} />
       <EnquirySection />
       <Footer />
     </main>

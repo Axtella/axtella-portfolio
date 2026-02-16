@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const offerCards = [
+const defaultOfferCards = [
   {
     id: 1,
     title: "Fiber Optic Networks",
@@ -53,7 +53,10 @@ const offerCards = [
   },
 ];
 
-export function TelecomOffersSection() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface OffersData { label?: string; heading?: string; subtext?: string; offers?: any[] }
+
+export function TelecomOffersSection({ data }: { data?: OffersData | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const labelRef = useRef<HTMLParagraphElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -87,6 +90,16 @@ export function TelecomOffersSection() {
     if (windowWidth < 640) return 16;
     return 24;
   };
+
+  const offerCards = (data?.offers || defaultOfferCards).map((c: Record<string, string>, i: number) => ({
+    id: i + 1,
+    title: c.title || defaultOfferCards[i]?.title || "",
+    icon: c.icon || defaultOfferCards[i]?.icon || "📦",
+    image: c.image || defaultOfferCards[i]?.image || "/images/fleet/fleet1.png",
+  }));
+  const sectionLabel = data?.label || "Telecommunication Solutions";
+  const sectionHeading = data?.heading || "What We Offer";
+  const sectionSubtext = data?.subtext || "End-to-end telecom infrastructure from fiber optic networks and unified communications to wireless deployment — trusted by enterprises across Saudi Arabia.";
 
   const cardWidth = getCardWidth();
   const gap = getGap();
@@ -249,7 +262,7 @@ export function TelecomOffersSection() {
                 marginBottom: "12px",
               }}
             >
-              Telecommunication Solutions
+              {sectionLabel}
             </p>
 
             <h2
@@ -263,7 +276,7 @@ export function TelecomOffersSection() {
                 color: "#111827",
               }}
             >
-              What We Offer
+              {sectionHeading}
             </h2>
 
             <p
@@ -278,9 +291,7 @@ export function TelecomOffersSection() {
                 maxWidth: "460px",
               }}
             >
-              End-to-end telecom infrastructure from fiber optic networks and
-              unified communications to wireless deployment — trusted by
-              enterprises across Saudi Arabia.
+              {sectionSubtext}
             </p>
 
             {/* Navigation */}

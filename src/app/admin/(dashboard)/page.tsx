@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 import { AdminHeader } from "@/components/admin/admin-header";
 import {
   FileText,
@@ -10,11 +11,12 @@ import {
   Users,
   Image,
   MessageSquare,
+  UserCog,
 } from "lucide-react";
 import Link from "next/link";
 
 async function getDashboardStats() {
-  const [pages, services, blogs, faqs, jobs, media, submissions] =
+  const [pages, services, blogs, faqs, jobs, media, submissions, users] =
     await Promise.all([
       prisma.page.count(),
       prisma.service.count(),
@@ -23,9 +25,10 @@ async function getDashboardStats() {
       prisma.jobPosition.count(),
       prisma.media.count(),
       prisma.contactSubmission.count({ where: { read: false } }),
+      prisma.user.count(),
     ]);
 
-  return { pages, services, blogs, faqs, jobs, media, submissions };
+  return { pages, services, blogs, faqs, jobs, media, submissions, users };
 }
 
 const statCards = [
@@ -36,17 +39,23 @@ const statCards = [
   { label: "Job Positions", key: "jobs", icon: Users, href: "/admin/jobs", color: "#EF4444" },
   { label: "Media Files", key: "media", icon: Image, href: "/admin/media", color: "#EC4899" },
   { label: "Unread Messages", key: "submissions", icon: MessageSquare, href: "/admin/submissions", color: "#F59E0B" },
+  { label: "Staff Users", key: "users", icon: UserCog, href: "/admin/users", color: "#06B6D4", adminOnly: true },
 ] as const;
 
 export default async function AdminDashboard() {
-  const stats = await getDashboardStats();
+  const [stats, session] = await Promise.all([getDashboardStats(), auth()]);
+  const isAdmin = (session?.user as { role?: string })?.role === "admin";
+
+  const visibleCards = statCards.filter(
+    (card) => !("adminOnly" in card && card.adminOnly) || isAdmin
+  );
 
   return (
     <>
       <AdminHeader title="Dashboard" />
       <main className="p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {statCards.map((card) => {
+          {visibleCards.map((card) => {
             const Icon = card.icon;
             const count = stats[card.key as keyof typeof stats];
             return (

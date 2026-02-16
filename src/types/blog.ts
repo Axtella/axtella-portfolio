@@ -1,7 +1,7 @@
 export interface BlogAuthor {
   name: string;
-  role: string;
-  avatar?: string;
+  role?: string | null;
+  avatar?: string | null;
 }
 
 export interface BlogContentSection {
@@ -10,32 +10,38 @@ export interface BlogContentSection {
   image?: string;
 }
 
+export interface BlogCategory {
+  id: string;
+  name: string;
+  slug: string;
+}
+
 export interface BlogPost {
   // Basic Info
-  id: number;
-  slug: string; // URL-friendly identifier (e.g., "advanced-excel-skills")
+  id: string;
+  slug: string;
 
   // Content
   title: string;
-  description: string;
-  excerpt: string; // Short summary for cards
-  content?: BlogContentSection[]; // Article body content sections
+  description?: string | null;
+  excerpt?: string | null;
+  content?: BlogContentSection[];
 
   // Media
-  image: string;
-  featuredImage?: string; // Large image for detail page
-  imageAlt?: string;
+  image?: string | null;
+  featuredImage?: string | null;
+  imageAlt?: string | null;
 
   // Metadata
-  category: "Data Analytics" | "Career" | "Technology" | "Productivity";
+  category?: BlogCategory | null;
   tags: string[];
-  author: BlogAuthor;
-  publishedDate: string; // ISO format: "2024-01-15"
-  readTime: string; // e.g., "8 min read"
+  author?: BlogAuthor | null;
+  publishedAt?: string | Date | null;
+  readTime?: string | null;
 
-  // SEO (for future detail page)
-  metaTitle?: string;
-  metaDescription?: string;
+  // SEO
+  metaTitle?: string | null;
+  metaDescription?: string | null;
 
   // Status
   featured?: boolean;

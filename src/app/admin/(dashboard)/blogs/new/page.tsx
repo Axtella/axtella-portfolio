@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AdminHeader } from "@/components/admin/admin-header";
 import { InputField, TextareaField, SelectField, ToggleField, FormSection } from "@/components/admin/form-field";
+import { ImageField } from "@/components/admin/image-field";
 import { SeoFields, getDefaultSeoData } from "@/components/admin/seo-fields";
 import { useToast } from "@/components/admin/toast";
 import { ArrowLeft, Save } from "lucide-react";
@@ -199,19 +200,15 @@ export default function NewBlogPage() {
           </FormSection>
 
           <FormSection title="Media">
-            <InputField
+            <ImageField
               label="Thumbnail Image"
-              name="image"
               value={formData.image}
               onChange={(v) => update("image", v)}
-              placeholder="/uploads/blog-thumbnail.jpg"
             />
-            <InputField
+            <ImageField
               label="Featured Image"
-              name="featuredImage"
               value={formData.featuredImage}
               onChange={(v) => update("featuredImage", v)}
-              placeholder="/uploads/blog-featured.jpg"
             />
             <InputField
               label="Image Alt Text"

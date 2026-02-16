@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { unlink } from "fs/promises";
-import path from "path";
+import { deleteFile } from "@/lib/upload";
 
 export async function DELETE(
   _request: NextRequest,
@@ -14,13 +13,7 @@ export async function DELETE(
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  // Delete file from disk
-  try {
-    const filePath = path.join(process.cwd(), "public", media.url);
-    await unlink(filePath);
-  } catch {
-    // File may not exist, continue with DB delete
-  }
+  await deleteFile(media.url);
 
   await prisma.media.delete({ where: { id } });
   return NextResponse.json({ success: true });

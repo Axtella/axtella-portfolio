@@ -5,7 +5,21 @@ import Link from "next/link";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function BMSHeroSection() {
+interface ServiceHeroData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export function BMSHeroSection({ data }: { data?: ServiceHeroData | null }) {
+  const lines = data?.heroTitle?.split("|") || [];
+  const heroLine1 = lines[0] || "Intelligent Building";
+  const heroLine2 = lines[1] || "Management.";
+  const heroSubtitle = data?.heroSubtitle || "End-to-end BMS and smart building automation — from HVAC control and energy management to integrated safety systems for projects across Saudi Arabia.";
+  const ctaText = data?.ctaLabel || "Get a Free Consultation";
+  const ctaHref = data?.ctaHref || "/contact";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -238,11 +252,11 @@ export function BMSHeroSection() {
                 }}
               >
                 <span className="word inline-block text-white">
-                  Intelligent Building
+                  {heroLine1}
                 </span>
                 <br />
                 <span className="word inline-block text-[#F5A623]">
-                  Management.
+                  {heroLine2}
                 </span>
               </h1>
 
@@ -252,9 +266,7 @@ export function BMSHeroSection() {
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed opacity-0"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
-                End-to-end BMS and smart building automation — from HVAC control
-                and energy management to integrated safety systems for projects
-                across Saudi Arabia.
+                {heroSubtitle}
               </p>
 
               {/* CTA Buttons */}
@@ -263,7 +275,7 @@ export function BMSHeroSection() {
                 className="flex flex-wrap items-center gap-3 pt-2 opacity-0"
               >
                 <Link
-                  href="/contact"
+                  href={ctaHref}
                   className={cn(
                     "group flex items-center gap-3 bg-[#F5A623] text-[#080D1A]",
                     "px-7 py-3.5 rounded-full font-semibold text-sm",
@@ -271,7 +283,7 @@ export function BMSHeroSection() {
                     "transition-all duration-300"
                   )}
                 >
-                  Get a Free Consultation
+                  {ctaText}
                   <Arrow1Icon />
                 </Link>
               </div>

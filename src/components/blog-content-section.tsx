@@ -63,7 +63,7 @@ export function BlogContentSection({ blog }: BlogContentSectionProps) {
   }, []);
 
   // Use featuredImage if available, otherwise fall back to image
-  const displayImage = blog.featuredImage || blog.image;
+  const displayImage = blog.featuredImage || blog.image || "";
 
   // Split content: first section, then image, then remaining sections
   const firstContent = blog.content?.[0];

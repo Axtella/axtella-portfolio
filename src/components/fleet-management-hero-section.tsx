@@ -10,7 +10,22 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(MotionPathPlugin);
 }
 
-export function FleetManagementHeroSection() {
+interface ServiceHeroData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export function FleetManagementHeroSection({ data }: { data?: ServiceHeroData | null }) {
+  const lines = data?.heroTitle?.split("|") || [];
+  const heroLine1 = lines[0] || "Track. Optimize.";
+  const heroLine2 = lines[1] || "Manage.";
+  const heroLine3 = lines[2] || "In Real-Time.";
+  const heroSubtitle = data?.heroSubtitle || "End-to-end AVL and fleet management solutions powered by GPS, IoT, and cloud technology — designed for government and private fleet operators across Saudi Arabia.";
+  const ctaText = data?.ctaLabel || "Get a Free Quote";
+  const ctaHref = data?.ctaHref || "/get-quote/fleet";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -261,13 +276,13 @@ export function FleetManagementHeroSection() {
                 }}
               >
                 <span className="word inline-block text-white">
-                  Track. Optimize.
+                  {heroLine1}
                 </span>
                 <br />
-                <span className="word inline-block text-white">Manage.</span>
+                <span className="word inline-block text-white">{heroLine2}</span>
                 <br />
                 <span className="word inline-block text-[#F5A623]">
-                  In Real-Time.
+                  {heroLine3}
                 </span>
               </h1>
 
@@ -276,9 +291,7 @@ export function FleetManagementHeroSection() {
                 ref={subtextRef}
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed opacity-0"
               >
-                End-to-end AVL and fleet management solutions powered by GPS,
-                IoT, and cloud technology — designed for government and private
-                fleet operators across Saudi Arabia.
+                {heroSubtitle}
               </p>
 
               {/* CTA Buttons */}
@@ -287,7 +300,7 @@ export function FleetManagementHeroSection() {
                 className="flex flex-wrap items-center gap-3 pt-2 opacity-0"
               >
                 <Link
-                  href="/contact"
+                  href={ctaHref}
                   className={cn(
                     "group flex items-center gap-3 bg-[#F5A623] text-[#080D1A]",
                     "px-7 py-3.5 rounded-full font-semibold text-sm",
@@ -295,7 +308,7 @@ export function FleetManagementHeroSection() {
                     "transition-all duration-300"
                   )}
                 >
-                  Get a Free Quote
+                  {ctaText}
                   <Arrow1Icon />
                 </Link>
               </div>

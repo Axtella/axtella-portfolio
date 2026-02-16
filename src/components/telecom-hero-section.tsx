@@ -5,7 +5,21 @@ import Link from "next/link";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function TelecomHeroSection() {
+interface ServiceHeroData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export function TelecomHeroSection({ data }: { data?: ServiceHeroData | null }) {
+  const lines = data?.heroTitle?.split("|") || [];
+  const heroLine1 = lines[0] || "Connecting Your";
+  const heroLine2 = lines[1] || "World. Seamlessly.";
+  const heroSubtitle = data?.heroSubtitle || "End-to-end telecommunication infrastructure — fiber optics, unified communications, and network solutions for enterprises across Saudi Arabia.";
+  const ctaText = data?.ctaLabel || "Get a Free Consultation";
+  const ctaHref = data?.ctaHref || "/contact";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -224,11 +238,11 @@ export function TelecomHeroSection() {
                 }}
               >
                 <span className="word inline-block text-white">
-                  Connecting Your
+                  {heroLine1}
                 </span>
                 <br />
                 <span className="word inline-block text-[#F5A623]">
-                  World. Seamlessly.
+                  {heroLine2}
                 </span>
               </h1>
 
@@ -238,9 +252,7 @@ export function TelecomHeroSection() {
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed opacity-0"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
-                End-to-end telecommunication infrastructure — fiber optics,
-                unified communications, and network solutions for enterprises
-                across Saudi Arabia.
+                {heroSubtitle}
               </p>
 
               {/* CTA Buttons */}
@@ -249,7 +261,7 @@ export function TelecomHeroSection() {
                 className="flex flex-wrap items-center gap-3 pt-2 opacity-0"
               >
                 <Link
-                  href="/contact"
+                  href={ctaHref}
                   className={cn(
                     "group flex items-center gap-3 bg-[#F5A623] text-[#080D1A]",
                     "px-7 py-3.5 rounded-full font-semibold text-sm",
@@ -257,7 +269,7 @@ export function TelecomHeroSection() {
                     "transition-all duration-300"
                   )}
                 >
-                  Get a Free Consultation
+                  {ctaText}
                   <Arrow1Icon />
                 </Link>
               </div>

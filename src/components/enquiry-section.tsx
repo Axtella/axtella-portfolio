@@ -50,6 +50,8 @@ export function EnquirySection() {
   const leftContentRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
@@ -99,9 +101,34 @@ export function EnquirySection() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (submitting || submitted) return;
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          subject: "Enquiry: " + formData.service,
+          message: `Service enquiry about ${formData.service} from ${formData.fullName}`,
+        }),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setFormData({ fullName: "", email: "", phone: "", service: "" });
+          setSubmitted(false);
+        }, 3000);
+      }
+    } catch {
+      // silently handle
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -335,28 +362,31 @@ export function EnquirySection() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="px-8 py-3 text-[#080D1A] rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(245,166,35,0.35)] flex items-center gap-2"
+                  disabled={submitting || submitted}
+                  className="px-8 py-3 text-[#080D1A] rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(245,166,35,0.35)] flex items-center gap-2 disabled:opacity-70"
                   style={{
                     fontFamily: "var(--font-plus-jakarta)",
                     fontSize: "14px",
                     fontWeight: 600,
-                    background: "#F5A623",
+                    background: submitted ? "#22c55e" : "#F5A623",
                   }}
                 >
-                  Submit
-                  <svg
-                    className="w-4 h-4 text-[#080D1A]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  {submitting ? "Submitting..." : submitted ? "Submitted!" : "Submit"}
+                  {!submitting && !submitted && (
+                    <svg
+                      className="w-4 h-4 text-[#080D1A]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  )}
                 </button>
               </form>
             </div>

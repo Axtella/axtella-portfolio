@@ -1,0 +1,10 @@
+-- AlterTable
+ALTER TABLE "FleetQuote" ADD COLUMN     "callDate" TIMESTAMP(3),
+ADD COLUMN     "nextFollowUpDate" TIMESTAMP(3),
+ADD COLUMN     "source" TEXT NOT NULL DEFAULT 'form',
+ALTER COLUMN "status" SET DEFAULT 'prospect',
+ALTER COLUMN "industry" DROP NOT NULL,
+ALTER COLUMN "email" DROP NOT NULL,
+ALTER COLUMN "fleetSize" DROP NOT NULL,
+ALTER COLUMN "hasTrackingSystem" DROP NOT NULL,
+ALTER COLUMN "planInterest" DROP NOT NULL;

@@ -1,8 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const activeOnly = request.nextUrl.searchParams.get("active") === "true";
+  const withCounts = request.nextUrl.searchParams.get("withCounts") === "true";
+
+  if (withCounts) {
+    const jobs = await prisma.jobPosition.findMany({
+      where: activeOnly ? { active: true } : undefined,
+      orderBy: { order: "asc" },
+      include: { applications: { select: { id: true } } },
+    });
+    const result = jobs.map(({ applications, ...job }) => ({
+      ...job,
+      _count: { applications: applications.length },
+    }));
+    return NextResponse.json(result);
+  }
+
   const jobs = await prisma.jobPosition.findMany({
+    where: activeOnly ? { active: true } : undefined,
     orderBy: { order: "asc" },
   });
   return NextResponse.json(jobs);

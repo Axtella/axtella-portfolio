@@ -146,16 +146,41 @@ model FAQ {
 // ─── Content: Careers ───────────────────────────────────────
 
 model JobPosition {
-  id          String  @id @default(cuid())
-  title       String
-  department  String
-  location    String
-  type        String  // "Full-time", "Part-time", "Contract"
-  description String?
-  active      Boolean @default(true)
-  order       Int     @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String           @id @default(cuid())
+  title        String
+  department   String
+  location     String
+  type         String           // "Full-time", "Part-time", "Contract"
+  description  String?
+  active       Boolean          @default(true)
+  order        Int              @default(0)
+  applications JobApplication[]
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model JobApplication {
+  id          String      @id @default(cuid())
+  jobId       String
+  job         JobPosition @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  // Applicant Info
+  name        String
+  email       String
+  phone       String
+  coverLetter String?
+
+  // CV File
+  cvFilename  String      // original filename for display
+  cvUrl       String      // path like /uploads/cvs/resume-123.pdf
+  cvSize      Int?        // file size in bytes
+
+  // Status tracking
+  status      String      @default("new") // "new" | "reviewed" | "shortlisted" | "rejected"
+  adminNotes  String?
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 // ─── Content: Testimonials ──────────────────────────────────
@@ -239,4 +264,59 @@ model ContactSubmission {
   message   String
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+// ─── Fleet Quote Requests ────────────────────────────────────
+
+model FleetQuote {
+  id              String   @id @default(cuid())
+  referenceNumber String   @unique
+  status          String   @default("prospect") // prospect | follow-up | closed | not-interested
+  source          String   @default("form")     // "form" | "manual"
+
+  // CRM Fields
+  callDate         DateTime?
+  nextFollowUpDate DateTime?
+
+  // Step 1: Company Info
+  companyName     String
+  industry        String?
+  contactPerson   String
+  jobTitle        String?
+  email           String?
+  phone           String
+  city            String
+
+  // Step 2: Fleet Details
+  fleetSize       String?
+  vehicleTypes    String[] @default([])
+  fleetLocations  String?
+  hasTrackingSystem String?
+  currentProvider String?
+
+  // Step 3: Services Required
+  planInterest    String?
+  coreFeatures    String[] @default([])
+  hardwareNeeded  String[] @default([])
+  mobileApp       String?
+
+  // Step 4: Requirements
+  challenges      String[] @default([])
+  integrationNeeds String[] @default([])
+  budgetRange     String?
+  timeline        String?
+  preferredDate   DateTime?
+
+  // Step 5: Preferences
+  contactMethod   String?
+  bestTime        String?
+  howHeard        String?
+  additionalNotes String?
+  termsAccepted   Boolean  @default(false)
+  marketingConsent Boolean  @default(false)
+
+  // Admin
+  adminNotes      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

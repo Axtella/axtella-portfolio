@@ -1,16 +1,28 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { Bell } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
+import { useSidebarContext } from "@/app/admin/(dashboard)/layout";
 
 export function AdminHeader({ title }: { title: string }) {
   const { data: session } = useSession();
+  const { openSidebar } = useSidebarContext();
 
   return (
-    <header className="h-16 border-b border-white/10 flex items-center justify-between px-6">
-      <h1 className="text-xl font-semibold text-white font-[family-name:var(--font-montserrat)]">
-        {title}
-      </h1>
+    <header className="h-16 border-b border-white/10 flex items-center justify-between px-4 sm:px-6">
+      <div className="flex items-center gap-3">
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={openSidebar}
+          className="lg:hidden p-2 -ml-2 text-gray-400 hover:text-white transition-colors"
+        >
+          <Menu size={22} />
+        </button>
+
+        <h1 className="text-lg sm:text-xl font-semibold text-white font-[family-name:var(--font-montserrat)]">
+          {title}
+        </h1>
+      </div>
 
       <div className="flex items-center gap-4">
         <button className="relative p-2 text-gray-400 hover:text-white transition-colors">

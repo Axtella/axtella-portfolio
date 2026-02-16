@@ -15,8 +15,9 @@ export function BlogDetailHeroSection({ blog }: BlogDetailHeroSectionProps) {
   const metaRef = useRef<HTMLDivElement>(null);
 
   // Format date to display format
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (dateValue: string | Date | null | undefined) => {
+    if (!dateValue) return "—";
+    const date = new Date(dateValue);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
@@ -111,6 +112,7 @@ export function BlogDetailHeroSection({ blog }: BlogDetailHeroSectionProps) {
             className="flex flex-wrap gap-8 md:gap-16 lg:gap-20"
           >
             {/* Author Group */}
+            {blog.author && (
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden bg-gray-700">
                 {blog.author.avatar ? (
@@ -147,6 +149,7 @@ export function BlogDetailHeroSection({ blog }: BlogDetailHeroSectionProps) {
                 </p>
               </div>
             </div>
+            )}
 
             {/* Category Group */}
             <div>
@@ -157,7 +160,7 @@ export function BlogDetailHeroSection({ blog }: BlogDetailHeroSectionProps) {
                   fontSize: "clamp(14px, 1.5vw, 16px)",
                 }}
               >
-                {blog.category}
+                {blog.category?.name || "Uncategorized"}
               </p>
               <p
                 className="text-white/60"
@@ -179,7 +182,7 @@ export function BlogDetailHeroSection({ blog }: BlogDetailHeroSectionProps) {
                   fontSize: "clamp(14px, 1.5vw, 16px)",
                 }}
               >
-                {formatDate(blog.publishedDate)}
+                {formatDate(blog.publishedAt)}
               </p>
               <p
                 className="text-white/60"

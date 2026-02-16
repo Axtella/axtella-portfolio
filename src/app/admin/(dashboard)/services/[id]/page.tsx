@@ -4,15 +4,17 @@ import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { AdminHeader } from "@/components/admin/admin-header";
 import { InputField, ToggleField, FormSection } from "@/components/admin/form-field";
+import { ImageField } from "@/components/admin/image-field";
 import { SeoFields, getDefaultSeoData, type SeoData } from "@/components/admin/seo-fields";
 import { useToast } from "@/components/admin/toast";
 import { ArrowLeft, Save, Plus, X } from "lucide-react";
 import Link from "next/link";
 
-interface ListItem { title: string; description: string }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface ListItem { title: string; description: string; image?: string; [key: string]: any }
 
-function ListEditor({ items, onChange, label }: { items: ListItem[]; onChange: (items: ListItem[]) => void; label: string }) {
-  const add = () => onChange([...items, { title: "", description: "" }]);
+function ListEditor({ items, onChange, label, showImage }: { items: ListItem[]; onChange: (items: ListItem[]) => void; label: string; showImage?: boolean }) {
+  const add = () => onChange([...items, { title: "", description: "", ...(showImage ? { image: "" } : {}) }]);
   const remove = (i: number) => onChange(items.filter((_, idx) => idx !== i));
   const update = (i: number, field: string, value: string) => {
     const updated = [...items];
@@ -28,6 +30,12 @@ function ListEditor({ items, onChange, label }: { items: ListItem[]; onChange: (
           <div className="flex-1 space-y-2">
             <input value={item.title} onChange={(e) => update(i, "title", e.target.value)} placeholder="Title" className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50" />
             <textarea value={item.description} onChange={(e) => update(i, "description", e.target.value)} placeholder="Description" rows={2} className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50 resize-none" />
+            {showImage && (
+              <ImageField
+                value={item.image || ""}
+                onChange={(url) => update(i, "image", url)}
+              />
+            )}
           </div>
           <button type="button" onClick={() => remove(i)} className="p-1 text-gray-500 hover:text-red-400"><X size={16} /></button>
         </div>
@@ -118,11 +126,11 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
             <InputField label="Order" name="order" type="number" value={String(formData.order)} onChange={(v) => update("order", parseInt(v) || 0)} />
             <ToggleField label="Published" name="published" checked={formData.published} onChange={(v) => update("published", v)} />
           </FormSection>
-          <FormSection title="Offers"><ListEditor items={offers} onChange={setOffers} label="Offers" /></FormSection>
+          <FormSection title="Offers"><ListEditor items={offers} onChange={setOffers} label="Offers" showImage /></FormSection>
           <FormSection title="Key Features"><ListEditor items={features} onChange={setFeatures} label="Features" /></FormSection>
-          <FormSection title="How It Works"><ListEditor items={howItWorks} onChange={setHowItWorks} label="Steps" /></FormSection>
+          <FormSection title="How It Works"><ListEditor items={howItWorks} onChange={setHowItWorks} label="Steps" showImage /></FormSection>
           <FormSection title="Statistics"><ListEditor items={stats} onChange={setStats} label="Stats" /></FormSection>
-          <FormSection title="Industries"><ListEditor items={industries} onChange={setIndustries} label="Industries" /></FormSection>
+          <FormSection title="Industries"><ListEditor items={industries} onChange={setIndustries} label="Industries" showImage /></FormSection>
           <SeoFields data={seo} onChange={setSeo} />
           <div className="flex justify-end gap-3 pt-4">
             <Link href="/admin/services" className="px-4 py-2 text-sm text-gray-300 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 transition-colors">Cancel</Link>

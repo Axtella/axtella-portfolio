@@ -4,20 +4,17 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BlogPost } from "@/types/blog";
-import { getRelatedBlogs } from "@/data/blogs";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface RelatedBlogsSectionProps {
-  currentSlug: string;
+  blogs: BlogPost[];
 }
 
-export function RelatedBlogsSection({ currentSlug }: RelatedBlogsSectionProps) {
+export function RelatedBlogsSection({ blogs }: RelatedBlogsSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLHeadingElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
-
-  const relatedBlogs = getRelatedBlogs(currentSlug, 2);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -63,7 +60,7 @@ export function RelatedBlogsSection({ currentSlug }: RelatedBlogsSectionProps) {
     return () => ctx.revert();
   }, []);
 
-  if (relatedBlogs.length === 0) {
+  if (blogs.length === 0) {
     return null;
   }
 
@@ -92,7 +89,7 @@ export function RelatedBlogsSection({ currentSlug }: RelatedBlogsSectionProps) {
           ref={cardsRef}
           className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10"
         >
-          {relatedBlogs.map((blog) => (
+          {blogs.map((blog) => (
             <RelatedBlogCard key={blog.id} blog={blog} />
           ))}
         </div>

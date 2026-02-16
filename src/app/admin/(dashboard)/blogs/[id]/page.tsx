@@ -4,6 +4,7 @@ import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import { AdminHeader } from "@/components/admin/admin-header";
 import { InputField, TextareaField, SelectField, ToggleField, FormSection } from "@/components/admin/form-field";
+import { ImageField } from "@/components/admin/image-field";
 import { SeoFields, getDefaultSeoData, type SeoData } from "@/components/admin/seo-fields";
 import { useToast } from "@/components/admin/toast";
 import { ArrowLeft, Save } from "lucide-react";
@@ -152,8 +153,8 @@ export default function EditBlogPage({ params }: { params: Promise<{ id: string 
           </FormSection>
 
           <FormSection title="Media">
-            <InputField label="Thumbnail Image" name="image" value={formData.image} onChange={(v) => update("image", v)} />
-            <InputField label="Featured Image" name="featuredImage" value={formData.featuredImage} onChange={(v) => update("featuredImage", v)} />
+            <ImageField label="Thumbnail Image" value={formData.image} onChange={(v) => update("image", v)} />
+            <ImageField label="Featured Image" value={formData.featuredImage} onChange={(v) => update("featuredImage", v)} />
             <InputField label="Image Alt Text" name="imageAlt" value={formData.imageAlt} onChange={(v) => update("imageAlt", v)} />
           </FormSection>
 

@@ -5,14 +5,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { BlogPost } from "@/types/blog";
-import { getPublishedBlogs } from "@/data/blogs";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Get published blogs from data file
-const articles = getPublishedBlogs();
+interface ArticlesSectionProps {
+  articles: BlogPost[];
+}
 
-export function ArticlesSection() {
+export function ArticlesSection({ articles }: ArticlesSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);

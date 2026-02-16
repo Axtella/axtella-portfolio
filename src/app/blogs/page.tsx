@@ -1,19 +1,31 @@
-"use client";
-
 import {
   Navbar,
   BlogHeroSection,
   BlogGridSection,
   EnquirySection,
-  Footer
+  Footer,
 } from "@/components";
+import { getPublishedBlogs, getBlogCategories } from "@/lib/blog-queries";
+import { BlogPost } from "@/types/blog";
 
-export default function BlogsPage() {
+export const dynamic = "force-dynamic";
+
+export default async function BlogsPage() {
+  const [blogs, categories] = await Promise.all([
+    getPublishedBlogs(),
+    getBlogCategories(),
+  ]);
+
+  const categoryNames = ["All", ...categories.map((c) => c.name)];
+
   return (
     <main className="min-h-screen bg-[#080D1A]">
       <Navbar />
       <BlogHeroSection />
-      <BlogGridSection />
+      <BlogGridSection
+        blogs={blogs as unknown as BlogPost[]}
+        categories={categoryNames}
+      />
       <EnquirySection />
       <Footer />
     </main>

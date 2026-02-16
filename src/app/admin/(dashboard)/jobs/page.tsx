@@ -14,6 +14,7 @@ interface Job {
   type: string;
   active: boolean;
   createdAt: string;
+  _count?: { applications: number };
   [key: string]: unknown;
 }
 
@@ -24,7 +25,7 @@ export default function JobsAdminPage() {
   const { toast } = useToast();
 
   const loadJobs = useCallback(async () => {
-    const res = await fetch("/api/jobs");
+    const res = await fetch("/api/jobs?withCounts=true");
     setJobs(await res.json());
   }, []);
 
@@ -51,6 +52,15 @@ export default function JobsAdminPage() {
       render: (j: Job) => (
         <span className={`px-2 py-1 rounded text-xs ${j.active ? "bg-green-400/10 text-green-400" : "bg-gray-400/10 text-gray-400"}`}>
           {j.active ? "Active" : "Inactive"}
+        </span>
+      ),
+    },
+    {
+      key: "_count",
+      label: "Applications",
+      render: (j: Job) => (
+        <span className="text-sm text-gray-400">
+          {j._count?.applications ?? 0}
         </span>
       ),
     },

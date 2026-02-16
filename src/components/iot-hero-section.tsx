@@ -5,7 +5,21 @@ import Link from "next/link";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function IoTHeroSection() {
+interface ServiceHeroData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export function IoTHeroSection({ data }: { data?: ServiceHeroData | null }) {
+  const lines = data?.heroTitle?.split("|") || [];
+  const heroLine1 = lines[0] || "Connected Intelligence";
+  const heroLine2 = lines[1] || "Everywhere.";
+  const heroSubtitle = data?.heroSubtitle || "Smart IoT ecosystems that connect devices, collect data, and deliver actionable insights — designed for businesses across Saudi Arabia.";
+  const ctaText = data?.ctaLabel || "Get a Free Consultation";
+  const ctaHref = data?.ctaHref || "/contact";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -224,11 +238,11 @@ export function IoTHeroSection() {
                 }}
               >
                 <span className="word inline-block text-white">
-                  Connected Intelligence
+                  {heroLine1}
                 </span>
                 <br />
                 <span className="word inline-block text-[#F5A623]">
-                  Everywhere.
+                  {heroLine2}
                 </span>
               </h1>
 
@@ -238,9 +252,7 @@ export function IoTHeroSection() {
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed opacity-0"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
-                Smart IoT ecosystems that connect devices, collect data, and
-                deliver actionable insights — designed for businesses across
-                Saudi Arabia.
+                {heroSubtitle}
               </p>
 
               {/* CTA Buttons */}
@@ -249,7 +261,7 @@ export function IoTHeroSection() {
                 className="flex flex-wrap items-center gap-3 pt-2 opacity-0"
               >
                 <Link
-                  href="/contact"
+                  href={ctaHref}
                   className={cn(
                     "group flex items-center gap-3 bg-[#F5A623] text-[#080D1A]",
                     "px-7 py-3.5 rounded-full font-semibold text-sm",
@@ -257,7 +269,7 @@ export function IoTHeroSection() {
                     "transition-all duration-300"
                   )}
                 >
-                  Get a Free Consultation
+                  {ctaText}
                   <Arrow1Icon />
                 </Link>
               </div>

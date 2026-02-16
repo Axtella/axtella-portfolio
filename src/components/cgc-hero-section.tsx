@@ -5,7 +5,21 @@ import Link from "next/link";
 import gsap from "gsap";
 import { cn } from "@/lib/utils";
 
-export function CGCHeroSection() {
+interface ServiceHeroData {
+  heroTitle?: string;
+  heroSubtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export function CGCHeroSection({ data }: { data?: ServiceHeroData | null }) {
+  const lines = data?.heroTitle?.split("|") || [];
+  const heroLine1 = lines[0] || "Building Tomorrow\u2019s";
+  const heroLine2 = lines[1] || "Infrastructure.";
+  const heroSubtitle = data?.heroSubtitle || "Professional civil engineering and general construction — from site preparation and structural works to finishing and handover for projects across Saudi Arabia.";
+  const ctaText = data?.ctaLabel || "Get a Free Consultation";
+  const ctaHref = data?.ctaHref || "/contact";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
@@ -252,11 +266,11 @@ export function CGCHeroSection() {
                 }}
               >
                 <span className="word inline-block text-white">
-                  Building Tomorrow&apos;s
+                  {heroLine1}
                 </span>
                 <br />
                 <span className="word inline-block text-[#F5A623]">
-                  Infrastructure.
+                  {heroLine2}
                 </span>
               </h1>
 
@@ -266,9 +280,7 @@ export function CGCHeroSection() {
                 className="text-white/60 text-sm lg:text-base max-w-md leading-relaxed opacity-0"
                 style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
-                Professional civil engineering and general construction — from
-                site preparation and structural works to finishing and handover
-                for projects across Saudi Arabia.
+                {heroSubtitle}
               </p>
 
               {/* CTA Buttons */}
@@ -277,7 +289,7 @@ export function CGCHeroSection() {
                 className="flex flex-wrap items-center gap-3 pt-2 opacity-0"
               >
                 <Link
-                  href="/contact"
+                  href={ctaHref}
                   className={cn(
                     "group flex items-center gap-3 bg-[#F5A623] text-[#080D1A]",
                     "px-7 py-3.5 rounded-full font-semibold text-sm",
@@ -285,7 +297,7 @@ export function CGCHeroSection() {
                     "transition-all duration-300"
                   )}
                 >
-                  Get a Free Consultation
+                  {ctaText}
                   <Arrow1Icon />
                 </Link>
               </div>

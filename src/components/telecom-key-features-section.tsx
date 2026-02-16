@@ -4,13 +4,12 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Cable,
-  Radio,
-  Phone,
-  Wifi,
-  Network,
-  Settings,
-  Headphones,
+  Cable, Radio, Phone, Wifi, Network, Settings, Headphones,
+  Server, Cloud, ShieldCheck, Monitor, Database, Code,
+  BrainCircuit, BarChart3, Plug, Snowflake, Droplets, Flame,
+  Mountain, Hammer, Route, Paintbrush, RefreshCw, Fingerprint,
+  Volume2, Smartphone, Zap, Users, MapPin, Car, Wrench,
+  Video, LayoutDashboard, Camera, Fuel,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
@@ -22,6 +21,18 @@ interface Feature {
   title: string;
   description: string;
 }
+
+const iconMap: Record<string, LucideIcon> = {
+  Cable, Radio, Phone, Wifi, Network, Settings, Headphones,
+  Server, Cloud, ShieldCheck, Monitor, Database, Code,
+  BrainCircuit, BarChart3, Plug, Snowflake, Droplets, Flame,
+  Mountain, Hammer, Route, Paintbrush, RefreshCw, Fingerprint,
+  Volume2, Smartphone, Zap, Users, MapPin, Car, Wrench,
+  Video, LayoutDashboard, Camera, Fuel,
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface FeaturesData { label?: string; heading?: string; subtext?: string; features?: any[] }
 
 const row1Features: Feature[] = [
   {
@@ -145,7 +156,22 @@ function FeatureCard({ feature }: { feature: Feature }) {
   );
 }
 
-export function TelecomKeyFeaturesSection() {
+export function TelecomKeyFeaturesSection({ data }: { data?: FeaturesData | null }) {
+  const allDefaultFeatures = [...row1Features, ...row2Features];
+  const allFeatures: Feature[] = data?.features
+    ? data.features.map((f: Record<string, string>, i: number) => ({
+        id: i + 1,
+        icon: iconMap[f.icon] || allDefaultFeatures[i]?.icon || Cable,
+        title: f.title || allDefaultFeatures[i]?.title || "",
+        description: f.description || allDefaultFeatures[i]?.description || "",
+      }))
+    : allDefaultFeatures;
+  const r1 = allFeatures.slice(0, 4);
+  const r2 = allFeatures.slice(4);
+  const sectionLabel = data?.label || "Our Key Features";
+  const sectionHeading = data?.heading || "Enterprise-Grade Telecom Solutions";
+  const sectionSubtext = data?.subtext || "Everything you need to design, deploy, and manage world-class telecommunication infrastructure — from a single trusted partner.";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
@@ -267,7 +293,7 @@ export function TelecomKeyFeaturesSection() {
               marginBottom: "12px",
             }}
           >
-            Our Key Features
+            {sectionLabel}
           </p>
 
           <h2
@@ -279,7 +305,7 @@ export function TelecomKeyFeaturesSection() {
               color: "#FFFFFF",
             }}
           >
-            Enterprise-Grade Telecom Solutions
+            {sectionHeading}
           </h2>
 
           <p
@@ -293,8 +319,7 @@ export function TelecomKeyFeaturesSection() {
               maxWidth: "600px",
             }}
           >
-            Everything you need to design, deploy, and manage world-class
-            telecommunication infrastructure — from a single trusted partner.
+            {sectionSubtext}
           </p>
         </div>
 
@@ -303,7 +328,7 @@ export function TelecomKeyFeaturesSection() {
           ref={row1Ref}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6"
         >
-          {row1Features.map((feature) => (
+          {r1.map((feature) => (
             <FeatureCard key={feature.id} feature={feature} />
           ))}
         </div>
@@ -313,7 +338,7 @@ export function TelecomKeyFeaturesSection() {
           ref={row2Ref}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 mt-5 lg:mt-6 lg:max-w-[75%] lg:mx-auto"
         >
-          {row2Features.map((feature) => (
+          {r2.map((feature) => (
             <FeatureCard key={feature.id} feature={feature} />
           ))}
         </div>

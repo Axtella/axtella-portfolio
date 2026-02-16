@@ -5,12 +5,9 @@ import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  Landmark,
-  Building2,
-  Heart,
-  GraduationCap,
-  Hotel,
-  Zap,
+  Landmark, Building2, Heart, GraduationCap, Hotel, Zap,
+  Truck, HardHat, Bus, ShoppingCart, Factory, Sprout, Home,
+  Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,7 +27,16 @@ interface Industry {
   image: string;
 }
 
-const industries: Industry[] = [
+const industryIconMap: Record<string, LucideIcon> = {
+  Landmark, Building2, Heart, GraduationCap, Hotel, Zap,
+  Truck, HardHat, Bus, ShoppingCart, Factory, Sprout, Home,
+  Wrench,
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface IndustriesData { label?: string; heading?: string; subtext?: string; industries?: any[] }
+
+const defaultIndustries: Industry[] = [
   {
     id: 1,
     icon: Landmark,
@@ -109,7 +115,21 @@ const industries: Industry[] = [
 /*  Component                                                          */
 /* ------------------------------------------------------------------ */
 
-export function TelecomIndustriesSection() {
+export function TelecomIndustriesSection({ data }: { data?: IndustriesData | null }) {
+  const industries: Industry[] = data?.industries
+    ? data.industries.map((ind: Record<string, string | string[]>, i: number) => ({
+        id: i + 1,
+        icon: industryIconMap[ind.icon as string] || defaultIndustries[i]?.icon || Landmark,
+        title: (ind.title as string) || defaultIndustries[i]?.title || "",
+        tagline: (ind.tagline as string) || defaultIndustries[i]?.tagline || "",
+        features: (ind.features as string[]) || defaultIndustries[i]?.features || [],
+        image: (ind.image as string) || defaultIndustries[i]?.image || "/images/fleet/fleet1.png",
+      }))
+    : defaultIndustries;
+  const sectionLabel = data?.label || "Industries We Serve";
+  const sectionHeading = data?.heading || "Telecom Solutions For Every Sector";
+  const sectionSubtext = data?.subtext || "From government to energy — we deliver specialized telecom solutions tailored to the connectivity demands of each industry.";
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
@@ -347,7 +367,7 @@ export function TelecomIndustriesSection() {
                 marginBottom: "12px",
               }}
             >
-              Industries We Serve
+              {sectionLabel}
             </p>
 
             <h2
@@ -359,7 +379,7 @@ export function TelecomIndustriesSection() {
                 color: "#FFFFFF",
               }}
             >
-              Telecom Solutions For Every Sector
+              {sectionHeading}
             </h2>
 
             <p
@@ -372,8 +392,7 @@ export function TelecomIndustriesSection() {
                 maxWidth: "560px",
               }}
             >
-              From government to energy — we deliver specialized telecom
-              solutions tailored to the connectivity demands of each industry.
+              {sectionSubtext}
             </p>
           </div>
 

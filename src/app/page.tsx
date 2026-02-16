@@ -13,8 +13,10 @@ import {
   Footer
 } from "@/components";
 import { getPageData, getSection } from "@/lib/page-data";
+import { getPublishedBlogs } from "@/lib/blog-queries";
 import { generateSeoMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+import type { BlogPost } from "@/types/blog";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +26,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const page = await getPageData("home");
+  const [page, blogs] = await Promise.all([
+    getPageData("home"),
+    getPublishedBlogs(),
+  ]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sections = (page?.sections as any[]) || [];
 
@@ -39,7 +44,7 @@ export default async function Home() {
       <DiscoverCoursesSection />
       <FeaturedSection />
       <WhyBusinessLoveSection />
-      <ArticlesSection />
+      <ArticlesSection articles={blogs as unknown as BlogPost[]} />
       <EnquirySection />
       <Footer />
     </main>

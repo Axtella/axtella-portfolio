@@ -1,6 +1,6 @@
-import { BlogPost } from "@/types/blog";
-
-export const blogPosts: BlogPost[] = [
+// Legacy static data — kept for reference only. Blog data is now served from the database.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const blogPosts: any[] = [
   {
     id: 1,
     slug: "data-analytics-school-syllabus",
@@ -659,29 +659,3 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
-// Helper functions
-export const getFeaturedBlogs = () =>
-  blogPosts.filter((blog) => blog.featured && blog.published);
-export const getPublishedBlogs = () =>
-  blogPosts.filter((blog) => blog.published);
-export const getBlogBySlug = (slug: string) =>
-  blogPosts.find((blog) => blog.slug === slug);
-export const getBlogsByCategory = (category: string) =>
-  blogPosts.filter((blog) => blog.category === category && blog.published);
-export const getBlogsByTag = (tag: string) =>
-  blogPosts.filter((blog) => blog.tags.includes(tag) && blog.published);
-export const getRelatedBlogs = (currentSlug: string, limit: number = 2) => {
-  const currentBlog = getBlogBySlug(currentSlug);
-  if (!currentBlog) return [];
-
-  // Find blogs with same category or overlapping tags, excluding current blog
-  return blogPosts
-    .filter(
-      (blog) =>
-        blog.slug !== currentSlug &&
-        blog.published &&
-        (blog.category === currentBlog.category ||
-          blog.tags.some((tag) => currentBlog.tags.includes(tag)))
-    )
-    .slice(0, limit);
-};
