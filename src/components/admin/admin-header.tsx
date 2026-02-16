@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { Bell, Menu } from "lucide-react";
-import { useSidebarContext } from "@/app/admin/(dashboard)/layout";
+import { useSidebarContext } from "@/app/admin/(dashboard)/layout-client";
 
 export function AdminHeader({ title }: { title: string }) {
   const { data: session } = useSession();
