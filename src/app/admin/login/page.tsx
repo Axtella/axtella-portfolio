@@ -1,27 +1,33 @@
 "use client";
 
 import { Suspense, useState } from "react";
+import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { authenticate } from "./actions";
 
 function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("redirectTo", callbackUrl);
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
 
-    const result = await authenticate(formData);
-    if (result) {
-      setError(result);
+    if (result?.error) {
+      setError("Invalid email or password");
       setLoading(false);
+    } else {
+      window.location.href = callbackUrl;
     }
   };
 
@@ -52,8 +58,9 @@ function LoginForm() {
           </label>
           <input
             id="email"
-            name="email"
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5A623]/50 focus:border-[#F5A623]/50 transition-colors"
             placeholder="admin@axtella.com"
@@ -69,8 +76,9 @@ function LoginForm() {
           </label>
           <input
             id="password"
-            name="password"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
             className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5A623]/50 focus:border-[#F5A623]/50 transition-colors"
             placeholder="Enter your password"
