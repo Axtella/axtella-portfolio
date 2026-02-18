@@ -38,7 +38,7 @@ const navItems: NavItem[] = [
       { label: "BMS & Smart Building", href: "/services/bms-smart-building" },
       { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works" },
       { label: "Civil & General Construction", href: "/services/civil-general-construction" },
-      { label: "Managed Services", href: "/services/managed-services", disabled: true },
+      { label: "Managed Services", href: "/services/managed-services" },
     ]
   },
   { label: "BLOGS", href: "/blogs", hasDropdown: false },

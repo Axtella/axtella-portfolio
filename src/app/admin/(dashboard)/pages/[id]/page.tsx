@@ -65,7 +65,9 @@ function SectionEditor({
                     ? "Why Join Us"
                     : section.type === "departments"
                       ? "Departments"
-                      : `Section: ${section.type || "unknown"}`;
+                      : section.type === "discover-services"
+                        ? "Discover Services"
+                        : `Section: ${section.type || "unknown"}`;
 
   return (
     <div className="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden">
@@ -404,6 +406,186 @@ function SectionEditor({
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5A623]/50 text-sm"
                   placeholder="Telecom, IT, IoT, Fleet"
                 />
+              </div>
+            </>
+          )}
+
+          {/* Discover Services */}
+          {section.type === "discover-services" && (
+            <>
+              <InputField
+                label="Label"
+                name={`section-${index}-label`}
+                value={section.label || ""}
+                onChange={(v) => updateField("label", v)}
+              />
+              <InputField
+                label="Heading (use \n for line break)"
+                name={`section-${index}-heading`}
+                value={section.heading || ""}
+                onChange={(v) => updateField("heading", v)}
+              />
+              <TextareaField
+                label="Subtext"
+                name={`section-${index}-subtext`}
+                value={section.subtext || ""}
+                onChange={(v) => updateField("subtext", v)}
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <InputField
+                  label="CTA Label"
+                  name={`section-${index}-cta-label`}
+                  value={section.ctaLabel || ""}
+                  onChange={(v) => updateField("ctaLabel", v)}
+                />
+                <InputField
+                  label="CTA Link"
+                  name={`section-${index}-cta-href`}
+                  value={section.ctaHref || ""}
+                  onChange={(v) => updateField("ctaHref", v)}
+                />
+              </div>
+
+              {/* Service Cards */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-300">
+                  Service Cards
+                </label>
+                {(section.cards || []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (card: any, ci: number) => (
+                    <div
+                      key={ci}
+                      className="p-3 bg-white/[0.02] border border-white/5 rounded-lg space-y-2"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-gray-400 flex items-center gap-2">
+                          Card {ci + 1}
+                          {card.color && (
+                            <span
+                              className="inline-block w-3 h-3 rounded-full"
+                              style={{ background: card.color }}
+                            />
+                          )}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...(section.cards || [])];
+                            updated.splice(ci, 1);
+                            updateField("cards", updated);
+                          }}
+                          className="p-1 text-gray-500 hover:text-red-400"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                      <input
+                        value={card.title || ""}
+                        onChange={(e) => {
+                          const updated = [...(section.cards || [])];
+                          updated[ci] = { ...updated[ci], title: e.target.value };
+                          updateField("cards", updated);
+                        }}
+                        placeholder="Title (e.g., FLEET MANAGEMENT SOLUTIONS)"
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                      />
+                      <textarea
+                        value={card.description || ""}
+                        onChange={(e) => {
+                          const updated = [...(section.cards || [])];
+                          updated[ci] = { ...updated[ci], description: e.target.value };
+                          updateField("cards", updated);
+                        }}
+                        placeholder="Description"
+                        rows={2}
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50 resize-none"
+                      />
+                      <div className="grid grid-cols-3 gap-2">
+                        <input
+                          value={card.icon || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.cards || [])];
+                            updated[ci] = { ...updated[ci], icon: e.target.value };
+                            updateField("cards", updated);
+                          }}
+                          placeholder="Icon (e.g., Truck)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={card.color || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.cards || [])];
+                            updated[ci] = { ...updated[ci], color: e.target.value };
+                            updateField("cards", updated);
+                          }}
+                          placeholder="Color (#F59E0B)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={card.link || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.cards || [])];
+                            updated[ci] = { ...updated[ci], link: e.target.value };
+                            updateField("cards", updated);
+                          }}
+                          placeholder="Link (/services/...)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <label className="text-xs text-gray-400 flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={card.isNew || false}
+                            onChange={(e) => {
+                              const updated = [...(section.cards || [])];
+                              updated[ci] = { ...updated[ci], isNew: e.target.checked };
+                              updateField("cards", updated);
+                            }}
+                            className="rounded border-white/20"
+                          />
+                          Show &quot;NEW&quot; badge
+                        </label>
+                      </div>
+                      <textarea
+                        value={(card.bulletPoints || []).join("\n")}
+                        onChange={(e) => {
+                          const updated = [...(section.cards || [])];
+                          updated[ci] = {
+                            ...updated[ci],
+                            bulletPoints: e.target.value
+                              .split("\n")
+                              .filter((l: string) => l.trim()),
+                          };
+                          updateField("cards", updated);
+                        }}
+                        placeholder="Bullet points (one per line)"
+                        rows={5}
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50 resize-none"
+                      />
+                    </div>
+                  )
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const updated = [...(section.cards || [])];
+                    updated.push({
+                      title: "",
+                      description: "",
+                      icon: "Monitor",
+                      color: "#6B7280",
+                      link: "/services/",
+                      isNew: false,
+                      bulletPoints: [],
+                    });
+                    updateField("cards", updated);
+                  }}
+                  className="flex items-center gap-1 text-sm text-gray-400 hover:text-[#F5A623] transition-colors"
+                >
+                  <Plus size={14} /> Add Service Card
+                </button>
               </div>
             </>
           )}

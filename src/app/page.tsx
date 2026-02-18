@@ -41,7 +41,7 @@ export default async function Home() {
       <LogoMarquee />
       <MentorSection data={getSection(sections, "mentor")} />
       <FleetLaunchSection />
-      <DiscoverCoursesSection />
+      <DiscoverCoursesSection data={getSection(sections, "discover-services")} />
       <FeaturedSection />
       <WhyBusinessLoveSection />
       <ArticlesSection articles={blogs as unknown as BlogPost[]} />
