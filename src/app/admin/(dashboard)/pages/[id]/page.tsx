@@ -677,7 +677,7 @@ export default function EditPagePage({
   const [seo, setSeo] = useState<SeoData>(getDefaultSeoData());
 
   useEffect(() => {
-    fetch("/api/pages")
+    fetch("/api/pages", { cache: "no-store" })
       .then((r) => r.json())
       .then((pages: Record<string, unknown>[]) => {
         const page = pages.find((p) => p.id === id);

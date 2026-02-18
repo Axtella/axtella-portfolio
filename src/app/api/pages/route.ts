@@ -7,7 +7,9 @@ export async function GET() {
   const pages = await prisma.page.findMany({
     orderBy: { createdAt: "asc" },
   });
-  return NextResponse.json(pages);
+  const res = NextResponse.json(pages);
+  res.headers.set("Cache-Control", "no-store");
+  return res;
 }
 
 export async function POST(request: NextRequest) {
