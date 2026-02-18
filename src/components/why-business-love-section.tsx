@@ -7,7 +7,57 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function WhyBusinessLoveSection() {
+interface TestimonialItem {
+  companyLogo: string;
+  quote: string;
+  profileImage: string;
+  name: string;
+  title: string;
+  isDark?: boolean;
+}
+
+interface WhyBusinessLoveData {
+  heading?: string;
+  subtext?: string;
+  testimonials?: TestimonialItem[];
+}
+
+const defaultTestimonials: TestimonialItem[] = [
+  {
+    companyLogo: "/images/about/Ajman.png",
+    quote: "Training with Mr. Mohammed Alfan elevated my Excel skills to new heights. I'm now a proficient Excel user, all thanks to the expert guidance!",
+    profileImage: "/images/testimonials/ronald-richards.jpg",
+    name: "Ronald Richards",
+    title: "President",
+    isDark: true,
+  },
+  {
+    companyLogo: "/images/about/Aus.png",
+    quote: "The Excel training program transformed how our team handles data. Highly recommended!",
+    profileImage: "/images/testimonials/profile-2.jpg",
+    name: "Jane Cooper",
+    title: "CEO",
+    isDark: false,
+  },
+  {
+    companyLogo: "/images/about/DHL.png",
+    quote: "Outstanding training that delivers real-world results. Our productivity increased significantly!",
+    profileImage: "/images/testimonials/profile-3.jpg",
+    name: "Robert Fox",
+    title: "Director",
+    isDark: false,
+  },
+  {
+    companyLogo: "/images/about/slb.png",
+    quote: "Mohammed Alfan's expertise in Excel is unmatched. The training sessions were incredibly valuable for our entire organization.",
+    profileImage: "/images/testimonials/profile-4.jpg",
+    name: "Sarah Johnson",
+    title: "Manager",
+    isDark: false,
+  },
+];
+
+export function WhyBusinessLoveSection({ data }: { data?: WhyBusinessLoveData | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
@@ -19,6 +69,10 @@ export function WhyBusinessLoveSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [windowWidth, setWindowWidth] = useState(1024);
+
+  const heading = data?.heading || "WHY BUSINESS LOVE\nAXTELLA";
+  const subtext = data?.subtext || "Kind words from my people means a lot";
+  const testimonials = data?.testimonials?.length ? data.testimonials : defaultTestimonials;
 
   // Responsive card width helpers
   const getCardWidth = () => {
@@ -55,44 +109,7 @@ export function WhyBusinessLoveSection() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const testimonials = [
-    {
-      id: 1,
-      companyLogo: "/images/about/Ajman.png",
-      quote: "Training with Mr. Mohammed Alfan elevated my Excel skills to new heights. I'm now a proficient Excel user, all thanks to the expert guidance!",
-      profileImage: "/images/testimonials/ronald-richards.jpg",
-      name: "Ronald Richards",
-      title: "President",
-      isDark: true,
-    },
-    {
-      id: 2,
-      companyLogo: "/images/about/Aus.png",
-      quote: "The Excel training program transformed how our team handles data. Highly recommended!",
-      profileImage: "/images/testimonials/profile-2.jpg",
-      name: "Jane Cooper",
-      title: "CEO",
-      isDark: false,
-    },
-    {
-      id: 3,
-      companyLogo: "/images/about/DHL.png",
-      quote: "Outstanding training that delivers real-world results. Our productivity increased significantly!",
-      profileImage: "/images/testimonials/profile-3.jpg",
-      name: "Robert Fox",
-      title: "Director",
-      isDark: false,
-    },
-    {
-      id: 4,
-      companyLogo: "/images/about/slb.png",
-      quote: "Mohammed Alfan's expertise in Excel is unmatched. The training sessions were incredibly valuable for our entire organization.",
-      profileImage: "/images/testimonials/profile-4.jpg",
-      name: "Sarah Johnson",
-      title: "Manager",
-      isDark: false,
-    },
-  ];
+  // testimonials resolved from data prop or defaults above
 
   // Calculate how many cards are visible at once, then limit max slide
   const getVisibleCards = () => {
@@ -196,12 +213,15 @@ export function WhyBusinessLoveSection() {
               letterSpacing: "-0.01em",
             }}
           >
-            WHY BUSINESS LOVE
-            <br />
-            AXTELLA
+            {heading.split("\n").map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h2>
           <p className="text-black/60 text-sm lg:text-base max-w-2xl mx-auto">
-            Kind words from my people means a lot
+            {subtext}
           </p>
         </div>
 
@@ -225,9 +245,9 @@ export function WhyBusinessLoveSection() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, idx) => (
               <div
-                key={testimonial.id}
+                key={idx}
                 className="flex-shrink-0"
                 style={{ width: `${cardWidth}px` }}
               >

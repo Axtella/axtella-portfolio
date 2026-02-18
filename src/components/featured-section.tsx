@@ -7,7 +7,42 @@ import { cn } from "@/lib/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function FeaturedSection() {
+interface FeaturedItem {
+  episode: string;
+  title: string;
+  videoId: string;
+}
+
+interface FeaturedData {
+  heading?: string;
+  subtext?: string;
+  items?: FeaturedItem[];
+}
+
+const defaultItems: FeaturedItem[] = [
+  {
+    episode: "EP-29",
+    title: "Salesman to Microsoft MVP: Mohammad Ali's Inspiring Excel Journey",
+    videoId: "dQw4w9WgXcQ",
+  },
+  {
+    episode: "EP-28",
+    title: "Excel Tips and Tricks for Beginners",
+    videoId: "dQw4w9WgXcQ",
+  },
+  {
+    episode: "EP-27",
+    title: "Power BI Dashboard Creation Guide",
+    videoId: "dQw4w9WgXcQ",
+  },
+  {
+    episode: "EP-26",
+    title: "Data Analysis with Excel: Complete Guide",
+    videoId: "dQw4w9WgXcQ",
+  },
+];
+
+export function FeaturedSection({ data }: { data?: FeaturedData | null }) {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -18,35 +53,12 @@ export function FeaturedSection() {
   const [startX, setStartX] = useState(0);
   const [currentX, setCurrentX] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-  const [videosPerSlide, setVideosPerSlide] = useState(2); // Default to desktop view
+  const [videosPerSlide, setVideosPerSlide] = useState(2);
   const [isMounted, setIsMounted] = useState(false);
 
-  const featuredItems = [
-    {
-      id: 1,
-      episode: "EP-29",
-      title: "Salesman to Microsoft MVP: Mohammad Ali's Inspiring Excel Journey",
-      videoId: "dQw4w9WgXcQ", // Placeholder - replace with real YouTube video ID
-    },
-    {
-      id: 2,
-      episode: "EP-28",
-      title: "Excel Tips and Tricks for Beginners",
-      videoId: "dQw4w9WgXcQ", // Placeholder - replace with real YouTube video ID
-    },
-    {
-      id: 3,
-      episode: "EP-27",
-      title: "Power BI Dashboard Creation Guide",
-      videoId: "dQw4w9WgXcQ", // Placeholder - replace with real YouTube video ID
-    },
-    {
-      id: 4,
-      episode: "EP-26",
-      title: "Data Analysis with Excel: Complete Guide",
-      videoId: "dQw4w9WgXcQ", // Placeholder - replace with real YouTube video ID
-    },
-  ];
+  const heading = data?.heading || "FEATURED IN";
+  const subtext = data?.subtext || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+  const featuredItems = data?.items?.length ? data.items : defaultItems;
 
   const totalSlides = Math.ceil(featuredItems.length / videosPerSlide);
 
@@ -168,10 +180,10 @@ export function FeaturedSection() {
                 letterSpacing: "-0.01em",
               }}
             >
-              FEATURED IN
+              {heading}
             </h2>
             <p className="text-black/60 text-sm lg:text-base">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {subtext}
             </p>
           </div>
 
@@ -211,9 +223,9 @@ export function FeaturedSection() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {featuredItems.map((item) => (
+            {featuredItems.map((item, idx) => (
               <div
-                key={item.id}
+                key={idx}
                 className="flex-shrink-0 w-full md:w-1/2 px-3"
               >
                 <div className="featured-card group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-xl">

@@ -67,7 +67,11 @@ function SectionEditor({
                       ? "Departments"
                       : section.type === "discover-services"
                         ? "Discover Services"
-                        : `Section: ${section.type || "unknown"}`;
+                        : section.type === "featured"
+                          ? "Featured In"
+                          : section.type === "why-business-love"
+                            ? "Why Business Love Axtella"
+                            : `Section: ${section.type || "unknown"}`;
 
   return (
     <div className="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden">
@@ -410,6 +414,237 @@ function SectionEditor({
             </>
           )}
 
+          {/* Featured In */}
+          {section.type === "featured" && (
+            <>
+              <InputField
+                label="Heading"
+                name={`section-${index}-heading`}
+                value={section.heading || ""}
+                onChange={(v) => updateField("heading", v)}
+              />
+              <TextareaField
+                label="Subtext"
+                name={`section-${index}-subtext`}
+                value={section.subtext || ""}
+                onChange={(v) => updateField("subtext", v)}
+              />
+
+              {/* Featured Items */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-300">
+                  Featured Items
+                </label>
+                {(section.items || []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (item: any, ci: number) => (
+                    <div
+                      key={ci}
+                      className="p-3 bg-white/[0.02] border border-white/5 rounded-lg space-y-2"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-gray-400">
+                          Item {ci + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...(section.items || [])];
+                            updated.splice(ci, 1);
+                            updateField("items", updated);
+                          }}
+                          className="p-1 text-gray-500 hover:text-red-400"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <input
+                          value={item.episode || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.items || [])];
+                            updated[ci] = { ...updated[ci], episode: e.target.value };
+                            updateField("items", updated);
+                          }}
+                          placeholder="Episode (e.g., EP-29)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={item.videoId || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.items || [])];
+                            updated[ci] = { ...updated[ci], videoId: e.target.value };
+                            updateField("items", updated);
+                          }}
+                          placeholder="YouTube Video ID"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                      </div>
+                      <input
+                        value={item.title || ""}
+                        onChange={(e) => {
+                          const updated = [...(section.items || [])];
+                          updated[ci] = { ...updated[ci], title: e.target.value };
+                          updateField("items", updated);
+                        }}
+                        placeholder="Title"
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                      />
+                    </div>
+                  )
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const updated = [...(section.items || [])];
+                    updated.push({ episode: "", title: "", videoId: "" });
+                    updateField("items", updated);
+                  }}
+                  className="flex items-center gap-1 text-sm text-gray-400 hover:text-[#F5A623] transition-colors"
+                >
+                  <Plus size={14} /> Add Featured Item
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* Why Business Love Axtella */}
+          {section.type === "why-business-love" && (
+            <>
+              <InputField
+                label="Heading (use \n for line break)"
+                name={`section-${index}-heading`}
+                value={section.heading || ""}
+                onChange={(v) => updateField("heading", v)}
+              />
+              <TextareaField
+                label="Subtext"
+                name={`section-${index}-subtext`}
+                value={section.subtext || ""}
+                onChange={(v) => updateField("subtext", v)}
+              />
+
+              {/* Testimonials */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-300">
+                  Testimonials
+                </label>
+                {(section.testimonials || []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (item: any, ci: number) => (
+                    <div
+                      key={ci}
+                      className="p-3 bg-white/[0.02] border border-white/5 rounded-lg space-y-2"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-gray-400">
+                          Testimonial {ci + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...(section.testimonials || [])];
+                            updated.splice(ci, 1);
+                            updateField("testimonials", updated);
+                          }}
+                          className="p-1 text-gray-500 hover:text-red-400"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <input
+                          value={item.name || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.testimonials || [])];
+                            updated[ci] = { ...updated[ci], name: e.target.value };
+                            updateField("testimonials", updated);
+                          }}
+                          placeholder="Name"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={item.title || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.testimonials || [])];
+                            updated[ci] = { ...updated[ci], title: e.target.value };
+                            updateField("testimonials", updated);
+                          }}
+                          placeholder="Title (e.g., CEO)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                      </div>
+                      <textarea
+                        value={item.quote || ""}
+                        onChange={(e) => {
+                          const updated = [...(section.testimonials || [])];
+                          updated[ci] = { ...updated[ci], quote: e.target.value };
+                          updateField("testimonials", updated);
+                        }}
+                        placeholder="Quote"
+                        rows={2}
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50 resize-none"
+                      />
+                      <div className="grid grid-cols-2 gap-2">
+                        <input
+                          value={item.companyLogo || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.testimonials || [])];
+                            updated[ci] = { ...updated[ci], companyLogo: e.target.value };
+                            updateField("testimonials", updated);
+                          }}
+                          placeholder="Company Logo URL"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={item.profileImage || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.testimonials || [])];
+                            updated[ci] = { ...updated[ci], profileImage: e.target.value };
+                            updateField("testimonials", updated);
+                          }}
+                          placeholder="Profile Image URL"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                      </div>
+                      <label className="text-xs text-gray-400 flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={item.isDark || false}
+                          onChange={(e) => {
+                            const updated = [...(section.testimonials || [])];
+                            updated[ci] = { ...updated[ci], isDark: e.target.checked };
+                            updateField("testimonials", updated);
+                          }}
+                          className="rounded border-white/20"
+                        />
+                        Dark card style
+                      </label>
+                    </div>
+                  )
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const updated = [...(section.testimonials || [])];
+                    updated.push({
+                      companyLogo: "",
+                      quote: "",
+                      profileImage: "",
+                      name: "",
+                      title: "",
+                      isDark: false,
+                    });
+                    updateField("testimonials", updated);
+                  }}
+                  className="flex items-center gap-1 text-sm text-gray-400 hover:text-[#F5A623] transition-colors"
+                >
+                  <Plus size={14} /> Add Testimonial
+                </button>
+              </div>
+            </>
+          )}
+
           {/* Discover Services */}
           {section.type === "discover-services" && (
             <>
@@ -690,7 +925,6 @@ export default function EditPagePage({
         setSlug(page.slug as string);
         setPublished(page.published as boolean);
         const loadedSections = Array.isArray(page.sections) ? (page.sections as Section[]) : [];
-        console.log("[ADMIN DEBUG] Page slug:", page.slug, "| Sections count:", loadedSections.length, "| Types:", loadedSections.map((s: Section) => s.type));
         setSections(loadedSections);
         setSeo({
           metaTitle: (page.metaTitle as string) || "",
