@@ -689,9 +689,9 @@ export default function EditPagePage({
         setTitle(page.title as string);
         setSlug(page.slug as string);
         setPublished(page.published as boolean);
-        setSections(
-          Array.isArray(page.sections) ? (page.sections as Section[]) : []
-        );
+        const loadedSections = Array.isArray(page.sections) ? (page.sections as Section[]) : [];
+        console.log("[ADMIN DEBUG] Page slug:", page.slug, "| Sections count:", loadedSections.length, "| Types:", loadedSections.map((s: Section) => s.type));
+        setSections(loadedSections);
         setSeo({
           metaTitle: (page.metaTitle as string) || "",
           metaDescription: (page.metaDescription as string) || "",
