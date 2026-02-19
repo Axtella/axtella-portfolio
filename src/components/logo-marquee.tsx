@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 
-interface Logo {
+interface LogoItem {
   name: string;
   src?: string;
 }
 
-const logos: Logo[] = [
+interface LogoMarqueeData {
+  headline?: string;
+  logos?: LogoItem[];
+}
+
+const defaultLogos: LogoItem[] = [
   { name: "TCS" },
   { name: "IBM" },
   { name: "Accenture" },
@@ -22,7 +27,9 @@ const logos: Logo[] = [
   { name: "PwC" },
 ];
 
-export function LogoMarquee() {
+export function LogoMarquee({ data }: { data?: LogoMarqueeData | null }) {
+  const headline = data?.headline || "Be part of the 100+ businesses transforming their presence.";
+  const logos = data?.logos?.length ? data.logos : defaultLogos;
   return (
     <section
       className="bg-white overflow-hidden min-h-[250px] md:min-h-[280px] lg:min-h-[300px] py-12 md:py-14 lg:py-16"
@@ -38,7 +45,7 @@ export function LogoMarquee() {
             fontWeight: 400,
           }}
         >
-          Be part of the 100+ businesses transforming their presence.
+          {headline}
         </p>
 
         {/* Logo row with auto-scroll */}

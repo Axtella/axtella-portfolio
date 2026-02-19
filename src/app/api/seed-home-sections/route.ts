@@ -226,10 +226,30 @@ const whyBusinessLoveSection = {
   ],
 };
 
+const logoMarqueeSection = {
+  type: "logo-marquee",
+  headline: "Be part of the 100+ businesses transforming their presence.",
+  logos: [
+    { name: "TCS" },
+    { name: "IBM" },
+    { name: "Accenture" },
+    { name: "Cargill" },
+    { name: "DHL" },
+    { name: "Microsoft" },
+    { name: "Deloitte" },
+    { name: "Infosys" },
+    { name: "Wipro" },
+    { name: "SAP" },
+    { name: "Oracle" },
+    { name: "PwC" },
+  ],
+};
+
 const newSections = [
   discoverServicesSection,
   featuredSection,
   whyBusinessLoveSection,
+  logoMarqueeSection,
 ];
 
 export async function POST(request: NextRequest) {

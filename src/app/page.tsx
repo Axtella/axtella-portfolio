@@ -38,7 +38,7 @@ export default async function Home() {
       <Navbar />
       <HeroSection data={getSection(sections, "hero")} />
       <ScrollHighlightSection data={getSection(sections, "scroll-highlight")} />
-      <LogoMarquee />
+      <LogoMarquee data={getSection(sections, "logo-marquee")} />
       <MentorSection data={getSection(sections, "mentor")} />
       <FleetLaunchSection />
       <DiscoverCoursesSection data={getSection(sections, "discover-services")} />

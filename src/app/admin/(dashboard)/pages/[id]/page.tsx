@@ -71,7 +71,9 @@ function SectionEditor({
                           ? "Featured In"
                           : section.type === "why-business-love"
                             ? "Why Business Love Axtella"
-                            : `Section: ${section.type || "unknown"}`;
+                            : section.type === "logo-marquee"
+                              ? "Logo Marquee"
+                              : `Section: ${section.type || "unknown"}`;
 
   return (
     <div className="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden">
@@ -640,6 +642,84 @@ function SectionEditor({
                   className="flex items-center gap-1 text-sm text-gray-400 hover:text-[#F5A623] transition-colors"
                 >
                   <Plus size={14} /> Add Testimonial
+                </button>
+              </div>
+            </>
+          )}
+
+          {/* Logo Marquee */}
+          {section.type === "logo-marquee" && (
+            <>
+              <InputField
+                label="Headline"
+                name={`section-${index}-headline`}
+                value={section.headline || ""}
+                onChange={(v) => updateField("headline", v)}
+              />
+
+              {/* Logo Items */}
+              <div className="space-y-3">
+                <label className="block text-sm font-medium text-gray-300">
+                  Client Logos
+                </label>
+                {(section.logos || []).map(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  (item: any, ci: number) => (
+                    <div
+                      key={ci}
+                      className="p-3 bg-white/[0.02] border border-white/5 rounded-lg space-y-2"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-gray-400">
+                          Logo {ci + 1}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const updated = [...(section.logos || [])];
+                            updated.splice(ci, 1);
+                            updateField("logos", updated);
+                          }}
+                          className="p-1 text-gray-500 hover:text-red-400"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <input
+                          value={item.name || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.logos || [])];
+                            updated[ci] = { ...updated[ci], name: e.target.value };
+                            updateField("logos", updated);
+                          }}
+                          placeholder="Company Name (e.g., TCS)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                        <input
+                          value={item.src || ""}
+                          onChange={(e) => {
+                            const updated = [...(section.logos || [])];
+                            updated[ci] = { ...updated[ci], src: e.target.value };
+                            updateField("logos", updated);
+                          }}
+                          placeholder="Image URL (optional)"
+                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                        />
+                      </div>
+                    </div>
+                  )
+                )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    const updated = [...(section.logos || [])];
+                    updated.push({ name: "", src: "" });
+                    updateField("logos", updated);
+                  }}
+                  className="flex items-center gap-1 text-sm text-gray-400 hover:text-[#F5A623] transition-colors"
+                >
+                  <Plus size={14} /> Add Logo
                 </button>
               </div>
             </>
