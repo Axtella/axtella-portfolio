@@ -15,6 +15,7 @@ import {
   type SeoData,
 } from "@/components/admin/seo-fields";
 import { useToast } from "@/components/admin/toast";
+import { ImageField } from "@/components/admin/image-field";
 import { ArrowLeft, Save, Plus, X, ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
 
@@ -685,28 +686,25 @@ function SectionEditor({
                           <X size={14} />
                         </button>
                       </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <input
-                          value={item.name || ""}
-                          onChange={(e) => {
-                            const updated = [...(section.logos || [])];
-                            updated[ci] = { ...updated[ci], name: e.target.value };
-                            updateField("logos", updated);
-                          }}
-                          placeholder="Company Name (e.g., TCS)"
-                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
-                        />
-                        <input
-                          value={item.src || ""}
-                          onChange={(e) => {
-                            const updated = [...(section.logos || [])];
-                            updated[ci] = { ...updated[ci], src: e.target.value };
-                            updateField("logos", updated);
-                          }}
-                          placeholder="Image URL (optional)"
-                          className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
-                        />
-                      </div>
+                      <input
+                        value={item.name || ""}
+                        onChange={(e) => {
+                          const updated = [...(section.logos || [])];
+                          updated[ci] = { ...updated[ci], name: e.target.value };
+                          updateField("logos", updated);
+                        }}
+                        placeholder="Company Name (e.g., TCS)"
+                        className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                      />
+                      <ImageField
+                        label="Logo Image"
+                        value={item.src || ""}
+                        onChange={(url) => {
+                          const updated = [...(section.logos || [])];
+                          updated[ci] = { ...updated[ci], src: url };
+                          updateField("logos", updated);
+                        }}
+                      />
                     </div>
                   )
                 )}
