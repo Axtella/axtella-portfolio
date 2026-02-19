@@ -10,28 +10,34 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const formData = await request.formData();
-  const file = formData.get("file") as File | null;
+  try {
+    const formData = await request.formData();
+    const file = formData.get("file") as File | null;
 
-  if (!file) {
-    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    if (!file) {
+      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+    }
+
+    const { filename, url, size, mimeType } = await saveFile(file);
+    const dimensions = await getImageDimensions(file);
+    const alt = (formData.get("alt") as string) || "";
+
+    const media = await prisma.media.create({
+      data: {
+        filename,
+        url,
+        alt,
+        size,
+        mimeType,
+        width: dimensions?.width || null,
+        height: dimensions?.height || null,
+      },
+    });
+
+    return NextResponse.json(media, { status: 201 });
+  } catch (error) {
+    console.error("Media upload error:", error);
+    const message = error instanceof Error ? error.message : "Upload failed";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
-
-  const { filename, url, size, mimeType } = await saveFile(file);
-  const dimensions = await getImageDimensions(file);
-  const alt = (formData.get("alt") as string) || "";
-
-  const media = await prisma.media.create({
-    data: {
-      filename,
-      url,
-      alt,
-      size,
-      mimeType,
-      width: dimensions?.width || null,
-      height: dimensions?.height || null,
-    },
-  });
-
-  return NextResponse.json(media, { status: 201 });
 }

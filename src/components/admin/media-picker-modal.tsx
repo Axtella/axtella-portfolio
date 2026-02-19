@@ -38,18 +38,35 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
     }
   }, [open, loadMedia]);
 
+  const [error, setError] = useState<string | null>(null);
+
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
     setUploading(true);
+    setError(null);
+    let failed = 0;
     for (const file of Array.from(files)) {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("alt", file.name);
-      await fetch("/api/media", { method: "POST", body: formData });
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("alt", file.name);
+        const res = await fetch("/api/media", { method: "POST", body: formData });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          console.error(`Upload failed for ${file.name}:`, data);
+          failed++;
+        }
+      } catch (err) {
+        console.error(`Upload error for ${file.name}:`, err);
+        failed++;
+      }
     }
     setUploading(false);
+    if (failed > 0) {
+      setError(`${failed} file(s) failed to upload. Check that Blob storage is configured.`);
+    }
     loadMedia();
     e.target.value = "";
   };
@@ -92,6 +109,13 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
             </button>
           </div>
         </div>
+
+        {/* Error message */}
+        {error && (
+          <div className="mx-4 mt-3 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-xs">
+            {error}
+          </div>
+        )}
 
         {/* Grid */}
         <div className="flex-1 overflow-y-auto p-4">
