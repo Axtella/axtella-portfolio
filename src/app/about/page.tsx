@@ -1,4 +1,5 @@
-import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, ClientLogosSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
+import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
+import { LogoMarquee } from "@/components/logo-marquee";
 import { getPageData, getSection } from "@/lib/page-data";
 import { generateSeoMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -11,9 +12,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const page = await getPageData("about");
+  const [page, homePage] = await Promise.all([
+    getPageData("about"),
+    getPageData("home"),
+  ]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sections = (page?.sections as any[]) || [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const homeSections = (homePage?.sections as any[]) || [];
 
   return (
     <main className="min-h-screen bg-[#080D1A]">
@@ -22,7 +28,7 @@ export default async function AboutPage() {
       <ScrollHighlightSection data={getSection(sections, "scroll-highlight")} />
       <MissionVisionSection data={getSection(sections, "mission-vision")} />
       <CoreValuesSection data={getSection(sections, "core-values")} />
-      <ClientLogosSection />
+      <LogoMarquee data={getSection(homeSections, "logo-marquee")} />
       <WhatSetsApartSection data={getSection(sections, "what-sets-apart")} />
       <EnquirySection />
       <Footer />
