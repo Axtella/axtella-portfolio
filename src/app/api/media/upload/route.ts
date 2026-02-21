@@ -1,4 +1,4 @@
-import { handleUpload, type HandleUploadBody } from "@vercel/blob";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
             filename: blob.pathname.split("/").pop() || blob.pathname,
             url: blob.url,
             alt: "",
-            size: blob.size,
+            size: 0,
             mimeType: blob.contentType,
             width: null,
             height: null,
