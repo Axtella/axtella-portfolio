@@ -27,6 +27,58 @@ const defaultLogos: LogoItem[] = [
   { name: "PwC" },
 ];
 
+export function LogoGrid({ data }: { data?: LogoMarqueeData | null }) {
+  const headline = data?.headline || "Be part of the 100+ businesses transforming their presence.";
+  const logos = data?.logos?.length ? data.logos : defaultLogos;
+
+  return (
+    <section className="bg-white py-12 md:py-16 lg:py-20">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          className="text-center mb-8 md:mb-12 lg:mb-16"
+          style={{
+            fontFamily: "var(--font-plus-jakarta)",
+            fontWeight: 500,
+            fontSize: "clamp(20px, 3vw, 28px)",
+            lineHeight: "1.5",
+            letterSpacing: "-0.03em",
+            color: "#272727",
+          }}
+        >
+          {headline}
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
+          {logos.map((logo, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center p-4"
+            >
+              {logo.src ? (
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={150}
+                  height={60}
+                  className="object-contain w-full h-auto max-h-[60px] transition-opacity duration-300 hover:opacity-70"
+                />
+              ) : (
+                <div
+                  className="flex items-center justify-center w-full h-[60px] rounded-lg border border-gray-200 bg-gray-50 px-3"
+                  style={{ fontFamily: "var(--font-plus-jakarta)" }}
+                >
+                  <span className="text-gray-400 font-semibold whitespace-nowrap" style={{ fontSize: "clamp(12px, 1.5vw, 18px)", letterSpacing: "0.05em" }}>
+                    {logo.name}
+                  </span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function LogoMarquee({ data }: { data?: LogoMarqueeData | null }) {
   const headline = data?.headline || "Be part of the 100+ businesses transforming their presence.";
   const logos = data?.logos?.length ? data.logos : defaultLogos;

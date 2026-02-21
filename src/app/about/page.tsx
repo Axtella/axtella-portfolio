@@ -1,5 +1,5 @@
 import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
-import { LogoMarquee } from "@/components/logo-marquee";
+import { LogoGrid } from "@/components/logo-marquee";
 import { getPageData, getSection } from "@/lib/page-data";
 import { generateSeoMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -28,7 +28,7 @@ export default async function AboutPage() {
       <ScrollHighlightSection data={getSection(sections, "scroll-highlight")} />
       <MissionVisionSection data={getSection(sections, "mission-vision")} />
       <CoreValuesSection data={getSection(sections, "core-values")} />
-      <LogoMarquee data={getSection(homeSections, "logo-marquee")} />
+      <LogoGrid data={getSection(homeSections, "logo-marquee")} />
       <WhatSetsApartSection data={getSection(sections, "what-sets-apart")} />
       <EnquirySection />
       <Footer />
