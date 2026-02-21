@@ -47,6 +47,7 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
     setUploading(true);
     setError(null);
     let failed = 0;
+    let lastError = "";
     for (const file of Array.from(files)) {
       try {
         const formData = new FormData();
@@ -56,6 +57,7 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
         if (!res.ok) {
           const data = await res.json().catch(() => ({}));
           console.error(`Upload failed for ${file.name}:`, data);
+          lastError = data.error || "";
           failed++;
         }
       } catch (err) {
@@ -65,7 +67,7 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
     }
     setUploading(false);
     if (failed > 0) {
-      setError(`${failed} file(s) failed to upload. Check that Blob storage is configured.`);
+      setError(`${failed} file(s) failed to upload.${lastError ? ` Error: ${lastError}` : ""}`);
     }
     loadMedia();
     e.target.value = "";

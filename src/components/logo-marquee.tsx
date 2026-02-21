@@ -30,6 +30,12 @@ const defaultLogos: LogoItem[] = [
 export function LogoMarquee({ data }: { data?: LogoMarqueeData | null }) {
   const headline = data?.headline || "Be part of the 100+ businesses transforming their presence.";
   const logos = data?.logos?.length ? data.logos : defaultLogos;
+
+  // Ensure enough logos to fill the viewport for a seamless marquee
+  const MIN_ITEMS = 10;
+  const repeatCount = logos.length >= MIN_ITEMS ? 1 : Math.ceil(MIN_ITEMS / logos.length);
+  const extendedLogos = Array.from({ length: repeatCount }, () => logos).flat();
+
   return (
     <section
       className="bg-white overflow-hidden min-h-[250px] md:min-h-[280px] lg:min-h-[300px] py-12 md:py-14 lg:py-16"
@@ -52,7 +58,7 @@ export function LogoMarquee({ data }: { data?: LogoMarqueeData | null }) {
         <div className="relative overflow-hidden">
           <div className="flex animate-marquee items-center">
             {/* First set of logos */}
-            {logos.map((logo, index) => (
+            {extendedLogos.map((logo, index) => (
               <div
                 key={`first-${index}`}
                 className="flex-shrink-0 flex items-center justify-center"
@@ -83,7 +89,7 @@ export function LogoMarquee({ data }: { data?: LogoMarqueeData | null }) {
               </div>
             ))}
             {/* Duplicate set for seamless loop */}
-            {logos.map((logo, index) => (
+            {extendedLogos.map((logo, index) => (
               <div
                 key={`second-${index}`}
                 className="flex-shrink-0 flex items-center justify-center"

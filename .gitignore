@@ -44,3 +44,4 @@ next-env.d.ts
 
 # uploaded files (stored in Vercel Blob)
 /public/uploads
+.env*.local
