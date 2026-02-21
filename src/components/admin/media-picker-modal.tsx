@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { X, Upload, Image as ImageIcon, Check } from "lucide-react";
+import { upload } from "@vercel/blob/client";
 
 interface MediaItem {
   id: string;
@@ -50,18 +51,13 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
     let lastError = "";
     for (const file of Array.from(files)) {
       try {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("alt", file.name);
-        const res = await fetch("/api/media", { method: "POST", body: formData });
-        if (!res.ok) {
-          const data = await res.json().catch(() => ({}));
-          console.error(`Upload failed for ${file.name}:`, data);
-          lastError = data.error || "";
-          failed++;
-        }
+        await upload(file.name, file, {
+          access: "public",
+          handleUploadUrl: "/api/media/upload",
+        });
       } catch (err) {
         console.error(`Upload error for ${file.name}:`, err);
+        lastError = err instanceof Error ? err.message : "Upload failed";
         failed++;
       }
     }
