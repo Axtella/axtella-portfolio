@@ -36,7 +36,7 @@ const statIconMap: Record<string, LucideIcon> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface StatsData { label?: string; heading?: string; subtext?: string; ctaLabel?: string; stats?: any[] }
+interface StatsData { label?: string; heading?: string; subtext?: string; ctaLabel?: string; bgImage?: string; stats?: any[] }
 
 const defaultStats: StatCard[] = [
   {
@@ -398,7 +398,7 @@ export function TelecomStatsSection({ data }: { data?: StatsData | null }) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url('/images/fleet/fleet18.png')",
+          backgroundImage: `url('${data?.bgImage || "/images/fleet/fleet18.png"}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",

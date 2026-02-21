@@ -79,7 +79,11 @@ export default async function ServicePage({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const howItWorks = (service.howItWorks as any[]) || [];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const stats = (service.stats as any[]) || [];
+  const rawStats = service.stats as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const statsData = Array.isArray(rawStats)
+    ? { stats: rawStats }
+    : { label: rawStats?.label, heading: rawStats?.heading, subtext: rawStats?.subtext, bgImage: rawStats?.bgImage, stats: rawStats?.items || [] };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const industries = (service.industries as any[]) || [];
 
@@ -113,8 +117,8 @@ export default async function ServicePage({
       {/* Fleet-unique: Dashboard */}
       {isFleet && <FleetDashboardSection />}
 
-      {stats.length > 0 && (
-        <ServiceStatsSection data={{ stats }} />
+      {statsData.stats.length > 0 && (
+        <ServiceStatsSection data={statsData} />
       )}
       {industries.length > 0 && (
         <ServiceIndustriesSection data={{ industries }} />
