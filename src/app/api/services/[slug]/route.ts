@@ -38,6 +38,7 @@ export async function PUT(
       techStack: body.techStack || [],
       pricing: body.pricing || [],
       published: body.published ?? true,
+      isNew: body.isNew ?? false,
       order: body.order ?? 0,
       metaTitle: body.metaTitle || null,
       metaDescription: body.metaDescription || null,

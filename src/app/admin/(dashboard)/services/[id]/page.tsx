@@ -146,7 +146,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
   const [loading, setLoading] = useState(true);
   const [originalSlug, setOriginalSlug] = useState("");
   const [formData, setFormData] = useState({
-    title: "", slug: "", heroTitle: "", heroSubtitle: "", heroImage: "", published: true, order: 0,
+    title: "", slug: "", heroTitle: "", heroSubtitle: "", heroImage: "", published: true, isNew: false, order: 0,
   });
   const [offers, setOffers] = useState<ListItem[]>([]);
   const [features, setFeatures] = useState<ListItem[]>([]);
@@ -166,7 +166,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
           title: service.title as string, slug: service.slug as string,
           heroTitle: (service.heroTitle as string) || "", heroSubtitle: (service.heroSubtitle as string) || "",
           heroImage: (service.heroImage as string) || "",
-          published: service.published as boolean, order: (service.order as number) || 0,
+          published: service.published as boolean, isNew: (service.isNew as boolean) || false, order: (service.order as number) || 0,
         });
         setOffers((service.offers as ListItem[]) || []);
         setFeatures((service.features as ListItem[]) || []);
@@ -222,6 +222,7 @@ export default function EditServicePage({ params }: { params: Promise<{ id: stri
             <InputField label="Hero Image" name="heroImage" value={formData.heroImage} onChange={(v) => update("heroImage", v)} />
             <InputField label="Order" name="order" type="number" value={String(formData.order)} onChange={(v) => update("order", parseInt(v) || 0)} />
             <ToggleField label="Published" name="published" checked={formData.published} onChange={(v) => update("published", v)} />
+            <ToggleField label="Show &quot;New&quot; Badge" name="isNew" checked={formData.isNew} onChange={(v) => update("isNew", v)} />
           </FormSection>
           <FormSection title="Offers"><ListEditor items={offers} onChange={setOffers} label="Offers" showImage /></FormSection>
           <FormSection title="Key Features"><ListEditor items={features} onChange={setFeatures} label="Features" /></FormSection>

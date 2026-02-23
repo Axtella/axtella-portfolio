@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const published = searchParams.get("published");
+
   const services = await prisma.service.findMany({
+    where: published === "true" ? { published: true } : undefined,
     orderBy: { order: "asc" },
   });
   return NextResponse.json(services);
@@ -26,6 +30,7 @@ export async function POST(request: NextRequest) {
       techStack: body.techStack || [],
       pricing: body.pricing || [],
       published: body.published ?? true,
+      isNew: body.isNew ?? false,
       order: body.order ?? 0,
       metaTitle: body.metaTitle || null,
       metaDescription: body.metaDescription || null,

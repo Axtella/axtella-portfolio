@@ -22,35 +22,43 @@ interface NavItem {
   disabled?: boolean;
 }
 
-const navItems: NavItem[] = [
-  { label: "HOME", href: "/", hasDropdown: false },
-  { label: "ABOUT", href: "/about", hasDropdown: false },
-  {
-    label: "WHAT WE DO",
-    href: "#",
-    hasDropdown: true,
-    dropdownItems: [
-      { label: "Fleet Management Solutions", href: "/services/fleet-management", tag: "New" },
-      { label: "Telecommunication Solutions", href: "/services/telecommunication-solutions" },
-      { label: "Information Technology", href: "/services/information-technology" },
-      { label: "Internet of Things (IoT)", href: "/services/internet-of-things" },
-      { label: "ELV Systems", href: "/services/elv-systems" },
-      { label: "BMS & Smart Building", href: "/services/bms-smart-building" },
-      { label: "Electro Mechanical Works", href: "/services/electro-mechanical-works" },
-      { label: "Civil & General Construction", href: "/services/civil-general-construction" },
-    ]
-  },
-  { label: "BLOGS", href: "/blogs", hasDropdown: false },
-  { label: "CONTACT", href: "/contact", hasDropdown: false },
-];
+function buildNavItems(serviceItems: DropdownItem[]): NavItem[] {
+  return [
+    { label: "HOME", href: "/", hasDropdown: false },
+    { label: "ABOUT", href: "/about", hasDropdown: false },
+    {
+      label: "WHAT WE DO",
+      href: "#",
+      hasDropdown: true,
+      dropdownItems: serviceItems,
+    },
+    { label: "BLOGS", href: "/blogs", hasDropdown: false },
+    { label: "CONTACT", href: "/contact", hasDropdown: false },
+  ];
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const [navItems, setNavItems] = useState<NavItem[]>(buildNavItems([]));
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    fetch("/api/services?published=true")
+      .then((r) => r.json())
+      .then((services: { title: string; slug: string; isNew?: boolean }[]) => {
+        const items: DropdownItem[] = services.map((s) => ({
+          label: s.title,
+          href: `/services/${s.slug}`,
+          tag: s.isNew ? "New" : undefined,
+        }));
+        setNavItems(buildNavItems(items));
+      })
+      .catch(() => {});
+  }, []);
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
