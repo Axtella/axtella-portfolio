@@ -39,9 +39,10 @@ function buildNavItems(serviceItems: DropdownItem[]): NavItem[] {
 
 interface NavbarProps {
   services?: { title: string; slug: string; isNew: boolean }[];
+  debugError?: string;
 }
 
-export function Navbar({ services }: NavbarProps) {
+export function Navbar({ services, debugError }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -101,6 +102,8 @@ export function Navbar({ services }: NavbarProps) {
         isScrolled ? "shadow-md py-1 lg:py-1 xl:py-2" : "py-2 lg:py-2 xl:py-3"
       )}
       style={{ opacity: 1, visibility: "visible", backgroundColor: "#F9FAFB" }}
+      data-debug-error={debugError || undefined}
+      data-services-count={services?.length ?? 0}
     >
       <div className="w-full max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[50px] lg:h-[56px] xl:h-[68px]">

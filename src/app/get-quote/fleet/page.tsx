@@ -3,6 +3,8 @@ import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { Footer } from "@/components/footer";
 import { FleetQuoteWizard } from "@/components/fleet-quote/fleet-quote-wizard";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Fleet Management Quote | Axtella",
   description:
