@@ -4,6 +4,6 @@ export async function getPublishedServices() {
   return prisma.service.findMany({
     where: { published: true },
     orderBy: { order: "asc" },
-    select: { title: true, slug: true },
+    select: { title: true, slug: true, isNew: true },
   });
 }

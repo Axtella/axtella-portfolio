@@ -2,7 +2,7 @@ import { getPublishedServices } from "@/lib/service-queries";
 import { Navbar } from "./navbar";
 
 export async function NavbarServer() {
-  let services: { title: string; slug: string }[] = [];
+  let services: { title: string; slug: string; isNew: boolean }[] = [];
   try {
     services = await getPublishedServices();
   } catch (error) {
