@@ -38,7 +38,7 @@ function buildNavItems(serviceItems: DropdownItem[]): NavItem[] {
 }
 
 interface NavbarProps {
-  services?: { title: string; slug: string; isNew: boolean }[];
+  services?: { title: string; slug: string }[];
 }
 
 export function Navbar({ services }: NavbarProps) {
@@ -53,7 +53,6 @@ export function Navbar({ services }: NavbarProps) {
     (services || []).map((s) => ({
       label: s.title,
       href: `/services/${s.slug}`,
-      tag: s.isNew ? "New" : undefined,
     }))
   );
 
