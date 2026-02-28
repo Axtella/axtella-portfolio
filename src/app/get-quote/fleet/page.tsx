@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Navbar } from "@/components/navbar";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { Footer } from "@/components/footer";
 import { FleetQuoteWizard } from "@/components/fleet-quote/fleet-quote-wizard";
 

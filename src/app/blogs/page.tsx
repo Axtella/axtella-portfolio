@@ -1,10 +1,10 @@
 import {
-  Navbar,
   BlogHeroSection,
   BlogGridSection,
   EnquirySection,
   Footer,
 } from "@/components";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { getPublishedBlogs, getBlogCategories } from "@/lib/blog-queries";
 import { BlogPost } from "@/types/blog";
 

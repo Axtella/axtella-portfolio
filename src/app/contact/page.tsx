@@ -1,11 +1,11 @@
 import {
-  Navbar,
   ContactHeroSection,
   ContactInfoSection,
   ContactFormSection,
   FAQSection,
   Footer
 } from "@/components";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { getPageData, getSection } from "@/lib/page-data";
 import { generateSeoMetadata } from "@/lib/seo";
 import type { Metadata } from "next";

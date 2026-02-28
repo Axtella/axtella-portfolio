@@ -37,28 +37,25 @@ function buildNavItems(serviceItems: DropdownItem[]): NavItem[] {
   ];
 }
 
-export function Navbar() {
+interface NavbarProps {
+  services?: { title: string; slug: string; isNew: boolean }[];
+}
+
+export function Navbar({ services }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
-  const [navItems, setNavItems] = useState<NavItem[]>(buildNavItems([]));
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
-  useEffect(() => {
-    fetch("/api/services?published=true")
-      .then((r) => r.json())
-      .then((services: { title: string; slug: string; isNew?: boolean }[]) => {
-        const items: DropdownItem[] = services.map((s) => ({
-          label: s.title,
-          href: `/services/${s.slug}`,
-          tag: s.isNew ? "New" : undefined,
-        }));
-        setNavItems(buildNavItems(items));
-      })
-      .catch(() => {});
-  }, []);
+  const navItems = buildNavItems(
+    (services || []).map((s) => ({
+      label: s.title,
+      href: `/services/${s.slug}`,
+      tag: s.isNew ? "New" : undefined,
+    }))
+  );
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';

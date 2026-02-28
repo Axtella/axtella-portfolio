@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import {
-  Navbar,
   BlogDetailHeroSection,
   BlogContentSection,
   RelatedBlogsSection,
   EnquirySection,
   Footer,
 } from "@/components";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { getBlogBySlug, getRelatedBlogs } from "@/lib/blog-queries";
 import { BlogPost } from "@/types/blog";
 

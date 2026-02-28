@@ -1,4 +1,5 @@
-import { Navbar, AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
+import { AboutHeroSection, ScrollHighlightSection, StatisticsSection, MissionVisionSection, CoreValuesSection, WhatSetsApartSection, EnquirySection, Footer } from "@/components";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { LogoGrid } from "@/components/logo-marquee";
 import { getPageData, getSection } from "@/lib/page-data";
 import { generateSeoMetadata } from "@/lib/seo";

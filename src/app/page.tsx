@@ -1,5 +1,4 @@
 import {
-  Navbar,
   HeroSection,
   ScrollHighlightSection,
   LogoMarquee,
@@ -12,6 +11,7 @@ import {
   EnquirySection,
   Footer
 } from "@/components";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { getPageData, getSection } from "@/lib/page-data";
 import { getPublishedBlogs } from "@/lib/blog-queries";
 import { generateSeoMetadata } from "@/lib/seo";

@@ -4,7 +4,7 @@ import { generateSeoMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 // Shared components
-import { Navbar } from "@/components/navbar";
+import { NavbarServer as Navbar } from "@/components/navbar-server";
 import { Footer } from "@/components/footer";
 import { EnquirySection } from "@/components/enquiry-section";
 import { ServiceHeroSection } from "@/components/service-hero-section";
