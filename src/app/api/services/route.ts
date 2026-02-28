@@ -2,14 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const published = searchParams.get("published");
+  try {
+    const { searchParams } = new URL(request.url);
+    const published = searchParams.get("published");
 
-  const services = await prisma.service.findMany({
-    where: published === "true" ? { published: true } : undefined,
-    orderBy: { order: "asc" },
-  });
-  return NextResponse.json(services);
+    const services = await prisma.service.findMany({
+      where: published === "true" ? { published: true } : undefined,
+      orderBy: { order: "asc" },
+    });
+    return NextResponse.json(services);
+  } catch (error) {
+    console.error("Services fetch error:", error);
+    const message = error instanceof Error ? error.message : "Failed to fetch services";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {

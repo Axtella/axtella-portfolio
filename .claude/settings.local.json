@@ -78,7 +78,8 @@
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_dvSye07NrElO@ep-green-heart-aixj2sim-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx prisma migrate:*)",
       "Bash(DATABASE_URL=\"postgresql://neondb_owner:npg_dvSye07NrElO@ep-green-heart-aixj2sim-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require\" npx tsx:*)",
       "Bash(head:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:fssicloud.com)"
     ]
   }
 }
