@@ -5,6 +5,7 @@ import { AdminHeader } from "@/components/admin/admin-header";
 import { useToast } from "@/components/admin/toast";
 import { ConfirmDialog } from "@/components/admin/confirm-dialog";
 import { Upload, Trash2, Copy, Image as ImageIcon } from "lucide-react";
+import { compressImage } from "@/lib/compress-image";
 
 interface MediaItem {
   id: string;
@@ -41,8 +42,9 @@ export default function MediaPage() {
 
     setUploading(true);
     for (const file of Array.from(files)) {
+      const compressed = await compressImage(file);
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", compressed);
       formData.append("alt", file.name);
 
       const res = await fetch("/api/media", {

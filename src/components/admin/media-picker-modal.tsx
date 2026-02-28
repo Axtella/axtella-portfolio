@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { X, Upload, Image as ImageIcon, Check } from "lucide-react";
 import { upload } from "@vercel/blob/client";
+import { compressImage } from "@/lib/compress-image";
 
 interface MediaItem {
   id: string;
@@ -51,7 +52,8 @@ export function MediaPickerModal({ open, onSelect, onClose }: MediaPickerModalPr
     let lastError = "";
     for (const file of Array.from(files)) {
       try {
-        await upload(file.name, file, {
+        const compressed = await compressImage(file);
+        await upload(compressed.name, compressed, {
           access: "public",
           handleUploadUrl: "/api/media/upload",
         });
