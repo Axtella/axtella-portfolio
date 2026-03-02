@@ -24,7 +24,7 @@ export { BlogContentSection } from "./blog-content-section";
 export { RelatedBlogsSection } from "./related-blogs-section";
 export { CourseGridSection } from "./course-grid-section";
 export { DiscoverCoursesSection } from "./discover-courses-section";
-export { FeaturedSection } from "./featured-section";
+
 export { WhyBusinessLoveSection } from "./why-business-love-section";
 export { MissionVisionSection } from "./mission-vision-section";
 export { ArticlesSection } from "./articles-section";

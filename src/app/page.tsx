@@ -5,7 +5,7 @@ import {
   MentorSection,
   FleetLaunchSection,
   DiscoverCoursesSection,
-  FeaturedSection,
+
   WhyBusinessLoveSection,
   ArticlesSection,
   EnquirySection,
@@ -42,7 +42,7 @@ export default async function Home() {
       <MentorSection data={getSection(sections, "mentor")} />
       <FleetLaunchSection />
       <DiscoverCoursesSection data={getSection(sections, "discover-services")} />
-      <FeaturedSection data={getSection(sections, "featured")} />
+
       <WhyBusinessLoveSection data={getSection(sections, "why-business-love")} />
       <ArticlesSection articles={blogs as unknown as BlogPost[]} />
       <EnquirySection />
