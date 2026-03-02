@@ -19,6 +19,7 @@ export async function saveFile(
 
   const blob = await put(pathname, file, {
     access: "public",
+    addRandomSuffix: true,
   });
 
   return {
