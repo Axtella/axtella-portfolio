@@ -176,8 +176,9 @@ export function Footer() {
               >
                 Careers
               </Link>
-              <span
-                className="text-white/30 cursor-not-allowed"
+              <Link
+                href="/about"
+                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -187,9 +188,10 @@ export function Footer() {
                 }}
               >
                 About
-              </span>
-              <span
-                className="text-white/30 cursor-not-allowed"
+              </Link>
+              <Link
+                href="/blogs"
+                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -199,9 +201,10 @@ export function Footer() {
                 }}
               >
                 Blogs
-              </span>
-              <span
-                className="text-white/30 cursor-not-allowed"
+              </Link>
+              <Link
+                href="/contact"
+                className="text-[#C2C2C2] hover:text-[#F5A623] transition-colors"
                 style={{
                   fontFamily: "var(--font-plus-jakarta)",
                   fontWeight: 500,
@@ -211,7 +214,7 @@ export function Footer() {
                 }}
               >
                 Contact
-              </span>
+              </Link>
             </div>
           </nav>
 
