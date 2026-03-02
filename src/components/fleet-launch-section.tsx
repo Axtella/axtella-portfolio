@@ -40,9 +40,9 @@ export function FleetLaunchSection() {
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {/* Card 1 — Fleet Tracking */}
-          <Link href="/services/fleet-management" data-card className="opacity-0">
+          <Link href="/services/fleet-management" data-card className="opacity-0 h-full">
             <div
-              className="flex flex-row items-center gap-5 md:gap-6 lg:gap-8 rounded-2xl md:rounded-3xl p-5 md:p-7 lg:p-8 transition-all duration-300 hover:border-[#F5A623]/40 hover:scale-[1.02]"
+              className="h-full flex flex-row items-center gap-5 md:gap-6 lg:gap-8 rounded-2xl md:rounded-3xl p-5 md:p-7 lg:p-8 transition-all duration-300 hover:border-[#F5A623]/40 hover:scale-[1.02]"
               style={{
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(255,255,255,0.1)",
@@ -114,9 +114,9 @@ export function FleetLaunchSection() {
           </Link>
 
           {/* Card 2 — Route Optimization */}
-          <Link href="/services/fleet-management" data-card className="opacity-0">
+          <Link href="/services/fleet-management" data-card className="opacity-0 h-full">
             <div
-              className="flex flex-row items-center gap-5 md:gap-6 lg:gap-8 rounded-2xl md:rounded-3xl p-5 md:p-7 lg:p-8 transition-all duration-300 hover:border-[#F5A623]/40 hover:scale-[1.02]"
+              className="h-full flex flex-row items-center gap-5 md:gap-6 lg:gap-8 rounded-2xl md:rounded-3xl p-5 md:p-7 lg:p-8 transition-all duration-300 hover:border-[#F5A623]/40 hover:scale-[1.02]"
               style={{
                 background: "rgba(255,255,255,0.05)",
                 border: "1px solid rgba(255,255,255,0.1)",
