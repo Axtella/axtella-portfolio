@@ -27,19 +27,22 @@ const defaultSentences: TextSegment[][] = [
   [
     { text: "Axtella was founded by ", weight: 400 },
     { text: "Hassan AbdulShukkur", weight: 700 },
-    { text: " lorem ipsum dolor sit amet, consectetur adipiscing elit.", weight: 400 },
+    { text: " with a vision to deliver integrated technology and infrastructure solutions across Saudi Arabia and the GCC.", weight: 400 },
   ],
   [
-    { text: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ", weight: 400 },
-    { text: "Ut enim ad minim veniam.", weight: 700 },
+    { text: "Since 2019, we've grown from a focused consultancy into a trusted partner with ", weight: 400 },
+    { text: "250+ skilled professionals", weight: 700 },
+    { text: " delivering across 9 service verticals.", weight: 400 },
   ],
   [
-    { text: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ", weight: 400 },
-    { text: "Duis aute irure dolor", weight: 700 },
-    { text: " in reprehenderit in voluptate velit.", weight: 400 },
+    { text: "From telecommunications and IoT to smart buildings and construction — we engineer ", weight: 400 },
+    { text: "end-to-end solutions", weight: 700 },
+    { text: " that perform, scale, and last.", weight: 400 },
   ],
   [
-    { text: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", weight: 400 },
+    { text: "Headquartered in Riyadh, every project we take on is aligned with ", weight: 400 },
+    { text: "Saudi Vision 2030", weight: 700 },
+    { text: " and built on a foundation of engineering excellence.", weight: 400 },
   ],
 ];
 
