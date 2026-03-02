@@ -224,7 +224,7 @@ export function EnquirySection() {
                 lineHeight: "1.7",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Partner with Axtella for integrated technology and infrastructure solutions tailored to your business needs. From telecommunications and IoT to smart buildings and fleet management — our 250+ professionals deliver end-to-end solutions aligned with Saudi Vision 2030.
             </p>
             <a
               href="/discover"
@@ -264,7 +264,7 @@ export function EnquirySection() {
                     fontSize: "13px",
                   }}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Tell us about your project and our team will get back to you within 24 hours.
                 </p>
               </div>
 
