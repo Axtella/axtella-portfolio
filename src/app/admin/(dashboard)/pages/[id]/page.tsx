@@ -334,13 +334,23 @@ function SectionEditor({
                       className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
                     />
                     <input
-                      value={(card.india as string) || ""}
+                      value={(card.phone as string) || ""}
                       onChange={(e) => {
                         const updated = [...(section.cards || [])];
-                        updated[ci] = { ...updated[ci], india: e.target.value };
+                        updated[ci] = { ...updated[ci], phone: e.target.value };
                         updateField("cards", updated);
                       }}
-                      placeholder="India Phone"
+                      placeholder="Phone"
+                      className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
+                    />
+                    <input
+                      value={(card.address as string) || ""}
+                      onChange={(e) => {
+                        const updated = [...(section.cards || [])];
+                        updated[ci] = { ...updated[ci], address: e.target.value };
+                        updateField("cards", updated);
+                      }}
+                      placeholder="Address"
                       className="w-full px-3 py-2 bg-white/5 border border-white/10 rounded text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-[#F5A623]/50"
                     />
                     <input

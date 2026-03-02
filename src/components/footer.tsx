@@ -83,9 +83,9 @@ export function Footer() {
                   lineHeight: "1.6",
                 }}
               >
-                Office 12, Al Quoz Business Center,
+                Building 7265, Abi Bakr Al Siddiq,
                 <br />
-                P.O. Box 00000, Dubai, UAE
+                Al Narjis Dist., Riyadh 13333, Kingdom of Saudi Arabia
               </p>
 
               {/* Email - Group 126 */}
@@ -101,14 +101,14 @@ export function Footer() {
                   EMAIL US DIRECTLY
                 </p>
                 <a
-                  href="mailto:info@axtella.com"
+                  href="mailto:info@axtellaglobal.com"
                   className="text-white hover:text-[#F5A623] transition-colors"
                   style={{
                     fontFamily: "var(--font-plus-jakarta)",
                     fontSize: "clamp(14px, 2vw, 16px)",
                   }}
                 >
-                  info@axtella.com
+                  info@axtellaglobal.com
                 </a>
               </div>
 
@@ -125,14 +125,14 @@ export function Footer() {
                   CALL US DIRECTLY
                 </p>
                 <a
-                  href="tel:+97140000000"
+                  href="tel:+966557323274"
                   className="text-white hover:text-[#F5A623] transition-colors"
                   style={{
                     fontFamily: "var(--font-plus-jakarta)",
                     fontSize: "clamp(14px, 2vw, 16px)",
                   }}
                 >
-                  +971 4 000 0000
+                  +966 557 323 274
                 </a>
               </div>
             </div>

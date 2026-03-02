@@ -19,31 +19,28 @@ interface ContactCard {
 const defaultContactCards: ContactCard[] = [
   {
     icon: "phone",
-    title: "Talk to Experts",
+    title: "Sales",
     details: [
-      { label: "INDIA", value: "+91 789456123" },
-      { label: "UAE", value: "+971 558 55 855, 589 589 352" },
-      { label: "MAIL", value: "support@axtella.com" },
+      { label: "PHONE", value: "+966 557 323 274" },
+      { label: "MAIL", value: "sales@axtellaglobal.com" },
     ],
     hasUnderline: true,
   },
   {
     icon: "chat",
-    title: "Course Support",
+    title: "General Enquiries",
     details: [
-      { label: "INDIA", value: "+91 789456123" },
-      { label: "UAE", value: "+971 558 55 855, 589 589 352" },
-      { label: "MAIL", value: "support@axtella.com" },
+      { label: "PHONE", value: "+966 557 323 274" },
+      { label: "MAIL", value: "info@axtellaglobal.com" },
     ],
     hasUnderline: true,
   },
   {
     icon: "email",
-    title: "Corporate Support",
+    title: "Our Office",
     details: [
-      { label: "INDIA", value: "+91 789456123" },
-      { label: "UAE", value: "+971 558 55 855, 589 589 352" },
-      { label: "MAIL", value: "support@axtella.com" },
+      { label: "ADDRESS", value: "Building 7265, Abi Bakr Al Siddiq, Al Narjis Dist., Riyadh 13333, KSA" },
+      { label: "MAIL", value: "info@axtellaglobal.com" },
     ],
     hasUnderline: true,
   },
@@ -116,8 +113,8 @@ export function ContactInfoSection({ data }: { data?: ContactInfoData | null }) 
         icon: iconTypes[i % iconTypes.length],
         title: c.title || "",
         details: [
-          ...(c.india ? [{ label: "INDIA", value: c.india }] : []),
-          ...(c.uae ? [{ label: "UAE", value: Array.isArray(c.uae) ? c.uae.join(", ") : c.uae }] : []),
+          ...(c.phone ? [{ label: "PHONE", value: c.phone }] : []),
+          ...(c.address ? [{ label: "ADDRESS", value: c.address }] : []),
           ...(c.email ? [{ label: "MAIL", value: c.email }] : []),
         ],
         hasUnderline: true,
